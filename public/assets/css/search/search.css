@@ -1,0 +1,4 @@
+.active-search:after{
+    width: 100% !important;
+    background-color: aqua !important;
+}

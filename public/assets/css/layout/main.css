@@ -1,0 +1,65 @@
+/* general */
+html{
+    direction: rtl;
+}
+/* end general */
+
+/* nav */
+.nav-wrapper{
+    /* background-color: rgba(0,0,0,0.5); */
+    background-image: linear-gradient(to left , rgba(0,0,0,0.6) , rgba(0,0,0,0.4) , rgba(0,0,0,0.6));
+    position:relative;
+    height: 80px;
+}
+.nav-ul {
+    list-style: none;
+    margin: 0px;
+}
+.nav-ul a {
+    text-decoration:none;
+    color:white;
+    font-size: 13pt;
+    user-select: none;
+}
+
+.nav-ul--left,
+.nav-ul--right{
+    position: absolute;
+    top: 20px; 
+    padding :0px;
+}
+
+.nav-ul--left{
+    left:30px
+}
+
+.nav-ul--right{
+    right: 30px;
+}
+
+.nav-ul--left,
+.nav-ul--right,.nav-ul--left li,
+.nav-ul--right li {
+    display : inline-block
+}
+
+.nav-ul--left li,
+.nav-ul--right li {
+    margin: 10px 20px;
+}
+.nav-ul--left li:after ,
+.nav-ul--right li:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+.nav-ul--left li:hover:after ,
+.nav-ul--right li:hover:after {
+    width: 100%;
+    background: aqua;
+}
+/* end nav */
