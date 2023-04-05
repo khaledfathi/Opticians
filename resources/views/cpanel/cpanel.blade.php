@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <div class="admin-block">
-            <a href="{{ url('cpanel/usersmanagment') }}">ادارة المستخدمين</a>
+            <a href="{{ url('cpanel/users') }}">ادارة المستخدمين</a>
             <a href="{{ url('cpanel/customers') }}">سجل العملاء</a>
             <a href="{{ url('cpanel/frames') }}">قائمة انواع الفريم</a>
             <a href="{{ url('cpanel/lenses') }}">قائمة انواع العدسات</a>

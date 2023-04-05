@@ -18,16 +18,15 @@
                 </p>
             @endif
         </div>
-        <form action="{{ url('cpanel/usersmanagment/createuser') }}" method="post">
+        <form action="{{ url('cpanel/users/store') }}" method="post">
             @csrf
-            <input type="hidden" value="{{ csrf_token() }}" id="csrf_token">
             <div>
                 <label for="">اسم المستخدم</label>
-                <input type="text" name="name">
+                <input type="text" name="name" value="{{(session('lastInputs'))?session('lastInputs')['name']:''}}">
             </div>
             <div>
                 <label for="">كلمة المرور</label>
-                <input type="password" name="password">
+                <input type="password" name="password" >
             </div>
             <div>
                 <label for="">تأكيد كلمة المرور</label>
@@ -35,25 +34,35 @@
             </div>
             <div>
                 <label for="">تليفون</label>
-                <input type="text" name="phone">
+                <input type="text" name="phone" value="{{(session('lastInputs'))?session('lastInputs')['phone']:''}}">
             </div>
             <div>
                 <label for="">النوع</label>
                 <select name="type">
-                    <option value="admin">admin</option>
-                    <option value="user">user</option>
+                    @foreach ($userTypes as $type)
+                        @if (session('lastInputs'))
+                            <option {{(session('lastInputs')['type']==$type->value)?'selected':null}} value="{{$type->value}}">{{$type->name}}</option>
+                        @else
+                            <option value="{{$type->value}}">{{$type->name}}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
             <div>
                 <label for="">الحالة</label>
                 <select name="status">
-                    <option value="enabled">نشط</option>
-                    <option value="disabled">غير نشط</option>
+                    @foreach ($userStatus as $status)
+                        @if (session('lastInputs'))
+                            <option {{(session('lastInputs')['type']==$status->value)?'selected':null}} value="{{$status->value}}">{{($status->value == 'enabled')?'نشط':'غير نشط'}}</option>
+                        @else 
+                            <option value="{{$status->value}}">{{($status->value == 'enabled')?'نشط':'غير نشط'}}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
             <div>
                 <input type="submit" value="حفظ" id="save">
-                <a href="{{ url('cpanel/usersmanagment') }}">الغاء</a>
+                <a href="{{ url('cpanel/users') }}">الغاء</a>
             </div>
         </form>
     </div>

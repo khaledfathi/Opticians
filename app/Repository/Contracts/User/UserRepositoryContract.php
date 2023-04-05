@@ -4,7 +4,7 @@ use App\Models\User as UserModel;
 
 
 interface UserRepositoryContract {
-    public function create(array $record):UserModel; 
-    public function show():object; 
+    public function store(array $record):UserModel; 
+    public function index():object; 
     public function destroy(int $id):bool; 
 }

@@ -5,11 +5,11 @@ use App\Models\User as UserModel;
 use App\Repository\Contracts\User\UserRepositoryContract;
 
 class UserRepository implements UserRepositoryContract{
-    public function create(array $record):UserModel
+    public function store(array $record):UserModel
     {
         return UserModel::create($record);
     }
-    public function show():object
+    public function index():object
     {
         return UserModel::get();      
     }

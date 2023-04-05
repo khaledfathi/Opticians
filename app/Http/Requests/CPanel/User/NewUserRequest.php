@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\CPanel\UsersManagment;
+namespace App\Http\Requests\CPanel\User;
 
 use App\Enum\User\UserStatus;
 use App\Enum\User\UserType;
@@ -24,10 +24,11 @@ class NewUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $this->session()->flash('lastInputs', $this->all()); 
         return [
             'name'=>'required|unique:users',
             'password'=>'required|min:8|confirmed', 
-            'phone'=>'required', 
+            'phone'=>'required|numeric|unique:users', 
             'type'=>['required' , new Enum(UserType::class)], 
             'status'=>['required' , new Enum(UserStatus::class)]
         ];
@@ -39,7 +40,9 @@ class NewUserRequest extends FormRequest
             'password.required'=>'كلمة المرور مطلوبة', 
             'password.confirmed'=>'تأكيد كلمة المرور غير متطابق', 
             'password.min'=>'كلمة المرور لا تقل عن 8 احرف', 
-            'phone.required'=>'التليفون مطلوب', 
+            'phone.required'=>'التليفون مطلوب',
+            'phone.numeric'=> 'التليفون- ارقام فقط',
+            'phone.unique'=>'التليفون مسجل مسبقاً',
             'type.required'=>'نوع المستخدم مطلوب',
             'type'=>'نوع المستخدم غير معروف',
             'status.required'=>'حالة المستخدم مطلوبة',
