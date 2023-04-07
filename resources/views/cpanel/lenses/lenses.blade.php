@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <div>
-            <a href="{{ url('cpanel/lenses/new') }}">اضافة عدسة</a>
+            <a href="{{ url('cpanel/lenses/create') }}">اضافة عدسة</a>
             <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
         </div>
         <div class="msg">
@@ -33,7 +33,7 @@
                                 <td>{{$record->name}}</td>
                                 <td>{{$record->description}}</td>
                                 <td>edit</td>
-                                <td><a href="{{url('cpanel/lenses/delete/'.$record->id)}}">Delete</a></td>
+                                <td><a href="{{url('cpanel/lenses/destroy/'.$record->id)}}">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>

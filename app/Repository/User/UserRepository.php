@@ -18,4 +18,8 @@ class UserRepository implements UserRepositoryContract{
         $found = UserModel::find($id); 
         return ($found) ? $found->delete() : false ; 
     }
+    public function show (int $id):object
+    {
+        return UserModel::where('id' , $id)->first() ; 
+    } 
 }

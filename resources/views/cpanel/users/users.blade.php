@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <div>
-            <a href="{{ url('cpanel/users/new') }}">اضافة مستخدم جديد</a>
+            <a href="{{ url('cpanel/users/create') }}">اضافة مستخدم جديد</a>
             <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
         </div>
         <div class="msg">
@@ -41,7 +41,7 @@
                                     <td>غير نشط</td>
                                 @endif
                                 <td>edit</td>
-                                <td><a href="{{url('cpanel/users/delete/'.$record->id)}}">Delete</a></td>
+                                <td><a href="{{url('cpanel/users/destroy/'.$record->id)}}">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>

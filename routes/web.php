@@ -1,11 +1,14 @@
 <?php
 
-use App\Http\Controllers\ControlPanel\ControlPanelController;
-use App\Http\Controllers\ControlPanel\CustomerController;
-use App\Http\Controllers\ControlPanel\FrameController;
-use App\Http\Controllers\ControlPanel\LensesController;
-use App\Http\Controllers\ControlPanel\UserController;
+use App\Http\Controllers\CPanel\CustomerController;
+use App\Http\Controllers\CPanel\FrameController;
+use App\Http\Controllers\CPanel\LensesController;
+use App\Http\Controllers\CPanel\UserController;
+use App\Http\Controllers\CPanel\CPanelController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\Profile\ProfileController;
+use App\Http\Controllers\Revision\RevisionController;
 use App\Http\Controllers\Search\SearchController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,42 +34,57 @@ Route::middleware(['auth'])->group(function (){
     Route::get('logout' , [LoginController::class , 'logout']);
 
     //search 
-    Route::get('search' , [SearchController::class , 'searchPage']);
+    Route::get('search' , [SearchController::class , 'indexSearch']);
 
     //control panel 
     Route::group(['prefix'=>'cpanel'],function (){        
-        Route::get('/' ,[ ControlPanelController::class , 'controlPanelPage']);
-        //user managment
+        Route::get('/' ,[ CPanelController::class , 'indexCPanel']);
+        //user table managment
         Route::group(['prefix'=>'users'],function (){
-            Route::get('/' ,[ UserController::class , 'usersManagmentPage']);
-            Route::get('new' ,[ UserController::class , 'newUserPage']);
+            Route::get('/' ,[ UserController::class , 'indexUser']);
+            Route::get('create' ,[ UserController::class , 'createUser']);
             Route::post('store', [UserController::class , 'storeUser']); 
-            Route::get('delete/{id}' , [UserController::class , 'deleteUser']); 
+            Route::get('destroy/{id}' , [UserController::class , 'destroyUser']); 
         });
-        //customer managment
+        //customer table managment
         Route::group(['prefix'=>'customers'], function(){
-            Route::get('/' , [CustomerController::class , 'customerPage']);
-            Route::get('new' , [CustomerController::class , 'newCustomerPage']);
+            Route::get('/' , [CustomerController::class , 'indexCustomer']);
+            Route::get('create' , [CustomerController::class , 'createCustomer']);
             Route::post('store' , [CustomerController::class , 'storeCustomer']);
-            Route::get('delete/{id}' , [CustomerController::class , 'deleteCustomer']);
+            Route::get('destroy/{id}' , [CustomerController::class , 'destroyCustomer']);
         });
         //frames table managment
         Route::group(['prefix'=>'frames'],function (){
-            Route::get('/' , [FrameController::class , 'framePage']); 
-            Route::get('new' , [FrameController::class , 'newFramePage']); 
+            Route::get('/' , [FrameController::class , 'indexFrame']); 
+            Route::get('create' , [FrameController::class , 'createFrame']); 
             Route::get('store' , [FrameController::class , 'storeFrame']); 
-            Route::get('delete/{id}' , [FrameController::class , 'deleteFrame']); 
+            Route::get('destroy/{id}' , [FrameController::class , 'destroyFrame']); 
         });
         //lenses table managment
         Route::group(['prefix'=>'lenses'], function (){
-            Route::get('/' , [LensesController::class , 'lensesPage']); 
-            Route::get('new' , [LensesController::class , 'newLensPage']);
+            Route::get('/' , [LensesController::class , 'indexLens']); 
+            Route::get('create' , [LensesController::class , 'createLens']);
             Route::get('store' , [LensesController::class , 'storeLens']);
-            Route::get('delete/{id}' , [LensesController::class , 'deleteLens']);
+            Route::get('destroy/{id}' , [LensesController::class , 'destroyLens']);
         });
+    }); 
 
+    //user profile 
+    Route::group(['prefix'=>'profile'], function (){
+        Route::get('/' , [ProfileController::class , 'indexProfile']); 
+    }); 
+
+    //order 
+    Route::group(['prefix'=>'order'], function (){
+        Route::get('/' ,[OrderController::class , 'indexOrder']); 
+    }); 
+
+    //revision
+    Route::group(['prefix'=>'revision'] , function (){
+        Route::get('/' , [RevisionController::class , 'indexRevision']); 
     }); 
 });
+
 
 Route::get('dd' , function (){
     return dd(session()->all());

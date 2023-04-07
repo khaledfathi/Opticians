@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function searchPage(){
+    public function indexSearch(){
         return view('search.search'); 
     }
     //

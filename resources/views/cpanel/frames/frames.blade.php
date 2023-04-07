@@ -8,7 +8,7 @@
 @section('content')
     <div class="container">
         <div>
-            <a href="{{ url('cpanel/frames/new') }}">اضافة فريم</a>
+            <a href="{{ url('cpanel/frames/create') }}">اضافة فريم</a>
             <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
         </div>
         <div class="msg">
@@ -33,7 +33,7 @@
                                 <td>{{$record->name}}</td>
                                 <td>{{$record->description}}</td>
                                 <td>edit</td>
-                                <td><a href="{{url('cpanel/frames/delete/'.$record->id)}}">Delete</a></td>
+                                <td><a href="{{url('cpanel/frames/destroy/'.$record->id)}}">Delete</a></td>
                             </tr>
                         @endforeach
                     </tbody>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ControlPanel;
+namespace App\Http\Controllers\CPanel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CPanel\Customer\NewCustomerRequest;
@@ -16,19 +16,19 @@ class CustomerController extends Controller
     {
         $this->customerProvider = $customerProvider; 
     }
-    public function customerPage(){
+    public function indexCustomer(){
         $records =  $this->customerProvider->index(); 
         if (! $records->count()) $records=null ; 
         return view('cpanel.customers.customers' , ['records'=>$records]); 
     }
-    public function newCustomerPage(){
+    public function createCustomer(){
         return view('cpanel.customers.newCustomer'); 
     }
     public function storeCustomer(NewCustomerRequest $request){
         $this->customerProvider->store($request->except('_token')); 
         return redirect('cpanel/customers')->with(['ok'=>'تم اضافة العميل']);
     }
-    public function deleteCustomer(Request $request){
+    public function destroyCustomer(Request $request){
         $this->customerProvider->destroy($request->id);
         return redirect('cpanel/customers')->with(['ok'=>'تم حذف العميل']); 
     }

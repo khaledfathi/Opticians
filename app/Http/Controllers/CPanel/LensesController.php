@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ControlPanel;
+namespace App\Http\Controllers\CPanel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CPanel\Lens\NewLensRequest;
@@ -16,19 +16,19 @@ class LensesController extends Controller
     {
         $this->lensProvider = $lensProvider; 
     }
-    public function lensesPage(){
+    public function indexLens(){
         $records = $this->lensProvider->index(); 
         $records = ($records->count()) ? $records : null ; 
         return view('cpanel.lenses.lenses', ['records'=>$records]); 
     }
-    public function newLensPage(){
+    public function createLens(){
         return view('cpanel.lenses.newLens'); 
     }
     public function storeLens(NewLensRequest $request){ 
         $this->lensProvider->store($request->except('__token')); 
         return redirect('cpanel/lenses'); 
     }
-    public function deleteLens(Request $request){
+    public function destroyLens(Request $request){
         $this->lensProvider->destroy($request->id); 
         return redirect('cpanel/lenses'); 
     }

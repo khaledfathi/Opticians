@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\ControlPanel;
+namespace App\Http\Controllers\CPanel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CPanel\Frame\NewFrameRequest;
@@ -16,19 +16,19 @@ class FrameController extends Controller
     {
         $this->frameProvider = $frameProvider; 
     }
-    public function framePage(){
+    public function indexFrame(){
         $records = $this->frameProvider->index(); 
         $records = ($records->count()) ? $records : null ; 
         return view('cpanel.frames.frames', ['records'=>$records]);
     }
-    public function newFramePage(){
+    public function createFrame(){
         return view('cpanel.frames.newFrame');
     }
     public function storeFrame(NewFrameRequest $request){
         $this->frameProvider->store($request->except('_token')); 
         return redirect('cpanel/frames'); 
     }
-    public function deleteFrame(Request $request){
+    public function destroyFrame(Request $request){
         $this->frameProvider->destroy($request->id); 
         return redirect('cpanel/frames')->with(['ok'=>'تم حذف الفريم']); 
     }
