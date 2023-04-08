@@ -63,7 +63,7 @@
                         </div>
                         <div>
                             <img src="" alt="order_image">
-                            <input type="file">
+                            <input type="file" accept='image/*'>                
                         </div>
                         <div>
                             <button type="button">حذف</button>
@@ -86,7 +86,7 @@
                         </div>
                         <div>
                             <img src="" alt="order_image">
-                            <input type="file">
+                            <input type="file" accept='image/*'>                
                         </div>
                         <div>
                             <button type="button">حذف</button>
