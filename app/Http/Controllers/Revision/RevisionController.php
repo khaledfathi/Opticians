@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class RevisionController extends Controller
 {
     public function indexRevision(){
-        return "fdskj"; 
+        return view('revision.revision'); 
     }
 }

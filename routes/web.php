@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function (){
     //user profile 
     Route::group(['prefix'=>'profile'], function (){
         Route::get('/' , [ProfileController::class , 'indexProfile']); 
+        Route::post('update' , [ProfileController::class , 'updateProfile']); 
     }); 
 
     //order 

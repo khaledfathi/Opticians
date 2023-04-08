@@ -19,7 +19,7 @@
                     </p>
                 @endif
             </div>
-            <form action="{{ url('cpanel/users/update') }}" method="post">
+            <form action="{{ url('profile/update') }}" method="post">
                 @csrf
                 <div>
                     <label for="">اسم المستخدم</label>
@@ -40,39 +40,11 @@
                 <div>
                     <label for="">تليفون</label>
                     <input type="text" name="phone"
-                        value="{{ session('lastInputs') ? session('lastInputs')['phone'] : '' }}">
-                </div>
-                <div>
-                    <label for="">النوع</label>
-                    <select name="type">
-                        @foreach ($userTypes as $type)
-                            @if (session('lastInputs'))
-                                <option {{ session('lastInputs')['type'] == $type->value ? 'selected' : null }}
-                                    value="{{ $type->value }}">{{ $type->name }}</option>
-                            @else
-                                <option value="{{ $type->value }}">{{ $type->name }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-                <div>
-                    <label for="">الحالة</label>
-                    <select name="status">
-                        @foreach ($userStatus as $status)
-                            @if (session('lastInputs'))
-                                <option {{ session('lastInputs')['type'] == $status->value ? 'selected' : null }}
-                                    value="{{ $status->value }}">{{ $status->value == 'enabled' ? 'نشط' : 'غير نشط' }}
-                                </option>
-                            @else
-                                <option value="{{ $status->value }}">{{ $status->value == 'enabled' ? 'نشط' : 'غير نشط' }}
-                                </option>
-                            @endif
-                        @endforeach
-                    </select>
+                        value="{{$record->phone}}">
                 </div>
                 <div>
                     <input type="submit" value="تحديث" >
-                    <a href="{{ url('cpanel/users') }}">الغاء</a>
+                    <a href="{{ url('/') }}">الغاء</a>
                 </div>
             </form>
         </div>

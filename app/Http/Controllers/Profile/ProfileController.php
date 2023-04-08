@@ -25,4 +25,7 @@ class ProfileController extends Controller
         $record = ($record->count()) ? $record : null ; 
         return view('profile.profile' , ['userStatus' =>$userStatus , 'userTypes'=>$usrTypes , 'record'=>$record]); 
     }
+    public function updateProfile(){
+        return "updated"; 
+    }
 }

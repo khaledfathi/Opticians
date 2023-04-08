@@ -1,15 +1,23 @@
-/* general */
+/* #### general ####*/
 html{
     direction: rtl;
 }
-/* end general */
+/* ##### end general ####*/
 
-/* nav */
+/* #### nav #### */
 .nav-wrapper{
     /* background-color: rgba(0,0,0,0.5); */
     background-image: linear-gradient(to left , rgba(0,0,0,0.6) , rgba(0,0,0,0.4) , rgba(0,0,0,0.6));
     position:relative;
-    height: 80px;
+    height: 80px;    
+}
+.nav-wrapper--mobile{
+    height: 50px;
+    display: none;
+}
+.menu-icon{
+    width: 25px;
+    padding: 10px;
 }
 .nav-ul {
     list-style: none;
@@ -22,8 +30,8 @@ html{
     user-select: none;
 }
 
-.nav-ul--left,
-.nav-ul--right{
+.nav-ul,
+.nav-ul{
     position: absolute;
     top: 20px; 
     padding :0px;
@@ -56,10 +64,50 @@ html{
     width: 0px;
     background: transparent;
     transition: width .5s ease, background-color .5s ease;
-}
+} 
 .nav-ul--left li:hover:after ,
-.nav-ul--right li:hover:after {
+.nav-ul--right li:hover:after{
     width: 100%;
     background: aqua;
 }
-/* end nav */
+
+/* mobile menu */
+.mobile-menu{
+    background-color:gray;     
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    right: 0px;
+    z-index: 1;
+}
+.mobile-menu__list{
+    display: flex;   
+    flex-direction: column;
+    gap: 20px;
+    list-style: none;
+}
+.mobile-menu__list a{
+    text-decoration: none;
+    font-size: 16pt;
+    color: white;
+}
+.mobile-menu__list a:hover{
+    text-decoration: underline;  
+    text-decoration-color: aqua;
+    text-decoration-thickness: 2px;
+}
+/* end mobile menu */
+
+
+/* #### end nav ####*/
+
+/* #### @media #### */
+@media only screen and (max-width:768px){
+    .nav-wrapper{
+        display: none;
+    }
+    .nav-wrapper--mobile{
+        display: block;
+    }
+}
+/* #### end @media #### */
