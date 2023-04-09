@@ -1,0 +1,106 @@
+/* #### general #### */
+.active-cpanel:after{
+    width: 100% !important;
+    background-color: aqua !important;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+/* #### end general #### */
+
+/* #### section header ####*/
+.section-header {
+    text-align: center;
+}
+/* #### end section header ####*/
+
+
+/* #### manage buttons ####*/
+.manage-buttons {
+    margin: 20px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+.manage-buttons a {
+    text-decoration: none;
+    color: white;
+    background-color: gray;
+    width: 150px;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+
+.manage-buttons a:hover {
+    box-shadow: 0px 0px 10px 3px gray;
+}
+/* #### end manage buttons ####*/
+
+
+/* #### messages ####*/
+.msg {
+    width: fit-content;
+    margin: 30px auto;
+}
+.msg__text{
+    font-size: 16pt;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px 0px;
+    padding: 10px;
+}
+
+.msg__text--error{
+    color: red;
+    border-color: red;
+}
+
+.msg__text--ok{
+    color: green;
+    border-color: green;
+}
+
+.msg__image{
+    width: 40px;
+    vertical-align: middle;
+}
+
+/* #### end messages ####*/
+
+
+/* #### results####*/
+.results {
+    width: 90%;
+    margin: 0px auto ;
+    overflow: scroll;
+    border-bottom: 1px solid black;
+    max-height: 380px;
+}
+.results table {
+    width: 100%;;
+    min-width: 800px;
+}
+.results th{
+    background-color: gray;
+    color: white;
+    position: sticky;
+    top:0px;
+}
+.results td  , .results th{
+    padding: 10px;
+    text-align: center;
+}
+.results tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+.results tr:hover {
+    background-color: #ddd;
+}
+.control-icon{
+    width: 30px;
+}
+/* #### end results####*/

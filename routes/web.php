@@ -10,6 +10,7 @@ use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Revision\RevisionController;
 use App\Http\Controllers\Search\SearchController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*

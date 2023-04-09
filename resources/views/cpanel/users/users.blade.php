@@ -1,26 +1,41 @@
 @extends('layout.main')
 @section('title', 'ادارة المستخدمين')
 @section('links')
-    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/usersManagment/usersManagment.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/users/users.css') }}">
 @endsection
 @section('active-cpanel', 'active-cpanel')
 
+@section('scripts')
+    <script src="{{url('assets/js/users/users.js')}}"></script>
+@endsection
+
 @section('content')
     <div class="container">
-        <div>
+        <div class="section-header">
+            <h3>ادارة المستخدمين</h3>
+        </div>
+
+        <div class="manage-buttons">
             <a href="{{ url('cpanel/users/create') }}">اضافة مستخدم جديد</a>
             <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
         </div>
-        <div class="msg">
-            @if($errors->any())
-                <p>{{$errors->first()}}</p>
-            @elseif (session('ok'))
-                <p class="msg_ok">{{ session('ok') }}</p>
-            @endif
-        </div>
-        <div>
+
+        @if ($errors->any())
+            <div class="msg">
+                <span class="msg__text msg__text--error">{{ $errors->first() }} <img class="msg__image"
+                        src="{{ url('assets/images/svg/error.svg') }}" alt="error_icon"></span>
+            </div>
+        @elseif (session('ok'))
+            <div class="msg">
+                <span class="msg__text msg__text--ok">{{ session('ok') }} <img class="msg__image"
+                        src="{{ url('assets/images/svg/ok.svg') }}" alt="ok_icon"></span>
+            </div>
+        @endif
+
+        <div class="results">
             <table>
                 <thead>
+                    <th>#</th>
                     <th>اسم المستخدم</th>
                     <th>التليفون</th>
                     <th>النوع</th>
@@ -29,19 +44,29 @@
                     <th>حذف</th>
                 </thead>
                 @if ($records)
-                    <tbody>
+                    <tbody id="table-body">
                         @foreach ($records as $record)
                             <tr>
-                                <td>{{$record->name}}</td>
-                                <td>{{$record->phone}}</td>
-                                <td>{{$record->type}}</td>                                
-                                @if ($record->status=='enabled')
+                                <td hidden>{{ $record->id }}</td>
+                                <td>{{ $loop->index + 1 }}</td>
+                                <td>{{ $record->name }}</td>
+                                <td>{{ $record->phone }}</td>
+                                <td>{{ $record->type }}</td>
+                                @if ($record->status == 'enabled')
                                     <td>نشط</td>
-                                @elseif($record->status=='disabled')
+                                @elseif($record->status == 'disabled')
                                     <td>غير نشط</td>
                                 @endif
-                                <td>edit</td>
-                                <td><a href="{{url('cpanel/users/destroy/'.$record->id)}}">Delete</a></td>
+                                <td>
+                                    <a href="{{ url('cpanel/users/' . $record->id) }}">
+                                        <img class="control-icon" src="{{url('assets/images/svg/edit.svg')}}" alt="delete_icon">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ url('cpanel/users/destroy/' . $record->id) }}">
+                                        <img class="control-icon" src="{{url('assets/images/svg/delete.svg')}}" alt="delete_icon">
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
