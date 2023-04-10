@@ -29,8 +29,8 @@ class LensesController extends Controller
         return redirect('cpanel/lenses'); 
     }
     public function destroyLens(Request $request){
-        $this->lensProvider->destroy($request->id); 
-        return redirect('cpanel/lenses'); 
+        $this->lensProvider->destroy((int)$request->id); 
+        return response()->json(['ok'=>true , 'msg'=>'تم حذف العدسىة']); 
     }
 
 }

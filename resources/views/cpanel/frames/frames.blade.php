@@ -1,24 +1,37 @@
 @extends('layout.main')
 @section('title', 'الفريمات')
 @section('links')
-    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/usersManagment/usersManagment.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/frames/frames.css') }}">
 @endsection
 @section('active-cpanel', 'active-cpanel')
 
+@section('scripts')
+    <script src="{{ url('assets/js/external/sweatAlert/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ url('assets/js/cpanel/frames/frames.js') }}"></script>
+@endsection
+
 @section('content')
     <div class="container">
-        <div>
+        <div class="section-header">
+            <h4>قائمة الفريمات</h4>
+        </div>
+        <div class="manage-buttons">
             <a href="{{ url('cpanel/frames/create') }}">اضافة فريم</a>
             <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
         </div>
-        <div class="msg">
-            @if($errors->any())
-                <p>{{$errors->first()}}</p>
-            @elseif (session('ok'))
-                <p class="msg_ok">{{ session('ok') }}</p>
-            @endif
-        </div>
-        <div>
+        @if ($errors->any())
+            <div class="msg">
+                <span class="msg__text msg__text--error">{{ $errors->first() }} <img class="msg__image"
+                        src="{{ url('assets/images/svg/error.svg') }}" alt="error_icon"></span>
+            </div>
+        @elseif (session('ok'))
+            <div class="msg">
+                <span class="msg__text msg__text--ok">{{ session('ok') }} <img class="msg__image"
+                        src="{{ url('assets/images/svg/ok.svg') }}" alt="ok_icon"></span>
+            </div>
+        @endif
+
+        <div class="results">
             <table>
                 <thead>
                     <th>نوع الفريم</th>
@@ -27,13 +40,22 @@
                     <th>حذف</th>
                 </thead>
                 @if ($records)
-                    <tbody>
+                    <tbody id="table-body">
                         @foreach ($records as $record)
                             <tr>
-                                <td>{{$record->name}}</td>
-                                <td>{{$record->description}}</td>
-                                <td>edit</td>
-                                <td><a href="{{url('cpanel/frames/destroy/'.$record->id)}}">Delete</a></td>
+                                <td>{{ $record->name }}</td>
+                                <td>{{ $record->description }}</td>
+                                <td>
+                                    <a href="{{ url('cpanel/frames/' . $record->id) }}">
+                                        <img class="control-icon" src="{{ url('assets/images/svg/edit.svg') }}"
+                                            alt="delete_icon">
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="hidden" value="{{ url('cpanel/frames/destroy/' . $record->id) }}">
+                                    <img class="control-icon" src="{{ url('assets/images/svg/delete.svg') }}"
+                                        alt="delete_icon" name="delete-button">
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

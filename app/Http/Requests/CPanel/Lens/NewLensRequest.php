@@ -23,7 +23,7 @@ class NewLensRequest extends FormRequest
     {
         $this->session()->flash('lastInputs', $this->all()); 
         return [
-            'name'=>'required|unique:frames'
+            'name'=>'required|unique:lenses'
         ];
     }
     public function messages(){

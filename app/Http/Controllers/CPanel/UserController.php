@@ -36,8 +36,11 @@ class UserController extends Controller
         return redirect('cpanel/users')->with(['ok'=>'تم اضافة المستخدم '.$record->name]); 
     }
     public function destroyUser(Request $request){
-        if ($request->id == auth()->user()->id) return redirect('cpanel/users')->withErrors('لايمكن حذف نفسك !'); 
-        $this->userProvider->destroy((int)$request->id); 
-        return redirect('cpanel/users')->with(['ok'=>'تم حذف المستخدم']); 
+        if ($request->id == auth()->user()->id){
+            return response()->json(['ok'=>false , 'msg'=>'لا يمكن حذف نفسك']); 
+        } else {
+            $this->userProvider->destroy((int)$request->id); 
+            return response()->json(['ok'=>true , 'msg'=>'تم حذف المستخدم']); 
+        }
     }
 }

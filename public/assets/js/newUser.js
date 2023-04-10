@@ -1,6 +1,7 @@
 const save = document.querySelector('#save');
 const csrfToken = document.querySelector('#csrf_token');
 
+
 //ajax request
 const request = async (url='' ,data={} , method='GET' , csrf='') => {
     if (method =='GET'){
@@ -23,6 +24,7 @@ const request = async (url='' ,data={} , method='GET' , csrf='') => {
     return response.json();
 };
 
+// EVENTS
 save.addEventListener('click', () => {
     data= {
         name: document.querySelector('[name="name"]').value, 

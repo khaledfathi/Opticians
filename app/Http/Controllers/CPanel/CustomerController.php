@@ -29,7 +29,7 @@ class CustomerController extends Controller
         return redirect('cpanel/customers')->with(['ok'=>'تم اضافة العميل']);
     }
     public function destroyCustomer(Request $request){
-        $this->customerProvider->destroy($request->id);
-        return redirect('cpanel/customers')->with(['ok'=>'تم حذف العميل']); 
+        $this->customerProvider->destroy((int)$request->id); 
+        return response()->json(['ok'=>true , 'msg'=>'تم حذف العميل']); 
     }
 }

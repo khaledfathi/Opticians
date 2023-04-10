@@ -6,7 +6,8 @@
 @section('active-cpanel', 'active-cpanel')
 
 @section('scripts')
-    <script src="{{url('assets/js/users/users.js')}}"></script>
+    <script src="{{ url('assets/js/external/sweatAlert/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ url('assets/js/cpanel/users/users.js') }}"></script>
 @endsection
 
 @section('content')
@@ -59,13 +60,14 @@
                                 @endif
                                 <td>
                                     <a href="{{ url('cpanel/users/' . $record->id) }}">
-                                        <img class="control-icon" src="{{url('assets/images/svg/edit.svg')}}" alt="delete_icon">
+                                        <img class="control-icon" src="{{ url('assets/images/svg/edit.svg') }}"
+                                            alt="edit_icon">
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="{{ url('cpanel/users/destroy/' . $record->id) }}">
-                                        <img class="control-icon" src="{{url('assets/images/svg/delete.svg')}}" alt="delete_icon">
-                                    </a>
+                                    <input type="hidden" value="{{ url('cpanel/users/destroy/' . $record->id) }}">
+                                    <img class="control-icon" src="{{ url('assets/images/svg/delete.svg') }}"
+                                        alt="delete_icon" name="delete-button">
                                 </td>
                             </tr>
                         @endforeach

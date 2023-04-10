@@ -29,7 +29,7 @@ class FrameController extends Controller
         return redirect('cpanel/frames'); 
     }
     public function destroyFrame(Request $request){
-        $this->frameProvider->destroy($request->id); 
-        return redirect('cpanel/frames')->with(['ok'=>'تم حذف الفريم']); 
-    }
+        $this->frameProvider->destroy((int)$request->id); 
+        return response()->json(['ok'=>true , 'msg'=>'تم حذف الفريم']); 
+}
 }
