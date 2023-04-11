@@ -53,11 +53,7 @@
                                 <td>{{ $record->name }}</td>
                                 <td>{{ $record->phone }}</td>
                                 <td>{{ $record->type }}</td>
-                                @if ($record->status == 'enabled')
-                                    <td>نشط</td>
-                                @elseif($record->status == 'disabled')
-                                    <td>غير نشط</td>
-                                @endif
+                                <td>{{ $record->status }}</td>
                                 <td>
                                     <a href="{{ url('cpanel/users/' . $record->id) }}">
                                         <img class="control-icon" src="{{ url('assets/images/svg/edit.svg') }}"

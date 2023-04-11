@@ -2,6 +2,6 @@
 namespace App\Enum\User; 
 
 enum UserStatus : string {
-    case enabled = 'enabled'; 
-    case disabled = 'disabled'; 
+    case ACTIVE = 'active'; 
+    case CLOSED = 'closed'; 
 }

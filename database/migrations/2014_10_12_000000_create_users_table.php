@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('password')->nullable(false);
             $table->string('phone',50);
             $table->enum('type',['admin', 'user'])->nullable(false);
-            $table->enum('status' , ['enabled' , 'disabled'])->nullable(false); 
+            $table->enum('status' , ['active' , 'closed'])->nullable(false); 
             $table->rememberToken();
             $table->timestamps();
         });

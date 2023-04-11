@@ -1,0 +1,133 @@
+/* #### general #### */
+.active-cpanel:after{
+    width: 100% !important;
+    background-color: aqua !important;
+}
+/* #### end general #### */
+
+
+/* #### container #### */
+.container{
+    margin-bottom: 100px;
+}
+/* #### end container #### */
+
+/* #### section's header #### */
+.section-header{
+    text-align: center;
+}
+/* #### end section's header #### */
+
+/* #### form #### */
+form{
+    width: fit-content;
+    min-width: 70%;
+    padding: 20px;
+    margin: 0px auto;
+    border-style: solid;
+    border-width: 0px 5px;
+    border-color: gray;
+}
+
+/* #### messages #### */
+.msg {
+	width: fit-content;
+	margin: 30px auto;
+    border-top: 1px solid red ; 
+    border-bottom: 1px solid red ;
+    padding: 10px 0px ; 
+}
+.msg__error {
+    color: red;
+    font-size: 16pt;
+    font-weight: bold;
+    text-align: center;
+}
+.msg__image {
+	width: 40px;
+    display: block;
+    margin: 0px auto;
+}
+/* #### end messages #### */
+
+/* #### customer data ##### */
+.customer-data{
+    width: 65%;
+    margin: 0px auto;
+}
+.customer-data label{
+    display: inline-block;
+    width: 100px;    
+}
+
+.customer-data input, 
+.customer-data textarea 
+{
+    margin: 10px 0px  ;
+    width: 70%;
+    vertical-align: middle;
+    border: none;
+    box-shadow: 0px 0px 5px 1px gray;
+}
+.customer-data textarea{
+    resize: none;
+    height: 50px;
+}
+/* #### end customer data ##### */
+
+/* #### block buttons ##### */
+.block-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 50%;
+    margin: 20px auto;
+    border-top : 2px solid gray; 
+    padding-top : 25px ;
+}
+.block-buttons input[type="submit"],
+.block-buttons a 
+{
+    text-decoration: none;
+    color: white;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: gray;
+    border : none; 
+    cursor: auto;
+    user-select: none;
+}
+
+/* #### end block buttons ##### */
+
+
+
+/* #### media query ##### */
+@media only screen  and (max-width:900px){
+    .customer-data{
+        width: 100%;
+    }
+}
+
+@media only screen  and (max-width:480px){
+    form{
+       width: 80% !important; 
+    }
+    .customer-data label{
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+    .customer-data input, 
+    .customer-data textarea{
+        width: 100%;
+    }
+    .block-buttons {
+        gap: 20% !important;
+    }
+    .block-buttons > *{
+        min-width: 100px;
+    }
+}
+/* #### end media query ##### */

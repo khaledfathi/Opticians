@@ -46,6 +46,8 @@ Route::middleware(['auth'])->group(function (){
             Route::get('create' ,[ UserController::class , 'createUser']);
             Route::post('store', [UserController::class , 'storeUser']); 
             Route::get('destroy/{id}' , [UserController::class , 'destroyUser']); 
+            Route::get('/{id}' , [UserController::class , 'editUser']); 
+            Route::post('update' ,[ UserController::class , 'updateUser']);
         });
         //customer table managment
         Route::group(['prefix'=>'customers'], function(){

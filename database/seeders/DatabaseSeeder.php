@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             'password'=>Hash::make('admin'),
             'phone'=>'000000000000',
             'type'=>'admin', 
-            'status'=>'enabled', 
+            'status'=>'active', 
         ]); 
     }
 }

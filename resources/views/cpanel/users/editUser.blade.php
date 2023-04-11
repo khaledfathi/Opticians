@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'مستخدم جديد')
+@section('title', 'تحديث مستخدم')
 
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/cpanel/users/newUser.css') }}">
@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         <div class="section-header">
-            <h4>اضافة مستخدم جديد</h4>
+            <h4>تحديث مستخدم</h4>
         </div>
 
         @if ($errors->any())
@@ -24,17 +24,17 @@
             </div>
         @endif
 
-        <form action="{{ url('cpanel/users/store') }}" method="post">
+        <form action="{{ url('cpanel/users/update') }}" method="post">
             @csrf
             <div class="user-data">
+                <input type="hidden" name="id" value="{{$record->id}}">
                 <div>
                     <label for="">اسم المستخدم</label>
-                    <input type="text" name="name"
-                        value="{{ session('lastInputs') ? session('lastInputs')['name'] : '' }}">
+                    <input type="text" name="name" value="{{ $record->name }}">
                 </div>
                 <div>
                     <label for="">كلمة المرور</label>
-                    <input type="password" name="password">
+                    <input type="password" name="password" placeholder="اتركة فارغ - لن يتم تحديث كلمة المرور">
                 </div>
                 <div>
                     <label for="">تأكيد كلمة المرور</label>
@@ -42,8 +42,7 @@
                 </div>
                 <div>
                     <label for="">تليفون</label>
-                    <input type="text" name="phone"
-                        value="{{ session('lastInputs') ? session('lastInputs')['phone'] : '' }}">
+                    <input type="text" name="phone" value="{{ $record->phone }}">
                 </div>
             </div>
 
@@ -52,11 +51,10 @@
                     <label for="">النوع</label>
                     <select name="type">
                         @foreach ($userTypes as $type)
-                            @if (session('lastInputs'))
-                                <option {{ session('lastInputs')['type'] == $type->value ? 'selected' : null }}
-                                    value="{{ $type->value }}">{{ $type->value }}</option>
+                            @if ($type->value == $record->type)
+                                <option selected value="{{$type->value}}">{{$type->value}}</option>
                             @else
-                                <option value="{{ $type->value }}">{{ $type->value }}</option>
+                                <option value="{{$type->value}}">{{$type->value}}</option>
                             @endif
                         @endforeach
                     </select>
@@ -65,11 +63,10 @@
                     <label for="">الحالة</label>
                     <select name="status">
                         @foreach ($userStatus as $status)
-                            @if (session('lastInputs'))
-                                <option {{ session('lastInputs')['type'] == $status->value ? 'selected' : null }} value="{{ $status->value }}">{{$status->value}}</option>
+                            @if ($status->value == $record->status)
+                                <option selected value="{{$status->value}}">{{$status->value}}</option>
                             @else
-                                <option value="{{ $status->value }}">{{$status->value}}</option>
-                                </option>
+                                <option value="{{$status->value}}">{{$status->value}}</option>
                             @endif
                         @endforeach
                     </select>
@@ -77,10 +74,9 @@
             </div>
 
             <div class="block-buttons">
-                <input type="submit" value="حفظ">
+                <input type="submit" value="تحديث">
                 <a href="{{ url('cpanel/users') }}">الغاء</a>
             </div>
         </form>
     </div>
-
 @endsection

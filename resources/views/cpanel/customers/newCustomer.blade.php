@@ -2,41 +2,50 @@
 @section('title', 'عميل جديد')
 
 @section('links')
-    <link rel="stylesheet" href="{{ asset('') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/customers/newCustomer.css') }}">
 @endsection
 
 @section('active-cpanel', 'active-cpanel')
 
 @section('content')
+    <div class="section-header">
+        <h3>عميل جديد</h3>
+    </div>
     <div class="container">
-        <div class="msg">
-            @if ($errors->any())
-                <p class="msg__error">
+        @if ($errors->any())
+            <div class="msg">
+                <img class="msg__image" src="{{ url('assets/images/svg/error.svg') }}" alt="error_icon">
+                <span class="msg__error">
                     @foreach ($errors->all() as $error)
-                        - {{ $error }} <br>
+                        -{{ $error }}<br>
                     @endforeach
-                </p>
-            @endif
-        </div>
+                </span>
+            </div>
+        @endif
         <form action="{{ url('cpanel/customers/store') }}" method="post">
             @csrf
-            <div>
-                <label for="">اسم العميل</label>
-                <input type="text" name="name" value="{{(session('lastInputs'))?session('lastInputs')['name']:''}}">
+            <div class="customer-data">
+
+                <div>
+                    <label for="">اسم العميل</label>
+                    <input type="text" name="name"
+                        value="{{ session('lastInputs') ? session('lastInputs')['name'] : '' }}">
+                </div>
+                <div>
+                    <label for="">التليفون</label>
+                    <input type="text" name="phone"
+                        value="{{ session('lastInputs') ? session('lastInputs')['phone'] : '' }}">
+                </div>
+                <div>
+                    <label for="">العنوان</label>
+                    <textarea name="address">{{ session('lastInputs') ? session('lastInputs')['address'] : '' }}</textarea>
+                </div>
+                <div>
+                    <label for="">تفاصيل اخرى</label>
+                    <textarea name="details">{{ session('lastInputs') ? session('lastInputs')['details'] : '' }}</textarea>
+                </div>
             </div>
-            <div>
-                <label for="">التليفون</label>
-                <input type="text" name="phone" value="{{(session('lastInputs'))?session('lastInputs')['phone']:''}}">
-            </div>
-            <div>
-                <label for="">العنوان</label>
-                <textarea name="address">{{(session('lastInputs'))?session('lastInputs')['address']:''}}</textarea>
-            </div>
-            <div>
-                <label for="">تفاصيل اخرى</label>
-                <textarea name="details">{{(session('lastInputs'))?session('lastInputs')['details']:''}}</textarea>
-            </div>
-            <div>
+            <div class="block-buttons">
                 <input type="submit" value="حفظ" id="save">
                 <a href="{{ url('cpanel/customers') }}">الغاء</a>
             </div>

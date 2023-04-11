@@ -6,6 +6,7 @@ use App\Enum\User\UserStatus;
 use App\Enum\User\UserType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CPanel\User\NewUserRequest;
+use App\Http\Requests\CPanel\User\UpdateUserRequest;
 use App\Repository\Contracts\User\UserRepositoryContract;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -42,5 +43,24 @@ class UserController extends Controller
             $this->userProvider->destroy((int)$request->id); 
             return response()->json(['ok'=>true , 'msg'=>'تم حذف المستخدم']); 
         }
+    }
+    public function editUser(Request $request){
+        $record = $this->userProvider->show($request->id); 
+        $userTypes = UserType::cases(); 
+        $userStatus = UserStatus::cases(); 
+        return view('cpanel.users.editUser' , ['record'=>$record, 'userTypes'=>$userTypes , 'userStatus'=>$userStatus]); 
+    }
+    public function updateUser(UpdateUserRequest $request){ 
+        $data = [
+            'name'=>$request->name,
+            'phone'=>$request->phone,
+            'type'=>$request->type,
+            'status'=>$request->status
+        ];
+        if ($request->password){
+            $data['password'] = $request->password;
+        }
+        $this->userProvider->update($data , $request->id); 
+        return redirect('cpanel/users')->with(['ok'=>"تم تحديث المستخدم - $request->name"]); 
     }
 }
