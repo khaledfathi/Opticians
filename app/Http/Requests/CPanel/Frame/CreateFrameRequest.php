@@ -4,7 +4,7 @@ namespace App\Http\Requests\CPanel\Frame;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewFrameRequest extends FormRequest
+class CreateFrameRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

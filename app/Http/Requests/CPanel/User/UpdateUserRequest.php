@@ -24,7 +24,6 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($this->all()); 
         return [
             'name'=>'required|unique:users,name,'.$this->id,
             'password'=>'sometimes|nullable|min:8|confirmed', 

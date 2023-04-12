@@ -5,7 +5,7 @@ namespace App\Http\Controllers\CPanel;
 use App\Enum\User\UserStatus;
 use App\Enum\User\UserType;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CPanel\User\NewUserRequest;
+use App\Http\Requests\CPanel\User\CreateUserRequest;
 use App\Http\Requests\CPanel\User\UpdateUserRequest;
 use App\Repository\Contracts\User\UserRepositoryContract;
 use Illuminate\Http\Request;
@@ -26,9 +26,9 @@ class UserController extends Controller
         return view('cpanel.users.users' , ['records'=>$records]);
     }
     public function createUser(){
-        return view('cpanel.users.newUser' , ['userTypes'=>UserType::cases(), 'userStatus'=>UserStatus::cases()] );
+        return view('cpanel.users.createUser' , ['userTypes'=>UserType::cases(), 'userStatus'=>UserStatus::cases()] );
     }
-    public function storeUser(NewUserRequest $request){        
+    public function storeUser(CreateUserRequest $request){ 
         //prepare request 
         $data = $request->except(['_token', 'password_confirmation']); 
         $data["password"] = Hash::make($request["password"]); 

@@ -48,7 +48,7 @@
                     <tbody id="table-body">
                         @foreach ($records as $record)
                             <tr>
-                                <td hidden>{{ $record->id }}</td>
+                                <input type="hidden" value="{{url('cpanel/users/'.$record->id)}}">
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $record->name }}</td>
                                 <td>{{ $record->phone }}</td>

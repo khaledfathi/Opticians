@@ -18,4 +18,13 @@ class CustomerRepository implements CustomerRepositoryContract{
         $found = CustomerModel::find($id); 
         return ($found) ? $found->delete() : false ; 
     }
+    public function show (int $id):object
+    {
+        return CustomerModel::where('id' , $id)->first(); 
+    } 
+    public function update (array $data , int $id ):bool 
+    {
+        $found = CustomerModel::find($id); 
+        return ($found) ? $found->update($data) : false ; 
+    }
 }

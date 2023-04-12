@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="block-buttons">
-                <input type="submit" value="حفظ" id="save">
+                <input type="submit" value="حفظ">
                 <a href="{{ url('cpanel/lenses') }}">الغاء</a>
             </div>
         </form>

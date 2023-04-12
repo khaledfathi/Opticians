@@ -4,7 +4,7 @@ namespace App\Http\Requests\CPanel\Customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewCustomerRequest extends FormRequest
+class CreateCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

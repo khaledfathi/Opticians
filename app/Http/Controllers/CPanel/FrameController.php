@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\CPanel;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CPanel\Frame\NewFrameRequest;
+use App\Http\Requests\CPanel\Frame\CreateFrameRequest;
+use App\Http\Requests\CPanel\Frame\UpdateFrameRequest;
 use App\Repository\Contracts\Frame\FrameRepositoryContract;
 use Illuminate\Http\Request;
 
@@ -22,14 +23,21 @@ class FrameController extends Controller
         return view('cpanel.frames.frames', ['records'=>$records]);
     }
     public function createFrame(){
-        return view('cpanel.frames.newFrame');
+        return view('cpanel.frames.createFrame');
     }
-    public function storeFrame(NewFrameRequest $request){
+    public function storeFrame(CreateFrameRequest $request){
         $this->frameProvider->store($request->except('_token')); 
         return redirect('cpanel/frames'); 
     }
     public function destroyFrame(Request $request){
         $this->frameProvider->destroy((int)$request->id); 
         return response()->json(['ok'=>true , 'msg'=>'تم حذف الفريم']); 
-}
+    }
+    public function editFrame (Request $request){ 
+        $record = $this->frameProvider->show($request->id); 
+        return view("cpanel.frames.editFrame" , ['record'=>$record]); 
+    }
+    public function updateFrame(UpdateFrameRequest $updateFrameRequest){
+        return "update frame "; 
+    }
 }

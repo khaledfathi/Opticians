@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function (){
             Route::get('create' , [CustomerController::class , 'createCustomer']);
             Route::post('store' , [CustomerController::class , 'storeCustomer']);
             Route::get('destroy/{id}' , [CustomerController::class , 'destroyCustomer']);
+            Route::get('/{id}' , [CustomerController::class , 'editCustomer']); 
+            Route::post('update' ,[ CustomerController::class , 'updateCustomer']);
         });
         //frames table managment
         Route::group(['prefix'=>'frames'],function (){
@@ -62,6 +64,8 @@ Route::middleware(['auth'])->group(function (){
             Route::get('create' , [FrameController::class , 'createFrame']); 
             Route::get('store' , [FrameController::class , 'storeFrame']); 
             Route::get('destroy/{id}' , [FrameController::class , 'destroyFrame']); 
+            Route::get('/{id}' , [FrameController::class , 'editFrame']); 
+            Route::post('update', [FrameController::class , 'updateFrame']); 
         });
         //lenses table managment
         Route::group(['prefix'=>'lenses'], function (){
@@ -69,6 +73,8 @@ Route::middleware(['auth'])->group(function (){
             Route::get('create' , [LensesController::class , 'createLens']);
             Route::get('store' , [LensesController::class , 'storeLens']);
             Route::get('destroy/{id}' , [LensesController::class , 'destroyLens']);
+            Route::get('/{id}' , [LensesController::class , 'editLens']); 
+            Route::post('/update' , [LensesController::class, 'updateLens']); 
         });
     }); 
 

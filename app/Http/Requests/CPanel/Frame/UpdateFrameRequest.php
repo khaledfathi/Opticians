@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\CPanel\Lens;
+namespace App\Http\Requests\CPanel\Frame;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewLensRequest extends FormRequest
+class UpdateFrameRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,17 +21,14 @@ class NewLensRequest extends FormRequest
      */
     public function rules(): array
     {
-        $this->session()->flash('lastInputs', $this->all()); 
         return [
-            'name'=>'required|unique:lenses'
+            'name'=>'required|unique:frames,name,'.$this->id
         ];
     }
     public function messages(){
-        $this->session()->flash('lastInputs', $this->all()); 
         return [
-            'name.required'=>'نوع العدسة مطلوب',
-            'name.unique'=>'نوع العدسة مسجل بالفعل'
+            'name.required'=>'نوع الفريم مطلوب',
+            'name.unique'=>'نوع الفريم مسجل بالفعل'
         ]; 
     }
-
 }

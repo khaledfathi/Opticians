@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'فريم جديد')
+@section('title', 'تحديث فريم')
 
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/cpanel/frames/newFrame.css') }}">
@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         <div class="section-header">
-            <h3>فريم جديد</h3>
+            <h3>تحديث فريم</h3>
         </div>
         @if ($errors->any())
             <div class="msg">
@@ -22,21 +22,21 @@
                 </span>
             </div>
         @endif
-        <form action="{{ url('cpanel/frames/store') }}" method="get">
+        <form action="{{ url('cpanel/frames/update') }}" method="post">
             @csrf
+            <input type="hidden" name="id" value="{{$record->id}}">
             <div class="frame-data">
                 <div>
                     <label for="">نوع الفريم</label>
-                    <input type="text" name="name"
-                        value="{{ session('lastInputs') ? session('lastInputs')['name'] : '' }}">
+                    <input type="text" name="name" value="{{$record->name}}">
                 </div>
                 <div>
                     <label for="">الوصف</label>
-                    <textarea name="description">{{ session('lastInputs') ? session('lastInputs')['description'] : '' }}</textarea>
+                    <textarea name="description">{{$record->description}}</textarea>
                 </div>
             </div>
             <div class="block-buttons">
-                <input type="submit" value="حفظ" id="save">
+                <input type="submit" value="تحديث" >
                 <a href="{{ url('cpanel/frames') }}">الغاء</a>
             </div>
         </form>

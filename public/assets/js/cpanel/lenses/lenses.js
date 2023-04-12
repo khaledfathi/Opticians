@@ -3,9 +3,10 @@ const deleteButtons = document.getElementsByName('delete-button');
 
 // event double click to edit rows 
 tableBody.addEventListener('dblclick' , (event)=>{
-    let userId = event.target.parentElement.children[0].innerHTML; 
-    window.location=`/cpanel/users/${userId}`;
+    let editLink = event.target.parentElement.children[0].value; 
+    window.location=editLink;
 }); 
+
 //ajax request
 const request = async (url='', method='GET' , data={} ,  csrf='') => {
     var response = {}; 

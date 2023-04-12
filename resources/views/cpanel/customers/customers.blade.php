@@ -44,6 +44,7 @@
                     <tbody id="table-body">
                         @foreach ($records as $record)
                             <tr>
+                                <input type="hidden" value="{{url('cpanel/customers/'.$record->id)}}">
                                 <td>{{ $record->name }}</td>
                                 <td>{{ $record->phone }}</td>
                                 <td>{{ $record->address }}</td>
