@@ -32,3 +32,22 @@ input[type="submit"]{
     background-color: gray;
     border: none;
 }
+
+@media only screen and (max-width:640px){
+    form{
+        width: 80%  !important; 
+    }
+    input ,
+    label {
+        width: 100% !important;
+    }
+    label{
+        display: block ; 
+        text-align: center;
+    }
+    input[type="submit"]{
+        width: 40% !important;
+    }
+    
+    
+}

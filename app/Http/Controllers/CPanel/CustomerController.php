@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CPanel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CPanel\Customer\CreateCustomerRequest;
 use App\Http\Requests\CPanel\Customer\UpdateCustomerRequest;
 use App\Http\Requests\CPanel\User\CreateUserRequest;
 use App\Repository\Contracts\Customer\CustomerRepositoryContract;
@@ -25,7 +26,7 @@ class CustomerController extends Controller
     public function createCustomer(){
         return view('cpanel.customers.createCustomer'); 
     }
-    public function storeCustomer(CreateUserRequest $request){
+    public function storeCustomer(CreateCustomerRequest $request){
         $this->customerProvider->store($request->except('_token')); 
         return redirect('cpanel/customers')->with(['ok'=>'تم اضافة العميل']);
     }
