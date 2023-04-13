@@ -24,21 +24,24 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'name'=>'required|unique:users,name,'.$this->id,
-            'password'=>'sometimes|nullable|min:8|confirmed', 
+        $rules = [
+            'name'=>'required|alpha_dash:ascii|unique:users,name,'.$this->id,
             'phone'=>'required|numeric|unique:users,phone,'.$this->id, 
             'type'=>['required' , new Enum(UserType::class)], 
             'status'=>['required' , new Enum(UserStatus::class)]
-        ];
+        ];        
+        if($this->password !=null ) $rules['password'] = ['sometimes','min:8','confirmed','regex:/^[a-zA-Z0-9!@#$%^&*()_+-=|]+$/']; 
+        return $rules; 
     }
     public function messages(){
         return [
             'name.required'=>'اسم المستخدم مطلوب', 
+            'name.alpha_dash'=>'الاسم - حروف انجليزية فقط',
             'name.unique'=>'الاسم مسجل بالفعل', 
             'password.required'=>'كلمة المرور مطلوبة', 
             'password.confirmed'=>'تأكيد كلمة المرور غير متطابق', 
             'password.min'=>'كلمة المرور لا تقل عن 8 احرف', 
+            'password.regex'=>'كلمة المرور تحتوى على رموز غير مسموحة',
             'phone.required'=>'التليفون مطلوب',
             'phone.numeric'=> 'التليفون- ارقام فقط',
             'phone.unique'=>'التليفون مسجل مسبقاً',

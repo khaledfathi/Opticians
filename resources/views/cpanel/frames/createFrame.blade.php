@@ -2,7 +2,7 @@
 @section('title', 'فريم جديد')
 
 @section('links')
-    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/frames/newFrame.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/frames/createFrame.css') }}">
 @endsection
 
 @section('active-cpanel', 'active-cpanel')

@@ -2,7 +2,7 @@
 @section('title', 'تحديث عميل')
 
 @section('links')
-    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/customers/newCustomer.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/customers/createCustomer.css') }}">
 @endsection
 
 @section('active-cpanel', 'active-cpanel')

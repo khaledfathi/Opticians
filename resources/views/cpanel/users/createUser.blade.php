@@ -2,7 +2,7 @@
 @section('title', 'مستخدم جديد')
 
 @section('links')
-    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/users/newUser.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/users/createUser.css') }}">
 @endsection
 
 @section('active-cpanel', 'active-cpanel')

@@ -26,8 +26,8 @@ class CreateUserRequest extends FormRequest
     {
         $this->session()->flash('lastInputs', $this->all()); 
         return [
-            'name'=>'required|unique:users',
-            'password'=>'required|min:8|confirmed', 
+            'name'=>'required|unique:users|alpha_dash:ascii',
+            'password'=>['required','min:8','confirmed','regex:/^[ a-zA-Z0-9!@#$%^&*()_+-=|]+$/'], 
             'phone'=>'required|numeric|unique:users', 
             'type'=>['required' , new Enum(UserType::class)], 
             'status'=>['required' , new Enum(UserStatus::class)]
@@ -35,11 +35,13 @@ class CreateUserRequest extends FormRequest
     }
     public function messages(){
         return [
+            'name.alpha_dash'=> 'الاسم - حروف انجليزية فقط',
             'name.required'=>'اسم المستخدم مطلوب', 
             'name.unique'=>'الاسم مسجل بالفعل', 
             'password.required'=>'كلمة المرور مطلوبة', 
             'password.confirmed'=>'تأكيد كلمة المرور غير متطابق', 
             'password.min'=>'كلمة المرور لا تقل عن 8 احرف', 
+            'password.regex'=>'كلمة المرور تحتوى على رموز غير مسموحة',
             'phone.required'=>'التليفون مطلوب',
             'phone.numeric'=> 'التليفون- ارقام فقط',
             'phone.unique'=>'التليفون مسجل مسبقاً',

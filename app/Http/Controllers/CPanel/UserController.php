@@ -58,7 +58,7 @@ class UserController extends Controller
             'status'=>$request->status
         ];
         if ($request->password){
-            $data['password'] = $request->password;
+            $data['password'] = Hash::make($request->password);
         }
         $this->userProvider->update($data , $request->id); 
         return redirect('cpanel/users')->with(['ok'=>"تم تحديث المستخدم - $request->name"]); 

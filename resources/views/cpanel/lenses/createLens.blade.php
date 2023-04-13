@@ -2,7 +2,7 @@
 @section('title', 'عدسة جديدة')
 
 @section('links')
-    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/lenses/newLens.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/cpanel/lenses/createLens.css') }}">
 @endsection
 
 @section('active-cpanel', 'active-cpanel')
