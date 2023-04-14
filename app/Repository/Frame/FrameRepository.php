@@ -21,4 +21,9 @@ class FrameRepository implements FrameRepositoryContract{
     {
         return FrameModel::where('id' , $id)->first(); 
     }
+    public function update(array $data , int $id):bool
+    {
+        $found = FrameModel::find($id); 
+        return ($found)? $found->update($data) : false ; 
+    }
 }

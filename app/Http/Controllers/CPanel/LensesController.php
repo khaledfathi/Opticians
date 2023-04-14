@@ -39,7 +39,7 @@ class LensesController extends Controller
     }
     public function updateLens(UpdateLensRequest $request){
         $this->lensProvider->update($request->except('_token') , $request->id); 
-        return redirect('cpanel/lenses'); 
+        return redirect('cpanel/lenses')->with(['ok'=>"تم تحديث العدسة - $request->name"]); 
     }
 
 }

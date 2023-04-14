@@ -37,7 +37,8 @@ class FrameController extends Controller
         $record = $this->frameProvider->show($request->id); 
         return view("cpanel.frames.editFrame" , ['record'=>$record]); 
     }
-    public function updateFrame(UpdateFrameRequest $updateFrameRequest){
-        return "update frame "; 
+    public function updateFrame(UpdateFrameRequest $request){
+        $this->frameProvider->update($request->except('_token') , $request->id); 
+        return redirect('cpanel/frames')->with(['ok'=>"تم تحديث الفريم - $request->name"]); 
     }
 }

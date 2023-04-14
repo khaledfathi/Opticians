@@ -41,6 +41,6 @@ class CustomerController extends Controller
     }
     public function updateCustomer(UpdateCustomerRequest $request){        
         $this->customerProvider->update($request->except('_token') , $request->id); 
-        return redirect('cpanel/customers');
+        return redirect('cpanel/customers')->with(['ok'=>"تم تحديث العميل - $request->name"]);
     } 
 }
