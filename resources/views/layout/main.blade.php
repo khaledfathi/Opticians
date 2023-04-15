@@ -17,7 +17,7 @@
         <div class="nav-wrapper" >
             <ul class="nav-ul nav-ul--right">
                 <li class=@yield('active-search')><a href="{{ url('search') }}">استعلام</a></li>
-                <li class=@yield('active-order')><a href="{{ url('order') }}">تسجيل شغل</a></li>
+                <li class=@yield('active-order')><a href="{{ url('order') }}">امر شغل</a></li>
                 <li class=@yield('active-revision')><a href="{{ url('revision') }}">مراجعة</a></li>
             </ul>
             <ul class="nav-ul nav-ul--left">
@@ -33,7 +33,7 @@
             <div class="mobile-menu" id="mobile-menu" hidden>
                 <ul class="mobile-menu__list">
                     <li class=@yield('active-search')><a href="{{ url('search') }}">استعلام</a></li>
-                    <li class=@yield('active-order')><a href="{{ url('order') }}">تسجيل شغل</a></li>
+                    <li class=@yield('active-order')><a href="{{ url('order') }}">امر شغل</a></li>
                     <li class=@yield('active-revision')><a href="{{ url('revision') }}">مراجعة</a></li>
                     <li class=@yield('active-cpanel')><a href="{{ url('cpanel') }}">لوحة التحكم</a></li>
                     <li class=@yield('active-profile')><a href="{{ url('profile') }}">{{ auth()->user()->name }}</a></li>

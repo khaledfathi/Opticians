@@ -1,0 +1,214 @@
+/* #### general ####*/
+.active-order:after{
+    width: 100% !important;
+    background-color: aqua !important;
+}
+/* #### end general ####*/
+
+/* #### container #### */
+.container *{
+}
+
+.container{
+    margin-bottom: 100px;
+}
+/* #### end container #### */
+
+/* #### form #### */
+form {
+    width: 95%;
+    border-width: 0px 5px ;
+    border-color: gray;
+    border-style: solid;
+    margin: 20px auto ;
+}
+/* #### end form #### */
+
+
+/* #### section-header #### */
+.section-header {
+    text-align: center;
+    margin: 30px;
+}
+/* #### end section-header #### */
+
+/* #### order #### */
+.order {
+    width: 95%;
+    margin : 0px auto ; 
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 20px ;
+    border-bottom: 5px solid gray;
+    margin-bottom: 20px;
+}
+.order label{
+    display: block;
+}
+.order > div {
+    width: 30%;
+    min-width: 300px;
+}
+.order input, 
+.order select , 
+.order textarea {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    margin: 10px 0px ; 
+    vertical-align: middle;
+    border : none ; 
+    box-shadow: 0px 0px 5px 1px gray;
+    resize : none;
+}
+.order textarea{
+    height : 100px ;
+}
+.order img {
+    width: 50px;
+    margin: 20px;
+}
+.order input[type="file"]{
+    display: none;
+}
+/* #### end order #### */
+
+/* #### order-details #### */
+.order-details {
+    display: flex;
+    flex-wrap: wrap;    
+    margin: 0px auto 20px;
+    width: 95%;
+    border-bottom: 5px solid gray;
+    padding-bottom: 20px;
+
+}
+/* #### order-details #### */
+
+
+/* #### glasses #### */
+.glasses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    border : 3px solid gray; 
+    width: 95%;
+    margin : 0px auto;
+}
+.glasses > *{
+    width: 40%;
+}
+
+.glasses__lens {
+    border: 3px solid gray;
+    display: flex;    
+    gap : 10px ; 
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    margin: 50px 0px 0px;
+    padding: 20px;        
+}
+.add-option {    
+    min-width: 100%;
+    display: flex;
+    gap :20px; 
+    justify-content: center;
+}
+
+.glasses__lens span{
+    position: absolute; 
+    top : -30px;
+    right : 50%; 
+    left: 50%;    
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.glasses__lens input[type="number"]{
+    appearance:textfield;
+}
+.glasses__lens label{
+    display: block;
+    text-align: center;
+}
+
+.glasses__lens input{
+    width: 70px;
+    margin-top: 5px;
+    border : none; 
+    box-shadow: 0px 0px 5px 1px gray;
+}
+.glasses_presctiption {
+    display : flex; 
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;    
+    align-items: center;
+}
+
+.glasses_presctiption img{
+    width: 50px;
+    margin: 20px;
+}
+
+.glasses__buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.glasses__buttons button{
+    width: 100px;
+    height: 30px;
+    border: none;
+    background-color: red;
+    color: white;
+}
+.glasses__buttons button:hover{
+    box-shadow: 0px 0px 7px 2px gray;
+}
+
+
+.glasses__more-order {
+    margin: 20px 0px;
+}
+.glasses__more-order button{
+    width: 100px;
+    height: 30px;
+    background-color: gray;
+    color: white;
+    border : none; 
+}
+.glasses__more-order:hover {
+	box-shadow: 0px 0px 10px 3px gray;
+}
+/* #### end glasses #### */
+
+/* #### order-buttons #### */
+.order-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+.order-buttons input{
+    width: 180px;
+    height: 60px;
+    font-size: 15pt;
+    font-weight: bold;
+    background-color: gray;
+    color: white;
+    border : none; 
+}
+.order-buttons input:hover{
+    box-shadow: 0px 0px 10px 3px gray;
+}
+/* #### order-buttons #### */
