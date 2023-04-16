@@ -8,6 +8,7 @@
 @section('scripts')
     <script src="{{ url('assets/js/external/sweatAlert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ url('assets/js/cpanel/lenses/lenses.js') }}"></script>
+    <script src="{{ url('assets/js/lib/ajax.js') }}"></script>
 @endsection
 
 
@@ -47,7 +48,7 @@
                                 <td>{{ $record->name }}</td>
                                 <td>{{ $record->description }}</td>
                                 <td>
-                                    <a href="{{ url('cpanel/users/' . $record->id) }}">
+                                    <a href="{{ url('cpanel/lenses/' . $record->id) }}">
                                         <img class="control-icon" src="{{ url('assets/images/svg/edit.svg') }}"
                                             alt="delete_icon">
                                     </a>

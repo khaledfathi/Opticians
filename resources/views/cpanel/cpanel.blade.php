@@ -47,8 +47,8 @@
             <p>
                 App : Optician Workshop System [OWS]<br>
                 App Version : Pre-alpha<br>
-                Build by PHP Version : 8.2 <br>
-                Build by Laravel Version : 10.5.1<br>
+                PHP Version : 8.1+ <br>
+                Laravel Version : 10.5.1+<br>
                 License : GPL v3<br>
                 Support : dev@khaledfathi.com
             </p>

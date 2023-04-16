@@ -117,6 +117,7 @@ form {
     display: flex;
     gap :20px; 
     justify-content: center;
+    user-select: none;
 }
 
 .glasses__lens span{
@@ -128,8 +129,8 @@ form {
     margin-right: auto;
     width: fit-content;
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+.glasses__lens input::-webkit-outer-spin-button,
+.glasses__lens input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -192,6 +193,46 @@ input::-webkit-inner-spin-button {
 	box-shadow: 0px 0px 10px 3px gray;
 }
 /* #### end glasses #### */
+
+/* #### lens-options #### */
+.lens-options{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap : 50px; 
+    width: 90%;
+}
+.lens-options > div {
+    width: 40% !important;
+}
+.lens-options label{
+    display: block;
+    width: 90px;
+}
+.lens-options input , 
+.lens-options select,
+.lens-options textarea{
+    margin: 10px 0px ;
+    height: 30px;
+    border: none;
+    width: 100%;
+    box-shadow: 0px 0px 5px 1px gray;
+}
+.lens-options textarea{
+    resize: none;
+    height: 100px;
+}
+.lens-options input::-webkit-outer-spin-button,
+.lens-options input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.lens-options input[type="number"]{
+    appearance:textfield;
+}
+
+/* #### end lens type #### */
+
 
 /* #### order-buttons #### */
 .order-buttons {

@@ -8,6 +8,7 @@
 @section('scripts')
     <script src="{{ url('assets/js/external/sweatAlert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ url('assets/js/cpanel/users/users.js') }}"></script>
+    <script src="{{ url('assets/js/lib/ajax.js') }}"></script>
 @endsection
 
 @section('content')

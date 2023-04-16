@@ -10,7 +10,7 @@
 @section('content')
     <div class="container">
         <div class="section-header">
-            <h3>تحديث</h3>
+            <h3>تحديث عدسة</h3>
         </div>
         @if ($errors->any())
             <div class="msg">
