@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('address' , 255)->nullable(true); 
             $table->text('details')->nullable(true); 
             $table->timestamps();
-            //FK
-            $table->foreignId('user_id')->nullable(true)->references('id')->on('users')->onDelete('set null'); 
         });
     }
 

@@ -3,6 +3,19 @@
     width: 100% !important;
     background-color: aqua !important;
 }
+
+/* #### Shared CSS #### */
+.order__image button,/*in order*/
+.glasses_presctiption button {/*in presctiption*/
+    width: 100px;
+    height: 30px;    
+    display: block;
+    background-color: gray; 
+    color : white; 
+    border : none;
+}
+/* #### Shared CSS #### */
+
 /* #### end general ####*/
 
 /* #### container #### */
@@ -66,12 +79,12 @@ form {
 .order textarea{
     height : 100px ;
 }
-.order img {
-    width: 50px;
-    margin: 20px;
-}
 .order input[type="file"]{
     display: none;
+}
+.order__image img {
+    width: 50px;
+    margin: 20px;
 }
 /* #### end order #### */
 
@@ -96,7 +109,7 @@ form {
     justify-content: center;
     border : 3px solid gray; 
     width: 95%;
-    margin : 0px auto;
+    margin : 10px auto;
 }
 .glasses > *{
     width: 40%;
@@ -177,7 +190,6 @@ form {
 .glasses__buttons button:hover{
     box-shadow: 0px 0px 7px 2px gray;
 }
-
 
 .glasses__more-order {
     margin: 20px 0px;

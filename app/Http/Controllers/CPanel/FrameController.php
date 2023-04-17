@@ -26,8 +26,8 @@ class FrameController extends Controller
         return view('cpanel.frames.createFrame');
     }
     public function storeFrame(CreateFrameRequest $request){
-        $this->frameProvider->store($request->except('_token')); 
-        return redirect('cpanel/frames'); 
+        $record = $this->frameProvider->store($request->except('_token')); 
+        return redirect('cpanel/frames')->with(['ok'=> "تم حفظ فريم - $record->name"]); 
     }
     public function destroyFrame(Request $request){
         $this->frameProvider->destroy((int)$request->id); 

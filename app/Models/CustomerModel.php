@@ -13,6 +13,6 @@ class CustomerModel extends Model
         'name', 
         'phone', 
         'address', 
-        'details'
+        'details',        
     ]; 
 }

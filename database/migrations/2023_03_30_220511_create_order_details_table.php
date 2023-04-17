@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->string('r_sphere', 50)->nullable(true); 
-            $table->string('r_cylinder', 50)->nullable(true);
-            $table->string('r_axis', 50)->nullable(true);
-            $table->string('l_sphere', 50)->nullable(true);
-            $table->string('l_cylinder', 50)->nullable(true);
-            $table->string('l_axis', 50)->nullable(true);
+            $table->integer('r_sphere')->nullable(true); 
+            $table->integer('r_cylinder')->nullable(true);
+            $table->integer('r_axis')->nullable(true);
+            $table->integer('r_add')->nullable(true);
+            $table->integer('l_sphere')->nullable(true);
+            $table->integer('l_cylinder')->nullable(true);
+            $table->integer('l_axis')->nullable(true);
+            $table->integer('l_add')->nullable(true);
             $table->bigInteger('count')->nullable(false)->default(1); 
+            $table->text('image')->nullable(true); 
             $table->boolean('revision')->nullable(false)->default(false);
             $table->text('details')->nullable(false); 
             $table->timestamps();
