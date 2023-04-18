@@ -18,28 +18,27 @@
         <div class="section-header">
             <h3>امر شغل</h3>
         </div>
-        <form action="">
+        <form action="order/create" method="post" enctype="multipart/form-data">
             {{-- Order --}}
             <div class="order">
                 <div class="order__block-a">
                     <div>
                         <label for="">تاريخ</label>
-                        <input type="date" id="order-date">
+                        <input type="date" id="order-date" name="date">
                     </div>
                     <div>
                         <label for="">الوقت</label>
-                        <input type="time" id="order-time">
+                        <input type="time" id="order-time" name="time">
                     </div>
                     <div>
                         <label for="">تارخ التسليم</label>
-                        <input type="date">
+                        <input type="date" name="delivery_date">
                     </div>
                 </div>
                 <div class="order__block-b">
-
                     <div>
                         <label for="">العميل</label>
-                        <select>
+                        <select name="customer_id">
                             @foreach ($customers as $customer)
                                 <option value="{{ $customer->id }}">{{ $customer->name }}</option>
                             @endforeach
@@ -47,7 +46,7 @@
                     </div>
                     <div>
                         <label for="">نوع الشغل</label>
-                        <select id="work-type">
+                        <select id="work-type" name="work_type">
                             @foreach ($orderTypes as $type)
                                 <option value="{{ $type->value }}">{{ $type->value }}</option>
                             @endforeach
@@ -55,7 +54,7 @@
                     </div>
                     <div class="order__image">
                         <img id="order-upload-image" src="{{ url('assets/images/svg/default_image.svg') }}" alt="">
-                        <input type="file" accept="image/*" id="order-upload-image-file">
+                        <input type="file" accept="image/*" id="order-upload-image-file" name="order_image">
                         <button id="remove-order-image-button" type="button">الغاء الصورة</button>
                     </div>
                 </div>
@@ -126,12 +125,12 @@
                         {{-- glasses__add --}}
                         <div class="add-option">
                             <div>
-                                <input id="glasses-add-checkbox" type="checkbox">
-                                <label for="glasses-add-checkbox">add</label>
+                                <input type="checkbox">
+                                <label >add</label>
                             </div>
                             <div>
-                                <input id="glasses-bind-checkbox" type="checkbox">
-                                <label for="glasses-bind-checkbox">bind</label>
+                                <input  type="checkbox">
+                                <label >bind</label>
                             </div>
                         </div>
                         {{-- endglasses__add --}}
@@ -174,8 +173,8 @@
                             <label for="">روشتة</label>
                             <img src="{{ url('assets/images/svg/default_image.svg') }}" alt=""
                                 id="presctiption-upload-image">
-                            <input type="file" accept="image/*" hidden id="presctiption-upload-image-file">
-                            <button id="remove-presctiption-image-button" type="button">الغاء الصورة</button>
+                            <input type="file" accept="image/*" hidden>
+                            <button  type="button">الغاء الصورة</button>
                         </div>
                         {{-- end prescription --}}
                         <div class="glasses__buttons">
@@ -193,6 +192,7 @@
                 </div>
                 {{-- end add more Order-details --}}
             </div>
+            <input type="hidden" name="order_details">
             {{-- end Order-details --}}
 
 
