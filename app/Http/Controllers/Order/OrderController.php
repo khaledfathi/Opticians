@@ -39,4 +39,7 @@ class OrderController extends Controller
             'orderTypes'=> OrderTypes::cases()
         ]);  
     }
+    public function createOrder(Request $request){
+        dd($request->all()); 
+    }
 }

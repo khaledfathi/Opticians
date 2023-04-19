@@ -19,6 +19,7 @@
             <h3>امر شغل</h3>
         </div>
         <form action="order/create" method="post" enctype="multipart/form-data">
+            @csrf
             {{-- Order --}}
             <div class="order">
                 <div class="order__block-a">
@@ -54,13 +55,13 @@
                     </div>
                     <div class="order__image">
                         <img id="order-upload-image" src="{{ url('assets/images/svg/default_image.svg') }}" alt="">
-                        <input type="file" accept="image/*" id="order-upload-image-file" name="order_image">
+                        <input type="file" accept="image/*" id="order-upload-image-file" name="image">
                         <button id="remove-order-image-button" type="button">الغاء الصورة</button>
                     </div>
                 </div>
                 <div>
                     <label for="">تفاصيل اخرى</label>
-                    <textarea cols="10" rows="3"></textarea>
+                    <textarea cols="10" rows="3" name="details"></textarea>
                 </div>
             </div>
             {{-- end Order --}}
@@ -76,7 +77,7 @@
                             <span>Left</span>
                             <div>
                                 <label for="">sphere</label>
-                                <input type="number">
+                                <input type="number" >
                             </div>
 
                             <div>
@@ -192,13 +193,13 @@
                 </div>
                 {{-- end add more Order-details --}}
             </div>
-            <input type="hidden" name="order_details">
+            <input type="hidden" id="order-details"  name="order_details">            
             {{-- end Order-details --}}
 
 
             {{-- order-buttons --}}
             <div class="order-buttons">
-                <input type="submit" value="تسجيل امر شغل">
+                <input type="submit" value="تسجيل امر شغل" id="submit-button">
             </div>
             {{-- end order-buttons --}}
         </form>

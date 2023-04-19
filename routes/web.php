@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/' , fn()=>redirect('login')); 
-Route::get('login' , [LoginController::class , 'loginPage'])->middleware('guest')->name('login');
+Route::get('login' , [LoginController::class , 'indexLogin'])->middleware('guest')->name('login');
 Route::post('login' , [LoginController::class , 'login']);
 
 
@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function (){
     //order 
     Route::group(['prefix'=>'order'], function (){
         Route::get('/' ,[OrderController::class , 'indexOrder']); 
+        Route::post('create' , [OrderController::class , 'createOrder']); 
     }); 
 
     //revision

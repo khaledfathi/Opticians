@@ -14,6 +14,9 @@ const workType = document.querySelector('#work-type');
 const addWorkButton = document.querySelector('#add-work-button'); 
 const workContainerDiv = document.querySelector('#work-container-div'); 
 const workDiv = document.querySelector('#work-div'); 
+//used for backend request
+const orderDetails = document.querySelector('#order-details');
+const submitButton = document.querySelector('#submit-button');
 /* #### end constants #### */
 
 /* #### Functions #### */
@@ -43,7 +46,6 @@ function eventRemoveOrderImage(){
     orderUploadImage.src=defaultImageIcon; 
     orderUploadImage.style.width='50px' ;
 }
-
 
 function eventWorkTypeChanged(){
     if (workType.value == 'نظارة جديدة'){
@@ -101,6 +103,7 @@ function eventAddNewWork(){
         }else{
             addLeftDiv.hidden=true; 
             addRightDiv.hidden=true; 
+            bindCheckBox.disabled=true;
         }
     });
     //nested function
@@ -139,14 +142,53 @@ function eventAddNewWork(){
     workContainerDiv.appendChild(newWorkDiv);    
 }
 
+function eventCollectOrderDetailsData(){
+    let works = workContainerDiv.children;     
+    let orderDetailsData=[]; 
+    //loob in parent div
+    for (let i=0 ; i<works.length ; i++){
+        //ignore first hidden div
+        if (i>0){
+            let work = works[i];
+            let workData ={};
+            //left
+            workData['l_sphere'] = work.children[0].children[1].children[1].value;             
+            workData['l_cylinder'] = work.children[0].children[2].children[1].value;
+            workData['l_axis'] = work.children[0].children[3].children[1].value;
+            workData['l_add'] = work.children[0].children[4].children[1].value;                        
+            //right
+            workData['r_sphere'] = work.children[1].children[1].children[1].value; 
+            workData['r_cylinder'] = work.children[1].children[2].children[1].value;
+            workData['r_axis'] = work.children[1].children[3].children[1].value;
+            workData['r_add'] = work.children[1].children[4].children[1].value;
+            //add checkbox
+            workData ['isAddChecked'] = work.children[2].children[0].children[0].checked; 
+            //lens type 
+            workData['lensType'] = work.children[3].children[0].children[0].children[1].value
+            //frame type
+            workData['frametype'] = work.children[3].children[0].children[1].children[1].value 
+            //count
+            workData['count'] = work.children[3].children[0].children[2].children[1].value
+            //details
+            workData['details'] = work.children[3].children[1].children[0].children[1].value
+            //set name to image file to use in back end 
+            workData['image'] = work.children[4].children[2].name="image_"+i
+            orderDetailsData.push(workData); 
+        }
+        workData=[]; 
+    }
+    orderDetails.value = JSON.stringify(orderDetailsData);
+    console.log(orderDetails.value)
+
+} 
+
 /* #### End Event Actions #### */
 
 /* #### Events #### */  
 orderUploadImage.addEventListener('click' , eventOrderUploadImage); 
 orderUploadImageFile.addEventListener('change' , eventOrderUploadImageFile); 
 removeOrderImageButton.addEventListener('click' , eventRemoveOrderImage); 
-
 workType.addEventListener('change', eventWorkTypeChanged); 
 addWorkButton.addEventListener('click' , eventAddNewWork);
-
+submitButton.addEventListener('click' , eventCollectOrderDetailsData); 
 /* #### End Events #### */

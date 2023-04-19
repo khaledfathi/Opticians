@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function loginPage(){
+    public function indexLogin(){
         return view('login.login'); 
     }
     public function login(Request $request){
