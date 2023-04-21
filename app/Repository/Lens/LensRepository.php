@@ -17,6 +17,10 @@ class LensRepository implements LensRepositoryContract{
         $found = LensModel::find($id); 
         return ($found) ? $found->delete() : false ; 
     }
+    public function isExist(int $id):bool
+    {
+        return (LensModel::find($id)) ? true : false; 
+    }
     public function show (int $id):object
     {
         return LensModel::where('id' , $id)->first(); 

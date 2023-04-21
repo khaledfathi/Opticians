@@ -18,6 +18,8 @@
 
 /* #### end general ####*/
 
+
+
 /* #### container #### */
 .container *{
 }
@@ -26,6 +28,37 @@
     margin-bottom: 100px;
 }
 /* #### end container #### */
+
+/* #### messages ####*/
+.msg {
+    width: fit-content;
+    margin: 30px auto;
+}
+.msg__text{
+    font-size: 16pt;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px 0px;
+    padding: 10px;
+}
+
+.msg__text--error{
+    color: red;
+    border-color: red;
+}
+
+.msg__text--ok{
+    color: green;
+    border-color: green;
+}
+
+.msg__image{
+    width: 40px;
+    vertical-align: middle;
+}
+
+/* #### end messages ####*/
+
 
 /* #### form #### */
 form {
@@ -91,7 +124,8 @@ form {
 /* #### order-details #### */
 .order-details {
     display: flex;
-    flex-wrap: wrap;    
+    /* flex-wrap: wrap;     */
+    flex-direction: column;
     margin: 0px auto 20px;
     width: 95%;
     border-bottom: 5px solid gray;
@@ -104,7 +138,7 @@ form {
 /* #### glasses #### */
 .glasses {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;    
     gap: 30px;
     justify-content: center;
     border : 3px solid gray; 
@@ -123,7 +157,8 @@ form {
     flex-wrap: wrap;
     position: relative;
     margin: 50px 0px 0px;
-    padding: 20px;        
+    padding: 20px;
+    direction: ltr;
 }
 .add-option {    
     min-width: 100%;
@@ -193,6 +228,7 @@ form {
 
 .glasses__more-order {
     margin: 20px 0px;
+    width: fit-content;
 }
 .glasses__more-order button{
     width: 100px;
@@ -265,3 +301,4 @@ form {
     box-shadow: 0px 0px 10px 3px gray;
 }
 /* #### order-buttons #### */
+

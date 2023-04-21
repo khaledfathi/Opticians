@@ -17,6 +17,10 @@ class FrameRepository implements FrameRepositoryContract{
         $found = FrameModel::find($id); 
         return ($found) ? $found->delete() : false ; 
     }
+    public function isExist (int $id):bool 
+    {
+        return (FrameModel::find($id)) ? true : false; 
+    }
     public function show (int $id):object 
     {
         return FrameModel::where('id' , $id)->first(); 

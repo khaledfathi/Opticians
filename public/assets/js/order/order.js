@@ -42,9 +42,10 @@ function eventOrderUploadImageFile(event){
 }
 /* end order image */
 
-function eventRemoveOrderImage(){
+function eventRemoveOrderImage(){    
     orderUploadImage.src=defaultImageIcon; 
     orderUploadImage.style.width='50px' ;
+    orderUploadImageFile.value='';
 }
 
 function eventWorkTypeChanged(){
@@ -132,6 +133,7 @@ function eventAddNewWork(){
     presctiptionRemoveImageButton.addEventListener('click' , ()=>{
         presctiptionImage.src=defaultImageIcon; 
         presctiptionImage.style.width='50px' ;
+        presctiptionImageBrowseFile.value='';
     });
     removeWorkButton.addEventListener('click' , ()=>{
         removeWorkButton.parentElement.parentElement.remove()
@@ -155,7 +157,7 @@ function eventCollectOrderDetailsData(){
             workData['l_sphere'] = work.children[0].children[1].children[1].value;             
             workData['l_cylinder'] = work.children[0].children[2].children[1].value;
             workData['l_axis'] = work.children[0].children[3].children[1].value;
-            workData['l_add'] = work.children[0].children[4].children[1].value;                        
+            workData['l_add'] = work.children[0].children[4].children[1].value;
             //right
             workData['r_sphere'] = work.children[1].children[1].children[1].value; 
             workData['r_cylinder'] = work.children[1].children[2].children[1].value;
@@ -164,9 +166,9 @@ function eventCollectOrderDetailsData(){
             //add checkbox
             workData ['isAddChecked'] = work.children[2].children[0].children[0].checked; 
             //lens type 
-            workData['lensType'] = work.children[3].children[0].children[0].children[1].value
+            workData['lensTypeId'] = work.children[3].children[0].children[0].children[1].value
             //frame type
-            workData['frametype'] = work.children[3].children[0].children[1].children[1].value 
+            workData['frameTypeId'] = work.children[3].children[0].children[1].children[1].value 
             //count
             workData['count'] = work.children[3].children[0].children[2].children[1].value
             //details
@@ -178,10 +180,38 @@ function eventCollectOrderDetailsData(){
         workData=[]; 
     }
     orderDetails.value = JSON.stringify(orderDetailsData);
-    console.log(orderDetails.value)
-
 } 
 
+function eventOrderDetailsValidation(){
+    let works = workContainerDiv.children;    
+    //loob in parent div
+    for (let i=0 ; i<works.length ; i++){
+        //ignore first hidden div
+        if (i>0){
+            //left
+            let l_cylinder = works[i].children[0].children[2].children[1];
+            let l_axis = works[i].children[0].children[3].children[1];
+            //ritgh
+            let r_cylinder = works[i].children[1].children[2].children[1];
+            let r_axis = works[i].children[1].children[3].children[1];
+
+            //left
+            if (l_cylinder.value){
+                l_axis.setAttribute('required','');                
+            } else {                
+                l_axis.setCustomValidity(''); 
+                l_axis.removeAttribute('required'); 
+            }
+            //right
+            if (r_cylinder.value){
+                r_axis.setAttribute('required','');                
+            } else {                
+                r_axis.setCustomValidity(''); 
+                r_axis.removeAttribute('required'); 
+            }
+        }
+    } 
+}
 /* #### End Event Actions #### */
 
 /* #### Events #### */  
@@ -191,4 +221,5 @@ removeOrderImageButton.addEventListener('click' , eventRemoveOrderImage);
 workType.addEventListener('change', eventWorkTypeChanged); 
 addWorkButton.addEventListener('click' , eventAddNewWork);
 submitButton.addEventListener('click' , eventCollectOrderDetailsData); 
+submitButton.addEventListener('click' , eventOrderDetailsValidation); 
 /* #### End Events #### */

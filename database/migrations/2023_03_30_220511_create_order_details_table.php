@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('r_sphere')->nullable(true); 
-            $table->integer('r_cylinder')->nullable(true);
-            $table->integer('r_axis')->nullable(true);
-            $table->integer('r_add')->nullable(true);
-            $table->integer('l_sphere')->nullable(true);
-            $table->integer('l_cylinder')->nullable(true);
-            $table->integer('l_axis')->nullable(true);
-            $table->integer('l_add')->nullable(true);
+            $table->float('r_sphere')->nullable(true); 
+            $table->float('r_cylinder')->nullable(true);
+            $table->float('r_axis')->nullable(true);
+            $table->float('r_add')->nullable(true);
+            $table->float('l_sphere')->nullable(true);
+            $table->float('l_cylinder')->nullable(true);
+            $table->float('l_axis')->nullable(true);
+            $table->float('l_add')->nullable(true);
             $table->bigInteger('count')->nullable(false)->default(1); 
             $table->text('image')->nullable(true); 
             $table->boolean('revision')->nullable(false)->default(false);
-            $table->text('details')->nullable(false); 
+            $table->text('details')->nullable(true); 
             $table->timestamps();
             //FK
             $table->foreignId('order_id')->nullable(false)->references('id')->on('orders'); 

@@ -15,8 +15,20 @@
 
 @section('content')
     <div class="container">
+
         <div class="section-header">
             <h3>امر شغل</h3>
+            @if ($errors->any())
+                <div class="msg">
+                    <span class="msg__text msg__text--error">{{ $errors->first() }} <img class="msg__image"
+                            src="{{ url('assets/images/svg/error.svg') }}" alt="error_icon"></span>
+                </div>
+            @elseif (session('ok'))
+                <div class="msg">
+                    <span class="msg__text msg__text--ok">{{ session('ok') }} <img class="msg__image"
+                            src="{{ url('assets/images/svg/ok.svg') }}" alt="ok_icon"></span>
+                </div>
+            @endif
         </div>
         <form action="order/create" method="post" enctype="multipart/form-data">
             @csrf
@@ -69,30 +81,30 @@
             {{-- Order-details --}}
             <div class="order-details">
                 {{-- work-container-div --}}
-                <div class="order-details-container" id="work-container-div">
+                <div class="order-details-container" id="work-container-div" >
                     {{-- glasses --}}
-                    <div class="glasses" id="work-div" style="display:none">
+                    <div class="glasses" id="work-div" style="display:none" lang="en">
                         {{-- glasses__right --}}
                         <div class="glasses__lens glasses__lens--right">
                             <span>Left</span>
                             <div>
                                 <label for="">sphere</label>
-                                <input type="number" >
+                                <input type="number" min="-30" max="30" oninvalid="this.setCustomValidity('القيمة من -30 الى 30')" oninput="setCustomValidity('')">
                             </div>
 
                             <div>
                                 <label for="">cylinder</label>
-                                <input type="number">
+                                <input type="number" min="-10" max="10" oninvalid="this.setCustomValidity('القيمة من -10 الى 10')" oninput="setCustomValidity('')">
                             </div>
 
                             <div>
                                 <label for="">axis</label>
-                                <input type="number">
+                                <input type="number" min="1" max="180" oninvalid="this.setCustomValidity('القيمة من 1 الى 180')" oninput="setCustomValidity('')">
                             </div>
 
                             <div name="add-option-div" hidden>
                                 <label for="">add</label>
-                                <input type="number">
+                                <input type="number" oninvalid="this.setCustomValidity('')">
                             </div>
                         </div>
                         {{-- end glasses__right --}}
@@ -102,17 +114,17 @@
                             <span>Right</span>
                             <div>
                                 <label for="">sphere</label>
-                                <input type="number">
+                                <input type="number" min="-30" max="30" oninvalid="this.setCustomValidity('القيمة من -30 الى 30')" oninput="setCustomValidity('')">
                             </div>
 
                             <div>
                                 <label for="">cylinder</label>
-                                <input type="number">
+                                <input type="number" min="-10" max="10" oninvalid="this.setCustomValidity('القيمة من -10 الى 10')" oninput="setCustomValidity('')">
                             </div>
 
                             <div>
                                 <label for="">axis</label>
-                                <input type="number">
+                                <input type="number" min="1" max="180" oninvalid="this.setCustomValidity('القيمة من 1 الى 180')" oninput="setCustomValidity('')">
                             </div>
 
                             <div name="add-option-div" hidden>

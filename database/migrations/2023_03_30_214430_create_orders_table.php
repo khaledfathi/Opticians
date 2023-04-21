@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->date('date')->nullable(false); 
             $table->time('time')->nullable(false); 
-            $table->date('delivery_date')->nullable(false); 
+            $table->date('delivery_date')->nullable(true); 
             $table->text('image')->nullable(true);
             $table->enum('type',['صيانة' , 'نظارة جديدة'])->nullable(true);
             $table->text('details')->nullable(true); 

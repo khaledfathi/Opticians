@@ -8,4 +8,8 @@ class OrderRepository implements OrderRepositoryContract{
     {
         return OrderModel::get(); 
     }
+    function store(array $data):OrderModel
+    {
+        return OrderModel::create($data); 
+    }
 }

@@ -1,0 +1,69 @@
+/* #### general #### */
+/* #### end general #### */
+
+
+/* #### container #### */
+.container{
+    margin-bottom: 100px;
+}
+/* #### end container #### */
+
+/* #### date-div #### */
+.date-div {
+   width: fit-content; 
+   margin: 20px auto;
+   text-align: center;
+}
+.date-div input[type="date"]{
+	height: 30px;
+	line-height: 30px;
+	margin: 10px 0px;
+	border: none;
+	box-shadow: 0px 0px 5px 1px gray;
+	resize: none;
+}
+.date-div input[type="submit"] {
+	width: 100px;
+	height: 30px;
+	display: block;
+	background-color: gray;
+	color: white;
+	border: none;
+    margin: 10px auto 40px;
+}
+/* #### end date-div #### */
+
+/* #### results####*/
+.results {
+    width: 90%;
+    margin: 0px auto ;
+    overflow: scroll;
+    border-bottom: 1px solid black;
+    max-height: 380px;
+}
+.results table {
+    width: 100%;;
+    min-width: 800px;
+    user-select: none;
+}
+.results th{
+    background-color: gray;
+    color: white;
+    position: sticky;
+    top:0px;
+}
+.results td  , .results th{
+    padding: 10px;
+    text-align: center;
+}
+.results tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+.results tr:hover {
+    background-color: #ddd;
+}
+.control-icon{
+    width: 30px;
+    cursor: pointer;
+}
+/* #### end results####*/

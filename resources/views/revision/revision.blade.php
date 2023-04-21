@@ -2,28 +2,30 @@
 @section('title', 'مراجعة')
 
 @section('links')
-    <link rel="stylesheet" href="{{ asset('') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/revision/revision.css') }}">
 @endsection
 
 @section('active-revision', 'active-revision')
 
 @section('content')
     <div class="container">
-        <div>
-            <p>قائمة الشغل</p>
+        <form class="date-div">
+            <p>شغل يوم</p>
             <input type="date">
-            <button>عرض</button>
+            <input type="submit" value="عرض">
+        </form>
+        <div class="results">
+            <table>
+                <thead>
+                    <th>رقم الشغل</th>
+                    <th>الوقت</th>
+                    <th>العميل</th>
+                    <th>نوع الشغل</th>
+                    <th>تفاصيل</th>
+                    <th>مراجعة</th>
+                    <th>عرض</th>
+                </thead>
+            </table>
         </div>
-        <table>
-            <thead>
-                <th>رقم الشغل</th>
-                <th>الوقت</th>
-                <th>العميل</th>
-                <th>نوع الشغل</th>
-                <th>تفاصيل</th>
-                <th>مراجعة</th>
-                <th>عرض</th>
-            </thead>
-        </table>
     </div>
 @endsection
