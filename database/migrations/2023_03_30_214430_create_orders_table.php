@@ -17,7 +17,8 @@ return new class extends Migration
             $table->time('time')->nullable(false); 
             $table->date('delivery_date')->nullable(true); 
             $table->text('image')->nullable(true);
-            $table->enum('type',['صيانة' , 'نظارة جديدة'])->nullable(true);
+            $table->enum('type',['صيانة' , 'تصنيع'])->nullable(true);
+            $table->bigInteger('works_count')->nullable(true); 
             $table->text('details')->nullable(true); 
             $table->timestamps();
             //FK

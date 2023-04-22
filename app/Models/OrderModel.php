@@ -15,6 +15,7 @@ class OrderModel extends Model
         'delivery_date',
         'image',
         'type',
+        'works_count',
         'details',
         //FK
         'user_id', 

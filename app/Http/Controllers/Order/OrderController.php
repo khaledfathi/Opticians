@@ -73,6 +73,7 @@ class OrderController extends Controller
                 'time'=>$request->time,
                 'delivery_date'=>$request->delivery_date,
                 'type'=>$request->work_type,
+                'works_count'=> count(json_decode($request->order_details)),//works count
                 'details'=>$request->details,
                 //FK
                 'customer_id'=>$request->customer_id,

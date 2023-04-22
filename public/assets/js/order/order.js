@@ -19,14 +19,15 @@ const orderDetails = document.querySelector('#order-details');
 const submitButton = document.querySelector('#submit-button');
 /* #### end constants #### */
 
-/* #### Functions #### */
-/* #### End Functions #### */
-
 /* #### General #### */
 //set current date and time 
 orderDate.value = currentDate(); 
 orderTime.value = currentTime(); 
 /* #### End General #### */
+
+/* #### Functions #### */
+/* #### End Functions #### */
+
 
 /* #### Event Actions #### */
 /* order image */
@@ -49,7 +50,7 @@ function eventRemoveOrderImage(){
 }
 
 function eventWorkTypeChanged(){
-    if (workType.value == 'نظارة جديدة'){
+    if (workType.value == 'تصنيع'){
         addWorkButton.hidden=false; 
         workContainerDiv.hidden=false;
     }else {
