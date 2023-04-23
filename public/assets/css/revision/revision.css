@@ -1,4 +1,8 @@
 /* #### general #### */
+.active-revision:after{
+    width: 100% !important;
+    background-color: aqua !important;
+}
 /* #### end general #### */
 
 

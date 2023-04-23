@@ -5,5 +5,6 @@ use App\Models\OrderModel;
 interface OrderRepositoryContract {    
     public function index():object; 
     public function store(array $data):OrderModel; 
+    public function show(string $id):null|object;
     public function showByDate(string $date):object;
 }

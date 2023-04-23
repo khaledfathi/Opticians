@@ -93,6 +93,8 @@ Route::middleware(['auth'])->group(function (){
     //revision
     Route::group(['prefix'=>'revision'] , function (){
         Route::get('/' , [RevisionController::class , 'indexRevision']); 
+        Route::get('show/{id}' , [RevisionController::class , 'showOrder']);
+        Route::get('showindate' , [RevisionController::class , 'showInDate']); 
     }); 
 });
 

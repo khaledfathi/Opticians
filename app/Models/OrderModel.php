@@ -16,6 +16,7 @@ class OrderModel extends Model
         'image',
         'type',
         'works_count',
+        'required_revision_count',
         'details',
         //FK
         'user_id', 

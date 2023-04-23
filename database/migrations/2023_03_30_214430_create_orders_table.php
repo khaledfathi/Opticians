@@ -1,5 +1,6 @@
 <?php
 
+use Brick\Math\BigInteger;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,7 +19,8 @@ return new class extends Migration
             $table->date('delivery_date')->nullable(true); 
             $table->text('image')->nullable(true);
             $table->enum('type',['صيانة' , 'تصنيع'])->nullable(true);
-            $table->bigInteger('works_count')->nullable(true); 
+            $table->bigInteger('works_count')->nullable(false); 
+            $table->BigInteger('required_revision_count')->nullable(false);
             $table->text('details')->nullable(true); 
             $table->timestamps();
             //FK

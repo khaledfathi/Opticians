@@ -1,0 +1,95 @@
+/* #### general #### */
+.active-revision:after{
+    width: 100% !important;
+    background-color: aqua !important;
+}
+/* #### end general #### */
+
+/* #### container #### */
+.container{
+    margin: 30px 0px 100px;
+}
+/* #### end container #### */
+
+/* #### order-data #### */
+.order-data{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+    margin: 50px auto 0px;
+    gap: 30px;
+    border-bottom: 5px solid gray;
+    padding-bottom: 20px;
+}
+.order-data > div {
+    width: 45%;
+}
+.order-data  label{
+    display: inline-block;
+    width: 100px;
+}
+.order-data input , 
+.order-data textarea{
+    width: 70%;
+    margin-top: 10px; 
+    resize: none;
+    border:none;
+	box-shadow: 0px 0px 5px 1px gray;
+    vertical-align: middle;
+}
+.order-data textarea{
+    height: 60px;
+}
+.order-data img {
+    margin: 10px 0px;
+    vertical-align: middle;
+}
+/* #### end order-data #### */
+
+/* ####  works #### */
+.works{/*all works*/
+    
+}
+
+.work { 
+    border : 3px solid gray;
+    width: 90%;
+    margin: 30px auto;
+}
+
+.work input {
+    box-shadow: 0px 0px 5px 1px gray;
+}
+
+/* lenses */
+.lenses{
+    margin: 0px auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+    gap: 10px;
+}
+.lens{
+    direction: ltr;
+    border: 3px solid gray;
+    width: 45%;
+    margin: 20px auto;
+    padding: 15px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px ;
+}
+.lens label{
+    display: block;
+    text-align: center;
+}
+.lens input{
+    margin: 10px 0px ;
+    width: 70px;
+}
+/* end lenses */
+
+/* ####  end works #### */
+

@@ -16,9 +16,9 @@
 
 @section('content')
     <div class="container">
-        <form class="date-div" action="{{url('revision/showindate')}}">
+        <form class="date-div" action="{{url('revision/indate')}}">
             <p>شغل يوم</p>
-            <input type="date" name="date" id="date">
+            <input type="date" name="date" value={{$date}}>
             <input type="submit" value="عرض">
         </form>
         <div class="results">
@@ -48,13 +48,9 @@
                             <td>{{$order->type}}</td>
                             <td>{{$order->works_count}}</td>
                             <td>{{$order->required_revision_count}}</td>
-                            @if ($order->image !=null)
-                                <td><a href="{{url($order->image)}}"><img src="{{url('assets/images/svg/default_image.svg')}}" alt="" width="25"></a></td>
-                            @else
-                                <td></td>
-                            @endif
+                            <td>{{$order->image}}</td>
                             <td>{{$order->details}}</td>
-                            <td><a href="{{url('revision/show/'.$order->id)}}">View</a></td>
+                            <td><a href="{{url('revision/'.$order->id)}}">View</a></td>
                         </tr>
                     @endforeach                    
                 @endif

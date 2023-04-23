@@ -23,11 +23,27 @@ class RevisionController extends Controller
     public function indexRevision(){
         $currentDate= Carbon::now()->timezone('Africa/Cairo')->format('y-m-d');
         $orders = $this->orderProvider->showByDate($currentDate);
-        $ordersCount= $orders->count();
-        
+        $ordersCount= $orders->count();        
         return view('revision.revision' , [
             'orders'=>$orders ,
             'ordersCount'=>$ordersCount,
             ]);
+    }
+    public function showInDate(Request $request){
+        $orders = $this->orderProvider->showByDate($request->date);
+        $ordersCount= $orders->count();
+        return view('revision.revision' , [
+            'orders'=>$orders ,
+            'ordersCount'=>$ordersCount,
+            ]);
+    }
+    public function showOrder(Request $request){
+        $order = $this->orderProvider->show($request->id);
+        $orderDetails = $this->orderDetailsProvider->showByOrderId($request->id); 
+        // dd($orderDetails);
+        return view('revision.showOrder' , [
+            'orderDetails'=>$orderDetails,
+            'order'=>$order
+        ]); 
     }
 }

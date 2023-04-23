@@ -68,12 +68,14 @@ class OrderController extends Controller
 
         if (!$validateOrderDetails){//if no errors
             //preparing date
+            $works_count = count(json_decode($request->order_details));            
             $orderData = [
                 'date'=>$request->date,
                 'time'=>$request->time,
                 'delivery_date'=>$request->delivery_date,
                 'type'=>$request->work_type,
-                'works_count'=> count(json_decode($request->order_details)),//works count
+                'works_count'=> ($works_count) ? $works_count : 1,//works count
+                'required_revision_count'=> ($works_count) ? $works_count : 1,//same as  works count
                 'details'=>$request->details,
                 //FK
                 'customer_id'=>$request->customer_id,
@@ -82,12 +84,15 @@ class OrderController extends Controller
 
             // store order image
             if ($request->image){
-                $orderData['image']='/assets/upload/ordersImage'; 
                 $file = $request->file('image'); 
-                $file->move(public_path().$orderData['image'],time().'.'.$file->getClientOriginalExtension());
+                $directory = '/assets/upload/ordersImage'; 
+                $fileName=time().'.'.$file->getClientOriginalExtension(); 
+                $filePath = $directory.'/'.$fileName;
+                $file->move(public_path().$directory , $fileName);
+                $orderData['image']=$filePath;
             }
             //store order
-            $orderId = $this->orderProvider->store($orderData);
+            $order = $this->orderProvider->store($orderData);
             
             //order details
             $orderDetails = json_decode($request->order_details) ;
@@ -99,7 +104,7 @@ class OrderController extends Controller
                         'revision'=>false,
                         'details'=>$work->details,
                         // FK
-                        'order_id'=>$orderId->id,
+                        'order_id'=>$order->id,
                         'frame_id'=>$work->frameTypeId,
                         'lens_id'=>$work->lensTypeId
                     ];
@@ -114,10 +119,10 @@ class OrderController extends Controller
 
                     //store order detail image                    
                     $imageName = $work->image;
-                    if ( isset(((array)$request->all())['image_1']) ){                        
+                    if ( isset(((array)$request->all())[$work->image]) ){
                         $file = $request->file($imageName);                         
                         $dirPath = '/assets/upload/ordersImage/';
-                        $fileName= time().'.'.$file->getClientOriginalExtension();
+                        $fileName= rand(1,999).'_'.time().'.'.$file->getClientOriginalExtension();
                         $file->move(public_path().$dirPath ,$fileName);                        
                         $workData['image']= $dirPath.$fileName;
                     };
