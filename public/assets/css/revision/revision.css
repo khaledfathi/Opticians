@@ -3,6 +3,10 @@
     width: 100% !important;
     background-color: aqua !important;
 }
+.icon-buttons{
+    width: 30px;
+    cursor: pointer;
+}
 /* #### end general #### */
 
 
@@ -56,6 +60,10 @@
     position: sticky;
     top:0px;
 }
+.results td {
+    white-space: pre;
+}
+
 .results td  , .results th{
     padding: 10px;
     text-align: center;
@@ -70,4 +78,5 @@
     width: 30px;
     cursor: pointer;
 }
+
 /* #### end results####*/

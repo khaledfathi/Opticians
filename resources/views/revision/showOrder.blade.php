@@ -49,11 +49,14 @@
                     </div>
                     <div>
                         @if ($order->image)
-                            <label >صورة </label>
-                            <img src="{{ url($order->image) }}" alt="صورة الشغل" width="100">
+                            <label>صورة </label>
+                            <a href="{{url($order->image)}}"><img src="{{ asset('assets/images/svg/default_image.svg') }}" alt="صورة الشغل"></a>
                         @endif
                     </div>
                 </div>
+                @if ($order->type =='صيانة')
+                    <button class="order-data__revision-button">مراجعة (بواسطة admin)</button>
+                @endif
             </div>
             <div class="works">
                 @if ($orderDetails)
@@ -61,7 +64,7 @@
                         <div class="work">
                             <div class="lenses">
                                 <div class="lens">
-                                    <p>Left</p>
+                                    <span>Left</span>
                                     <div>
                                         <label for="">sphere</label>
                                         <input type="text" readonly value={{ $work->l_sphere }}>
@@ -80,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="lens">
-                                    <p>Right</p>
+                                    <span>Right</span>
                                     <div>
                                         <label for="">sphere</label>
                                         <input type="text" readonly value={{ $work->r_sphere }}>
@@ -99,31 +102,36 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <label for="">نوع العدسة</label>
-                                <input type="text" readonly value={{ $work->lens_name }}>
-                            </div>
-                            <div>
-                                <label for="">نوع الفريم</label>
-                                <input type="text" readonly value={{ $work->frame_name }}>
-                            </div>
-                            <div>
-                                <label for="">العدد</label>
-                                <input type="text" readonly value={{ $work->count }}>
-                            </div>
-                            <div>
-                                <label for="">تفاصيل</label>
-                                <input type="text" readonly value={{ $work->details }}>
-                            </div>
-
-                            @if ($work->work_image)
-                                <div>
-                                    <label for="">روشتة</label>
-                                    <img src="{{ url($work->work_image) }}" alt="" width="100">
+                            <div class="work-data">
+                                <div class=work-date__block-a>
+                                    <div>
+                                        <label for="">نوع العدسة</label>
+                                        <input type="text" readonly value={{ $work->lens_name }}>
+                                    </div>
+                                    <div>
+                                        <label for="">نوع الفريم</label>
+                                        <input type="text" readonly value={{ $work->frame_name }}>
+                                    </div>
+                                    <div>
+                                        <label for="">العدد</label>
+                                        <input type="text" readonly value={{ $work->count }}>
+                                    </div>
                                 </div>
-                            @endif
+                                <div class=work-date__block-b>
+                                    <div>
+                                        <label for="">تفاصيل</label>
+                                        <textarea readonly >{{ $work->details }}</textarea>
+                                    </div>
 
-                            <div>
+                                    @if ($work->work_image)
+                                        <div>
+                                            <label for="">روشتة</label>
+                                            <a href="{{url($work->work_image)}}"><img src="{{ asset('assets/images/svg/default_image.svg') }}" ><a>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="work-buttons">
                                 <button>مراجعة (تمت المراجعة بواسطة admin)</button>
                             </div>
                         </div>

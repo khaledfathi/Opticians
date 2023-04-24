@@ -24,10 +24,11 @@ return new class extends Migration
             $table->bigInteger('count')->nullable(false)->default(1); 
             $table->text('image')->nullable(true); 
             $table->boolean('revision')->nullable(false)->default(false);
+            $table->string('revisioner',100)->nullable(true); 
             $table->text('details')->nullable(true); 
             $table->timestamps();
             //FK
-            $table->foreignId('order_id')->nullable(false)->references('id')->on('orders'); 
+            $table->foreignId('order_id')->nullable(false)->references('id')->on('orders')->cascadeOnDelete(); 
             $table->foreignId('frame_id')->nullable(false)->references('id')->on('frames'); 
             $table->foreignId('lens_id')->nullable(false)->references('id')->on('lenses'); 
         });

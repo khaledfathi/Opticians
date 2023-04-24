@@ -30,7 +30,7 @@
                 </div>
             @endif
         </div>
-        <form action="order/create" method="post" enctype="multipart/form-data">
+        <form action="order/store" method="post" enctype="multipart/form-data">
             @csrf
             {{-- Order --}}
             <div class="order">

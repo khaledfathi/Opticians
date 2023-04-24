@@ -87,7 +87,7 @@ Route::middleware(['auth'])->group(function (){
     //order 
     Route::group(['prefix'=>'order'], function (){
         Route::get('/' ,[OrderController::class , 'indexOrder']); 
-        Route::post('create' , [OrderController::class , 'createOrder']); 
+        Route::post('store' , [OrderController::class , 'storeOrder']); 
     }); 
 
     //revision
@@ -95,6 +95,7 @@ Route::middleware(['auth'])->group(function (){
         Route::get('/' , [RevisionController::class , 'indexRevision']); 
         Route::get('show/{id}' , [RevisionController::class , 'showOrder']);
         Route::get('showindate' , [RevisionController::class , 'showInDate']); 
+        Route::get('destroy/{id}' , [RevisionController::class , 'destroyOrder']); 
     }); 
 });
 

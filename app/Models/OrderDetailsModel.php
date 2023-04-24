@@ -21,6 +21,7 @@ class OrderDetailsModel extends Model
         'count', 
         'image',
         'revision',
+        'revisioner',
         'details', 
         //Fk
         'order_id',

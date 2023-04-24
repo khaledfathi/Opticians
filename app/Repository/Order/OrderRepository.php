@@ -25,22 +25,30 @@ class OrderRepository implements OrderRepositoryContract{
     }
     public function showByDate(string $date):object
     {
-        return OrderModel::where('date', $date)->leftJoin('customers' , 'customers.id' , '=' , 'orders.customer_id')->
-        select(
-            'orders.id',
-            'orders.date',
-            'orders.time',
-            'orders.delivery_date',            
-            'orders.works_count',
-            'orders.required_revision_count',
-            'orders.details',
-            'orders.image',
-            'orders.type',
-            'customers.name as customer_name'
-        )->get();
+        return OrderModel::where('date', $date)->
+            leftJoin('customers' , 'customers.id' , '=' , 'orders.customer_id')->
+            leftJoin('users' , 'users.id' , '=' , 'orders.user_id')->
+            select(
+                'orders.id',
+                'orders.date',
+                'orders.time',
+                'orders.delivery_date',            
+                'orders.works_count',
+                'orders.required_revision_count',
+                'orders.details',
+                'orders.image',
+                'orders.type',
+                'customers.name as customer_name',
+                'users.name as user_name'
+            )->get();
     }    
     public function store(array $data):OrderModel
     {
         return OrderModel::create($data); 
+    }
+    public function destroy(int $id):bool
+    {
+        $found = OrderModel::find($id);
+        return ($found) ? $found->delete() : false; 
     }
 }

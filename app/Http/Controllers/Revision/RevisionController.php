@@ -7,6 +7,7 @@ use App\Repository\Contracts\Order\OrderDetailsRepositoryContract;
 use App\Repository\Contracts\Order\OrderRepositoryContract;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class RevisionController extends Controller
 {
@@ -39,11 +40,30 @@ class RevisionController extends Controller
     }
     public function showOrder(Request $request){
         $order = $this->orderProvider->show($request->id);
-        $orderDetails = $this->orderDetailsProvider->showByOrderId($request->id); 
-        // dd($orderDetails);
+        $orderDetails = $this->orderDetailsProvider->showByOrderId($request->id);
         return view('revision.showOrder' , [
             'orderDetails'=>$orderDetails,
             'order'=>$order
         ]); 
+    }
+    public function destroyOrder(Request $request){
+        //delete order image file 
+        $order = $this->orderProvider->show($request->id);
+        if ($order){
+            File::delete(public_path($order->image)); 
+
+            //delete order works images files
+            $orderWorks = $this->orderDetailsProvider->showByOrderId($request->id);
+            if ($orderWorks->count()){
+                foreach($orderWorks as $work){
+                    if ($work->work_image) {
+                        File::delete(public_path($work->work_image)); 
+                    };
+                }
+            }
+            //delete order record and its childrens (order details)
+            $this->orderProvider->destroy($request->id);
+        }
+        return response()->json(['ok'=>true , 'msg'=>'تم حذف امر الشغل']); 
     }
 }

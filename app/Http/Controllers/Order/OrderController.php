@@ -62,7 +62,7 @@ class OrderController extends Controller
         }
         return $errors;
     }
-    public function createOrder(CreateOrderRequest $request){            
+    public function storeOrder(CreateOrderRequest $request){            
         //validate order details
         $validateOrderDetails = $this->validateOrderDetails(json_decode($request->order_details)); 
 

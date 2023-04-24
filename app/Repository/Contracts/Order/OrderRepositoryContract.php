@@ -7,4 +7,5 @@ interface OrderRepositoryContract {
     public function store(array $data):OrderModel; 
     public function show(string $id):null|object;
     public function showByDate(string $date):object;
+    public function destroy(int $id):bool; 
 }

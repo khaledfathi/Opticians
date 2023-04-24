@@ -12,10 +12,14 @@ class LoginController extends Controller
         return view('login.login'); 
     }
     public function login(Request $request){
-        if ( Auth::attempt(['name'=>$request->name , 'password'=>$request->password]) ){
-            return redirect('search');
+        if ( Auth::attempt(['name'=>$request->name , 'password'=>$request->password]) ){ 
+            if(auth()->user()->status == 'closed'){
+                Auth::logout(); 
+                return back()->withErrors('الحساب مغلق - يرجى التواصل مع مدير النظام');
+            }
+            return redirect('revision');
         }
-        return redirect('login'); 
+        return redirect('login')->withErrors('خطأ فى الاسم او كلمة المرور'); 
     }
     public function logout(){
         Auth::logout(); 

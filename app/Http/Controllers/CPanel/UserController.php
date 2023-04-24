@@ -51,6 +51,11 @@ class UserController extends Controller
         return view('cpanel.users.editUser' , ['record'=>$record, 'userTypes'=>$userTypes , 'userStatus'=>$userStatus]); 
     }
     public function updateUser(UpdateUserRequest $request){ 
+        //prevent admin from removing his privileges
+        if (auth()->user()->id == $request->id && ( $request->type != 'admin' || $request->status != 'active')){
+            return back()->withErrors('لا يمكن تغيير النوع او الحالة لنفسك');
+        }
+        //preparing data
         $data = [
             'name'=>$request->name,
             'phone'=>$request->phone,
