@@ -22,6 +22,8 @@ return new class extends Migration
             $table->bigInteger('works_count')->nullable(false); 
             $table->BigInteger('required_revision_count')->nullable(false);
             $table->text('details')->nullable(true); 
+            $table->boolean('revision')->nullable(false)->default(false); 
+            $table->string('revisioner' , 100 )->nullable(true); 
             $table->timestamps();
             //FK
             $table->foreignId('customer_id')->nullable(false)->references('id')->on('customers'); 

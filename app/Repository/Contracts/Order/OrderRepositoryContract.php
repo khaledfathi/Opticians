@@ -8,4 +8,5 @@ interface OrderRepositoryContract {
     public function show(string $id):null|object;
     public function showByDate(string $date):object;
     public function destroy(int $id):bool; 
+    public function update(array $data , int $id):bool;
 }

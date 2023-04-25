@@ -13,6 +13,7 @@ class OrderRepository implements OrderRepositoryContract{
         return OrderModel::leftJoin('customers' , 'customers.id' , '=' , 'orders.customer_id')->
             where('orders.id' , $id)->
             select(
+                'orders.id',
                 'orders.date',
                 'orders.time',
                 'orders.delivery_date',
@@ -20,6 +21,8 @@ class OrderRepository implements OrderRepositoryContract{
                 'orders.type',
                 'orders.works_count',
                 'orders.details',
+                'orders.revision',
+                'orders.revisioner',
                 'customers.name as customer_name'
             )->first(); 
     }
@@ -50,5 +53,10 @@ class OrderRepository implements OrderRepositoryContract{
     {
         $found = OrderModel::find($id);
         return ($found) ? $found->delete() : false; 
+    }
+    public function update(array $data , int $id):bool 
+    {
+        $found  = OrderModel::find($id);
+        return ($found) ? $found->update($data) : false;  
     }
 }

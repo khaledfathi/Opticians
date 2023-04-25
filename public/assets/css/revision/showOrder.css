@@ -137,11 +137,14 @@
     margin: 30px auto;
     height: 40px;
     width: fit-content;
-    background-color: green;
+    background-color: red;
     color: white;
     border: none;
     padding: 0px 15px;
-    
+}
+
+.order-data__revision-button--green{ /*belong to order data section*/
+    background-color: green;
 }
 
 .work-buttons button:hover,

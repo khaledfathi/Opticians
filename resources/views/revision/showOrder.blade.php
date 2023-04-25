@@ -8,6 +8,9 @@
 @section('active-revision', 'active-revision')
 
 @section('scripts')
+    <script src="{{ url('assets/js/lib/ajax.js') }}"></script>
+    <script src="{{ url('assets/js/external/sweatAlert/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ url('assets/js/order/showOrder.js') }}"></script>
 @endsection
 
 @section('active-revision', 'active-revision')
@@ -50,12 +53,18 @@
                     <div>
                         @if ($order->image)
                             <label>صورة </label>
-                            <a href="{{url($order->image)}}"><img src="{{ asset('assets/images/svg/default_image.svg') }}" alt="صورة الشغل"></a>
+                            <a href="{{ url($order->image) }}"><img
+                                    src="{{ asset('assets/images/svg/default_image.svg') }}" alt="صورة الشغل"></a>
                         @endif
                     </div>
                 </div>
-                @if ($order->type =='صيانة')
-                    <button class="order-data__revision-button">مراجعة (بواسطة admin)</button>
+                @if ($order->type == 'صيانة')
+                    @if ($order->revision)
+                        <button class="order-data__revision-button order-data__revision-button--green" >تمت المراجعة بواسطة : {{$order->revisioner}}</button>
+                    @else
+                        <button class="order-data__revision-button" id="order-revision-button">مراجعة</button>
+                    @endif
+                    <input type="hidden" id="order-revision-link" value="{{ url('revision/setrevision?id=' . $order->id) }}">
                 @endif
             </div>
             <div class="works">
@@ -120,19 +129,20 @@
                                 <div class=work-date__block-b>
                                     <div>
                                         <label for="">تفاصيل</label>
-                                        <textarea readonly >{{ $work->details }}</textarea>
+                                        <textarea readonly>{{ $work->details }}</textarea>
                                     </div>
 
                                     @if ($work->work_image)
                                         <div>
                                             <label for="">روشتة</label>
-                                            <a href="{{url($work->work_image)}}"><img src="{{ asset('assets/images/svg/default_image.svg') }}" ><a>
+                                            <a href="{{ url($work->work_image) }}"><img
+                                                    src="{{ asset('assets/images/svg/default_image.svg') }}"><a>
                                         </div>
                                     @endif
                                 </div>
                             </div>
                             <div class="work-buttons">
-                                <button>مراجعة (تمت المراجعة بواسطة admin)</button>
+                                <button type="button">مراجعة (تمت المراجعة بواسطة admin)</button>
                             </div>
                         </div>
                     @endforeach

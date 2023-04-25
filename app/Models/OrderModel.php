@@ -18,6 +18,8 @@ class OrderModel extends Model
         'works_count',
         'required_revision_count',
         'details',
+        'revision',
+        'revisioner', 
         //FK
         'user_id', 
         'customer_id',         

@@ -10,7 +10,7 @@ const request = async (url='', method='GET' , data={} ,  csrf='') => {
     var response = {}; 
     if (method =='GET'){
         var response = await fetch(url); 
-    }else if (method == 'POST') {
+    }else if (method == 'POST' ) {
         var response = await fetch(url, {
             method: method,
             headers: {
