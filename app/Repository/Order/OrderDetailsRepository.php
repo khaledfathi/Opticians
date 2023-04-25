@@ -18,6 +18,7 @@ class OrderDetailsRepository implements OrderDetailsRepositoryContract{
             leftJoin('frames' , 'frames.id' , '=' , 'order_details.frame_id')->
             where('order_details.order_id' , $orderId)->
             select(
+                'order_details.id',
                 'order_details.l_sphere',
                 'order_details.l_cylinder',
                 'order_details.l_axis',

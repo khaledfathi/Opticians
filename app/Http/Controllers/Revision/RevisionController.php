@@ -66,13 +66,15 @@ class RevisionController extends Controller
         }
         return response()->json(['ok'=>true , 'msg'=>'تم حذف امر الشغل']); 
     }
-    public function setRevision(Request $request)
-    {
+    public function setRevisionSingleOrder(Request $request){
         $data=[
             'revision'=>true,
             'revisioner'=>auth()->user()->name
         ];
         $updated = $this->orderProvider->update($data , $request->id); 
         return response()->json(['revision'=>true , 'revisioner'=>auth()->user()->name]); 
+    }
+    public function setRevisionMultiOrder(Request $request){
+        return response()->json($request) ; 
     }
 }

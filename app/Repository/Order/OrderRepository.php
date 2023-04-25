@@ -43,7 +43,7 @@ class OrderRepository implements OrderRepositoryContract{
                 'orders.type',
                 'customers.name as customer_name',
                 'users.name as user_name'
-            )->get();
+            )->orderBy('orders.time' , 'desc')->get();
     }    
     public function store(array $data):OrderModel
     {

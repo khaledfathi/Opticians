@@ -96,7 +96,8 @@ Route::middleware(['auth'])->group(function (){
         Route::get('show/{id}' , [RevisionController::class , 'showOrder']);
         Route::get('showindate' , [RevisionController::class , 'showInDate']); 
         Route::get('destroy/{id}' , [RevisionController::class , 'destroyOrder']); 
-        Route::get('setrevision' , [RevisionController::class , 'setRevision']); 
+        Route::get('setrevisionsingleorder' , [RevisionController::class , 'setRevisionSingleOrder']); 
+        Route::get('setrevisionmultiorder' , [RevisionController::class , 'setRevisionMultiOrder']); 
     }); 
 });
 

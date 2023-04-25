@@ -2,6 +2,7 @@
 /* #### constants #### */
 const orderRevisionButton = document.querySelector('#order-revision-button');
 const orderRevisionLink = document.querySelector('#order-revision-link'); 
+const workDivs = document.getElementsByName('work');
 /* #### end constants #### */
 
 /* #### General #### */
@@ -12,7 +13,7 @@ const orderRevisionLink = document.querySelector('#order-revision-link');
 
 
 /* #### Event Actions #### */
-function eventSetOrderRevision(){
+function eventSetOrderRevision(event){
     Swal.fire({
     title: 'تأكيد المراجعة !',
     text: "لن تتمكن من الرجوع عن هذه العملية !",
@@ -25,9 +26,9 @@ function eventSetOrderRevision(){
     }).then((result) => {
     request(orderRevisionLink.value).then((res)=>{
         console.log(res);
-        orderRevisionButton.innerHTML= 'تمت المراجعة بواسطة : '+res.revisioner; 
-        orderRevisionButton.style.background='green';
-        orderRevisionButton.disabled=true;
+        event.target.innerHTML= 'تمت المراجعة بواسطة : '+res.revisioner; 
+        event.target.style.background='green';
+        event.target.disabled=true;
         Swal.fire(
             'تمت المراجعة',
             '',
@@ -39,6 +40,16 @@ function eventSetOrderRevision(){
 /* #### End Event Actions #### */
 
 /* #### Events #### */
-orderRevisionButton.addEventListener('click' , eventSetOrderRevision); 
+(orderRevisionButton) ? orderRevisionButton.addEventListener('click' , eventSetOrderRevision) : null ; 
 /* #### End Events #### */
 
+
+/*########################################################*/ 
+for (let i of workDivs){
+   i.children[2].addEventListener('click' ,()=>{
+    //change the link (use hidden input )
+    request('/revision/setrevisionmultiorder?id').then((res)=>{
+        console.log(res);
+    }); 
+   });
+}

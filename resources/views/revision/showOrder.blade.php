@@ -64,13 +64,13 @@
                     @else
                         <button class="order-data__revision-button" id="order-revision-button">مراجعة</button>
                     @endif
-                    <input type="hidden" id="order-revision-link" value="{{ url('revision/setrevision?id=' . $order->id) }}">
+                    <input type="hidden" id="order-revision-link" value="{{ url('revision/setrevisionsingleorder?id=' . $order->id) }}">
                 @endif
             </div>
             <div class="works">
                 @if ($orderDetails)
                     @foreach ($orderDetails as $work)
-                        <div class="work">
+                        <div class="work" name="work">
                             <div class="lenses">
                                 <div class="lens">
                                     <span>Left</span>
@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                             <div class="work-buttons">
-                                <button type="button">مراجعة (تمت المراجعة بواسطة admin)</button>
+                                <button type="button">مراجعة</button>
                             </div>
                         </div>
                     @endforeach
