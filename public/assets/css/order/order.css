@@ -285,9 +285,19 @@ form {
 /* #### order-buttons #### */
 .order-buttons {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin: 20px auto;
 }
+
+.order-buttons img {
+    width: 200px;
+    display: none;
+}
+.order-buttons > * {
+    margin: 0px auto;
+}
+
 .order-buttons input{
     width: 180px;
     height: 60px;

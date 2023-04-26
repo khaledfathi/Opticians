@@ -143,14 +143,16 @@
     padding: 0px 15px;
 }
 
+.work-buttons__button--green,
 .order-data__revision-button--green{ /*belong to order data section*/
-    background-color: green;
+    background-color: green !important;
 }
 
 .work-buttons button:hover,
 .order-data__revision-button:hover{ /*belong to order data section*/
     box-shadow: 0px 0px 5px 1px gray ;
 }
+
 /* end work_buttons */
 
 /* ####  end works #### */

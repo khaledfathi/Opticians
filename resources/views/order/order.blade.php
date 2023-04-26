@@ -65,7 +65,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="order__image">
+                    <div class="order__image" id="order-single-image-div">
                         <img id="order-upload-image" src="{{ url('assets/images/svg/default_image.svg') }}" alt="">
                         <input type="file" accept="image/*" id="order-upload-image-file" name="image">
                         <button id="remove-order-image-button" type="button">الغاء الصورة</button>
@@ -211,6 +211,7 @@
 
             {{-- order-buttons --}}
             <div class="order-buttons">
+                <img class="loading-image" id="loading-image" src="{{asset('assets/images/gif/loading.gif')}}" alt="">
                 <input type="submit" value="تسجيل امر شغل" id="submit-button">
             </div>
             {{-- end order-buttons --}}

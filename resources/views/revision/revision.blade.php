@@ -23,10 +23,10 @@
             <input type="date" name="date" id="date">
             <input type="submit" value="عرض">
         </form>
+        @if ($orders)
+            <p style="text-align:center;"> عدد اوامر الشغل = {{ $ordersCount }}</p>
+        @endif
         <div class="results">
-            @if ($orders)
-                <p> عدد اوامر الشغل = {{ $ordersCount }}</p>
-            @endif
             <table>
                 <thead>
                     <th>رقم الشغل</th>
@@ -67,8 +67,12 @@
 
                                 <td width="30%">{{ $order->details }}</td>
                                 @if (auth()->user()->type == 'admin')
-                                    <td><a href="{{ url('order/' . $order->id) }}"><img class="icon-buttons"src="{{ asset('assets/images/svg/edit.svg') }}" alt=""></a></td>
-                                    <td><input type="hidden" value="{{ url('revision/destroy/' . $order->id) }}"><img class="icon-buttons" name="delete-button" src="{{ asset('assets/images/svg/delete.svg') }}" alt=""></td>
+                                    <td><a href="{{ url('order/' . $order->id) }}"><img
+                                                class="icon-buttons"src="{{ asset('assets/images/svg/edit.svg') }}"
+                                                alt=""></a></td>
+                                    <td><input type="hidden" value="{{ url('revision/destroy/' . $order->id) }}"><img
+                                            class="icon-buttons" name="delete-button"
+                                            src="{{ asset('assets/images/svg/delete.svg') }}" alt=""></td>
                                 @endif
                                 <td><a href="{{ url('revision/show/' . $order->id) }}"><img class="icon-buttons"
                                             src="{{ asset('assets/images/svg/view.svg') }}" alt=""></a></td>

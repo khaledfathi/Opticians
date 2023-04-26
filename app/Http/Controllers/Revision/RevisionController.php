@@ -24,7 +24,7 @@ class RevisionController extends Controller
     public function indexRevision(){
         $currentDate= Carbon::now()->timezone('Africa/Cairo')->format('y-m-d');
         $orders = $this->orderProvider->showByDate($currentDate);
-        $ordersCount= $orders->count();        
+        $ordersCount= $orders->count();     
         return view('revision.revision' , [
             'orders'=>$orders ,
             'ordersCount'=>$ordersCount,
@@ -69,12 +69,24 @@ class RevisionController extends Controller
     public function setRevisionSingleOrder(Request $request){
         $data=[
             'revision'=>true,
-            'revisioner'=>auth()->user()->name
+            'revisioner'=>auth()->user()->name,
+            //subtract 1 from required to revision order/work 
+            'required_revision_count'=>$this->orderProvider->show($request->id)->required_revision_count-1
         ];
         $updated = $this->orderProvider->update($data , $request->id); 
         return response()->json(['revision'=>true , 'revisioner'=>auth()->user()->name]); 
     }
     public function setRevisionMultiOrder(Request $request){
-        return response()->json($request) ; 
+        $orderData=[
+            //subtract 1 from required to revision order/work 
+            'required_revision_count'=>$this->orderProvider->show($request->order_id)->required_revision_count-1
+        ];
+        $workData=[
+            'revision'=>true,
+            'revisioner'=>auth()->user()->name,
+        ];
+        $this->orderProvider->update($orderData , $request->order_id); 
+        $this->orderDetailsProvider->update($workData , $request->work_id); 
+        return response()->json(['revision'=>true , 'revisioner'=>auth()->user()->name]); 
     }
 }

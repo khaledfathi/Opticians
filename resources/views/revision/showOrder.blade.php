@@ -60,9 +60,9 @@
                 </div>
                 @if ($order->type == 'صيانة')
                     @if ($order->revision)
-                        <button class="order-data__revision-button order-data__revision-button--green" >تمت المراجعة بواسطة : {{$order->revisioner}}</button>
+                        <button class="order-data__revision-button order-data__revision-button--green">تمت المراجعة بواسطة : {{$order->revisioner}}</button>
                     @else
-                        <button class="order-data__revision-button" id="order-revision-button">مراجعة</button>
+                        <button class="order-data__revision-button" id="order-revision-button" >مراجعة</button>
                     @endif
                     <input type="hidden" id="order-revision-link" value="{{ url('revision/setrevisionsingleorder?id=' . $order->id) }}">
                 @endif
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                             <div class="work-data">
-                                <div class=work-date__block-a>
+                                <div class=work-data__block-a>
                                     <div>
                                         <label for="">نوع العدسة</label>
                                         <input type="text" readonly value={{ $work->lens_name }}>
@@ -126,7 +126,7 @@
                                         <input type="text" readonly value={{ $work->count }}>
                                     </div>
                                 </div>
-                                <div class=work-date__block-b>
+                                <div class=work-data__block-b>
                                     <div>
                                         <label for="">تفاصيل</label>
                                         <textarea readonly>{{ $work->details }}</textarea>
@@ -142,7 +142,12 @@
                                 </div>
                             </div>
                             <div class="work-buttons">
-                                <button type="button">مراجعة</button>
+                                @if ($work->revision)
+                                    <button class="work-buttons__button--green" type="button">تمت المراجعة بواسطة : {{$work->revisioner}}</button>
+                                @else
+                                    <button type="button">مراجعة</button>
+                                @endif
+                                <input type="hidden" value="{{url('revision/setrevisionmultiorder?order_id='.$order->id.'&work_id='.$work->id)}}">
                             </div>
                         </div>
                     @endforeach

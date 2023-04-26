@@ -14,6 +14,8 @@ const workType = document.querySelector('#work-type');
 const addWorkButton = document.querySelector('#add-work-button'); 
 const workContainerDiv = document.querySelector('#work-container-div'); 
 const workDiv = document.querySelector('#work-div'); 
+const loadingImage = document.querySelector('#loading-image'); 
+const orderSingleImageDiv = document.querySelector('#order-single-image-div');
 //used for backend request
 const orderDetails = document.querySelector('#order-details');
 const submitButton = document.querySelector('#submit-button');
@@ -53,9 +55,11 @@ function eventWorkTypeChanged(){
     if (workType.value == 'تصنيع'){
         addWorkButton.hidden=false; 
         workContainerDiv.hidden=false;
+        orderSingleImageDiv.hidden=true;
     }else {
         addWorkButton.hidden=true; 
         workContainerDiv.hidden=true;
+        orderSingleImageDiv.hidden=false;
     }
 }
 
@@ -213,6 +217,10 @@ function eventOrderDetailsValidation(){
         }
     } 
 }
+
+function displayLoadingImage(){
+    loadingImage.style.display='flex';
+}
 /* #### End Event Actions #### */
 
 /* #### Events #### */  
@@ -223,4 +231,11 @@ workType.addEventListener('change', eventWorkTypeChanged);
 addWorkButton.addEventListener('click' , eventAddNewWork);
 submitButton.addEventListener('click' , eventCollectOrderDetailsData); 
 submitButton.addEventListener('click' , eventOrderDetailsValidation); 
+submitButton.addEventListener('click' , displayLoadingImage); 
 /* #### End Events #### */
+
+
+/* #################################### */
+
+
+

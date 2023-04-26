@@ -31,8 +31,14 @@ class OrderDetailsRepository implements OrderDetailsRepositoryContract{
                 'order_details.image as work_image',
                 'order_details.count',
                 'order_details.revision',
+                'order_details.revisioner',
                 'frames.name as frame_name',
-                'lenses.name as lens_name'
+                'lenses.name as lens_name',
             )->get();
+    }
+    public function update (array $data , int $id): bool 
+    {
+        $found = OrderDetailsModel::find($id); 
+        return ($found) ? $found->update($data) : false; 
     }
 }

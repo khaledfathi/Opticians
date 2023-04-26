@@ -23,6 +23,7 @@ class OrderRepository implements OrderRepositoryContract{
                 'orders.details',
                 'orders.revision',
                 'orders.revisioner',
+                'orders.required_revision_count',
                 'customers.name as customer_name'
             )->first(); 
     }
