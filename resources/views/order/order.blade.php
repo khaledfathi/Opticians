@@ -89,22 +89,22 @@
                             <span>Left</span>
                             <div>
                                 <label for="">sphere</label>
-                                <input type="number" min="-30" max="30" oninvalid="this.setCustomValidity('القيمة من -30 الى 30')" oninput="setCustomValidity('')">
+                                <input type="number" min="-30" max="30" oninvalid="this.setCustomValidity('القيمة من -30 الى 30')" oninput="setCustomValidity('')" step="0.01">
                             </div>
 
                             <div>
                                 <label for="">cylinder</label>
-                                <input type="number" min="-10" max="10" oninvalid="this.setCustomValidity('القيمة من -10 الى 10')" oninput="setCustomValidity('')">
+                                <input type="number" min="-10" max="10" oninvalid="this.setCustomValidity('القيمة من -10 الى 10')" oninput="setCustomValidity('')" step="0.01">
                             </div>
 
                             <div>
                                 <label for="">axis</label>
-                                <input type="number" min="1" max="180" oninvalid="this.setCustomValidity('القيمة من 1 الى 180')" oninput="setCustomValidity('')">
+                                <input type="number" min="1" max="180" oninvalid="this.setCustomValidity('القيمة من 1 الى 180')" oninput="setCustomValidity('')" step="0.01">
                             </div>
 
                             <div name="add-option-div" hidden>
                                 <label for="">add</label>
-                                <input type="number" oninvalid="this.setCustomValidity('')">
+                                <input type="number" oninvalid="this.setCustomValidity('')" step="0.01">
                             </div>
                         </div>
                         {{-- end glasses__right --}}
@@ -114,22 +114,22 @@
                             <span>Right</span>
                             <div>
                                 <label for="">sphere</label>
-                                <input type="number" min="-30" max="30" oninvalid="this.setCustomValidity('القيمة من -30 الى 30')" oninput="setCustomValidity('')">
+                                <input type="number" min="-30" max="30" oninvalid="this.setCustomValidity('القيمة من -30 الى 30')" oninput="setCustomValidity('')" step="0.01">
                             </div>
 
                             <div>
                                 <label for="">cylinder</label>
-                                <input type="number" min="-10" max="10" oninvalid="this.setCustomValidity('القيمة من -10 الى 10')" oninput="setCustomValidity('')">
+                                <input type="number" min="-10" max="10" oninvalid="this.setCustomValidity('القيمة من -10 الى 10')" oninput="setCustomValidity('')" step="0.01">
                             </div>
 
                             <div>
                                 <label for="">axis</label>
-                                <input type="number" min="1" max="180" oninvalid="this.setCustomValidity('القيمة من 1 الى 180')" oninput="setCustomValidity('')">
+                                <input type="number" min="1" max="180" oninvalid="this.setCustomValidity('القيمة من 1 الى 180')" oninput="setCustomValidity('')" step="0.01">
                             </div>
 
                             <div name="add-option-div" hidden>
                                 <label for="">add</label>
-                                <input type="number">
+                                <input type="number" step="0.01">
                             </div>
 
                         </div>

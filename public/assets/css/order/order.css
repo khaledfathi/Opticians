@@ -312,3 +312,21 @@ form {
 }
 /* #### order-buttons #### */
 
+/* #### media Query */
+@media only screen and (max-width:730px){
+    .glasses__lens{
+        flex-direction: column;
+        justify-content: center;
+        width:35%;
+        padding: 20px 10px;
+    }
+    .glasses__lens >div{
+        width: fit-content;
+    }
+    .glasses__lens label,
+    .glasses__lens input{
+        width: 100%;
+        text-align: center;
+    }
+}
+/* #### end media Query */

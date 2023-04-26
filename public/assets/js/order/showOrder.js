@@ -46,10 +46,12 @@ function eventSetOrderRevision(event){
 
 /* Event for many elements */ 
 for (let i of workDivs){
-    let button = i.children[2].children[0].children[0]; 
+        // let button = i.children[2].children[0].children[0];
+        let button = i.children[2].children[0];
+        console.log(button)
     if (button.innerHTML == 'مراجعة'){
         button.addEventListener('click' ,(event)=>{
-        let workRevisionLink = i.children[2].children[0].children[1].value;
+        let workRevisionLink = i.children[2].children[1].value;
         Swal.fire({
             title: 'تأكيد المراجعة !',
             text: "لن تتمكن من الرجوع عن هذه العملية !",

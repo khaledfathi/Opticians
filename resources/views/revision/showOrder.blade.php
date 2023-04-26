@@ -136,7 +136,7 @@
                                         <div>
                                             <label for="">روشتة</label>
                                             <a href="{{ url($work->work_image) }}"><img
-                                                    src="{{ asset('assets/images/svg/default_image.svg') }}"><a>
+                                                    src="{{ asset('assets/images/svg/default_image.svg') }}"></a>
                                         </div>
                                     @endif
                                 </div>
