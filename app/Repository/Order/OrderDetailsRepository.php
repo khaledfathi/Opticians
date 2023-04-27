@@ -12,6 +12,10 @@ class OrderDetailsRepository implements OrderDetailsRepositoryContract{
     {
         return OrderDetailsModel::create($data); 
     }
+    public function show(int $id):object
+    {
+        return OrderDetailsModel::where('id' , $id)->get()->first(); 
+    }
     public function showByOrderId(int $orderId):object
     {
         return OrderDetailsModel::leftJoin('lenses' , 'lenses.id' , '=' , 'order_details.lens_id')->

@@ -52,7 +52,7 @@ function eventRemoveOrderImage(){
 }
 
 function eventWorkTypeChanged(){
-    if (workType.value == 'تصنيع'){
+    if (workType.value == 'نظارة جديدة'){
         addWorkButton.hidden=false; 
         workContainerDiv.hidden=false;
         orderSingleImageDiv.hidden=true;

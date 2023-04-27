@@ -73,6 +73,13 @@ class RevisionController extends Controller
             //subtract 1 from required to revision order/work 
             'required_revision_count'=>$this->orderProvider->show($request->id)->required_revision_count-1
         ];
+        //prevent order revision duplicated
+        $order = $this->orderProvider->show($request->id);
+        ($order->count())  ? $orderRevision = $order->revision : $orderRevision=null; 
+        if ( $orderRevision ){
+            return response()->json(['revision'=>true , 'revisioner'=>$order->revisioner]); 
+        }
+        
         $updated = $this->orderProvider->update($data , $request->id); 
         return response()->json(['revision'=>true , 'revisioner'=>auth()->user()->name]); 
     }
@@ -85,6 +92,13 @@ class RevisionController extends Controller
             'revision'=>true,
             'revisioner'=>auth()->user()->name,
         ];
+        //prevent work revision duplicated
+        $work = $this->orderDetailsProvider->show($request->work_id);
+        ($work->count())  ? $workRevision = $work->revision : $workRevision=null; 
+        if ( $workRevision ){
+            return response()->json(['revision'=>true , 'revisioner'=>$work->revisioner]); 
+        }
+
         $this->orderProvider->update($orderData , $request->order_id); 
         $this->orderDetailsProvider->update($workData , $request->work_id); 
         return response()->json(['revision'=>true , 'revisioner'=>auth()->user()->name]); 

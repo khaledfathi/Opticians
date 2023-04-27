@@ -18,7 +18,7 @@ return new class extends Migration
             $table->time('time')->nullable(false); 
             $table->date('delivery_date')->nullable(true); 
             $table->text('image')->nullable(true);
-            $table->enum('type',['صيانة' , 'تصنيع'])->nullable(true);
+            $table->enum('type',['صيانة' , 'نظارة جديدة'])->nullable(true);
             $table->bigInteger('works_count')->nullable(false); 
             $table->BigInteger('required_revision_count')->nullable(false);
             $table->text('details')->nullable(true); 

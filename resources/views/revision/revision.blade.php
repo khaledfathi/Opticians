@@ -19,12 +19,11 @@
 @section('content')
     <div class="container">
         <form class="date-div" action="{{ url('revision/showindate') }}">
-            <p>شغل يوم</p>
             <input type="date" name="date" id="date">
             <input type="submit" value="عرض">
         </form>
         @if ($orders)
-            <p style="text-align:center;"> عدد اوامر الشغل = {{ $ordersCount }}</p>
+            <p style="text-align:center;"> عدد اوامر الشغل = {{ $ordersCount }}  {{($orders->count()) ? ' | تاريخ = '.$orders[0]->date : ''}}</p>
         @endif
         <div class="results">
             <table>
