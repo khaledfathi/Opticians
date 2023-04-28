@@ -5,7 +5,7 @@ const orderTime = document.querySelector('#order-time');
 const addOptionDiv =  document.getElementsByName('add-option-div'); 
 const orderUploadImage = document.querySelector('#order-upload-image');
 const orderUploadImageFile = document.querySelector('#order-upload-image-file');
-const defaultImageIcon = orderUploadImage.src; 
+const defaultImageIcon = document.querySelector('#default-image-icon').value; 
 const presctiptionUploadImage = document.querySelector('#presctiption-upload-image');
 const presctiptionUploadImageFile = document.querySelector('#presctiption-upload-image-file'); 
 const removeOrderImageButton = document.querySelector('#remove-order-image-button'); 
@@ -22,9 +22,6 @@ const submitButton = document.querySelector('#submit-button');
 /* #### end constants #### */
 
 /* #### General #### */
-//set current date and time 
-orderDate.value = currentDate(); 
-orderTime.value = currentTime(); 
 /* #### End General #### */
 
 /* #### Functions #### */
@@ -112,8 +109,8 @@ function eventAddNewWork(){
             addLeftDiv.hidden=true; 
             addRightDiv.hidden=true; 
             bindCheckBox.disabled=true;
-            addLeftFiled.value=""; 
-            addRightFiled.value=""; 
+            addLeftFiled.value='';
+            addRightFiled.value=''; 
         }
     });
     //nested function
@@ -225,6 +222,94 @@ function eventOrderDetailsValidation(){
 function displayLoadingImage(){
     loadingImage.style.display='flex';
 }
+
+function eventSetWorksEvents (){
+   let works =  workContainerDiv.children;
+   for (let i=1 ; i<works.length ; i++){//i=1 becuase the first one is an empty template
+    console.log(works[i])
+
+    /* elements to add events or mainpulating */
+    //checkboxes
+    let addCheckBox = works[i].children[2].children[0].children[0];
+    let addCheckBoxLabel = works[i].children[2].children[0].children[1];
+    let bindCheckBox = works[i].children[2].children[1].children[0];         
+    let bindCheckBoxLabel = works[i].children[2].children[1].children[1];         
+    
+    //add fields
+    let addLeftDiv = works[i].children[0].children[4]
+    let addRightDiv = works[i].children[1].children[4];
+    let addLeftFiled = addLeftDiv.children[1];
+    let addRightFiled = addRightDiv.children[1];
+
+    //presctiption
+    let presctiptionImage = works[i].children[4].children[1]; 
+    let presctiptionImageBrowseFile = works[i].children[4].children[2]; 
+    let presctiptionRemoveImageButton = works[i].children[4].children[3]; 
+
+    //delete this div button
+    let removeWorkButton = works[i].children[5].children[0]; 
+    /**************************************/ 
+
+    //create unique id to bind labels with checkboxes
+    let uniqueAddCheckBoxId = new Date().valueOf()+'_'+Math.floor(Math.random()*1000);
+    let uniqueBindCheckBoxId = new Date().valueOf()+'_'+Math.floor(Math.random()*1000);
+
+    //bind labels with checkboxs
+    addCheckBoxLabel.setAttribute('for', uniqueAddCheckBoxId);
+    addCheckBox.id=uniqueAddCheckBoxId; 
+    bindCheckBoxLabel.setAttribute('for',uniqueBindCheckBoxId); 
+    bindCheckBox.id = uniqueBindCheckBoxId; 
+
+    bindCheckBox.disabled = (addCheckBox.checked) ? false : true;   
+    
+    /*EVENTS*/    
+    addCheckBox.addEventListener('change' , ()=>{
+        if(addCheckBox.checked){
+            addLeftDiv.hidden=false; 
+            addRightDiv.hidden=false; 
+            bindCheckBox.disabled=false;
+            addLeftFiled.value=""; 
+            addRightFiled.value=""; 
+        }else{
+            addLeftDiv.hidden=true; 
+            addRightDiv.hidden=true; 
+            bindCheckBox.disabled=true;
+        }
+    });
+    //nested function
+    function eventBindAddFileds(){
+        let addRightField = addRightDiv.children[1];
+        let addLeftField = addLeftDiv.children[1];
+        
+        addLeftField.addEventListener('input',()=>{            
+           (bindCheckBox.checked) ? addRightField.value = addLeftField.value : null ; 
+        });
+        addRightField.addEventListener('input',()=>{            
+            (bindCheckBox.checked) ? addLeftField.value = addRightField.value : null ; 
+        });
+        
+    }
+    bindCheckBox.addEventListener('change' , eventBindAddFileds);
+    presctiptionImage.addEventListener('click' , ()=>{
+        presctiptionImageBrowseFile.click();
+    });
+    presctiptionImageBrowseFile.addEventListener('change' , (event)=>{
+        let file = event.target.files[0]; 
+        let imgSrc = URL.createObjectURL(file); 
+        presctiptionImage.src=imgSrc; 
+        presctiptionImage.style.width='200px'; 
+    }); 
+    presctiptionRemoveImageButton.addEventListener('click' , ()=>{
+        presctiptionImage.src=defaultImageIcon; 
+        presctiptionImage.style.width='50px' ;
+        presctiptionImageBrowseFile.value='';
+    });
+    removeWorkButton.addEventListener('click' , ()=>{
+        removeWorkButton.parentElement.parentElement.remove()
+    }); 
+   }
+
+}
 /* #### End Event Actions #### */
 
 /* #### Events #### */  
@@ -235,7 +320,8 @@ workType.addEventListener('change', eventWorkTypeChanged);
 addWorkButton.addEventListener('click' , eventAddNewWork);
 submitButton.addEventListener('click' , eventCollectOrderDetailsData); 
 submitButton.addEventListener('click' , eventOrderDetailsValidation); 
-submitButton.addEventListener('click' , displayLoadingImage); 
+submitButton.addEventListener('click' , displayLoadingImage);
+window.addEventListener('load' , eventSetWorksEvents) ;
 /* #### End Events #### */
 
 

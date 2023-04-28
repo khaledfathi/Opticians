@@ -30,6 +30,12 @@ for (let i of deleteButtons){
                             '',
                             'success'
                           )
+                    }else{
+                        Swal.fire(
+                            'لا يمكن حذف العميل !',
+                            response.msg,
+                            'error'
+                            )
                     }
                 });
             }

@@ -30,7 +30,11 @@ class FrameController extends Controller
         return redirect('cpanel/frames')->with(['ok'=> "تم حفظ فريم - $record->name"]); 
     }
     public function destroyFrame(Request $request){
-        $this->frameProvider->destroy((int)$request->id); 
+        try {
+            $this->frameProvider->destroy((int)$request->id); 
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['ok'=>false , 'msg'=>'الفريم مستخدمة فى اوامر الشغل - احذف اوامر الشغل اولاً']);
+        } 
         return response()->json(['ok'=>true , 'msg'=>'تم حذف الفريم']); 
     }
     public function editFrame (Request $request){ 

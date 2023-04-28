@@ -30,7 +30,12 @@ class LensesController extends Controller
         return redirect('cpanel/lenses')->with(['ok'=> "تم حفظ عدسة - $record->name"]); 
     }
     public function destroyLens(Request $request){
-        $this->lensProvider->destroy((int)$request->id); 
+        try {
+            $this->lensProvider->destroy((int)$request->id); 
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['ok'=>false , 'msg'=>'العدسة مستخدمة فى اوامر الشغل - احذف اوامر الشغل اولاً']); 
+}
+        // $this->lensProvider->destroy((int)$request->id); 
         return response()->json(['ok'=>true , 'msg'=>'تم حذف العدسىة']); 
     }
     public function editLens(Request $request){

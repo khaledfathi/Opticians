@@ -31,6 +31,11 @@ class CustomerController extends Controller
         return redirect('cpanel/customers')->with(['ok'=>'تم اضافة العميل']);
     }
     public function destroyCustomer(Request $request){
+        try {
+            $this->customerProvider->destroy((int)$request->id); 
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['ok'=>false , 'msg'=>'العميل مستخدم فى اوامر الشغل - احذف اوامر الشغل اولاً']);
+        } 
         $this->customerProvider->destroy((int)$request->id); 
         return response()->json(['ok'=>true , 'msg'=>'تم حذف العميل']); 
     }

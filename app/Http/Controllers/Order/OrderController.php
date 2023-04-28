@@ -134,4 +134,21 @@ class OrderController extends Controller
         }
         return redirect('order')->with(['ok'=>'تم تسجيل امر شغل']); 
     }
+    public function editOrder(Request $request){
+        $order = $this->orderProvider->show($request->id);
+        $works = $this->orderDetailsProvider->showByOrderId($request->id); 
+        $works  = ($works->count()) ? $works : null ; 
+        $customers = $this->customerProvider->index(); 
+        $frames = $this->frameProvider->index(); 
+        $lenses = $this->lensProvider->index(); 
+        // dd($works);
+        return view('order.editOrder', [
+            'order'=>$order,
+            'works'=>$works,
+            'customers'=>$customers,
+            'frames'=>$frames,
+            'lenses'=>$lenses,
+            'orderTypes'=> OrderTypes::cases()
+        ]);  
+    }
 }

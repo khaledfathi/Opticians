@@ -32,7 +32,7 @@ for (let i of deleteButtons){
                           )
                     }else {
                          Swal.fire(
-                            '',
+                            'لا يمكن حذف العدسة !',
                             response.msg,
                             'error'
                           )

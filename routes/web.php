@@ -87,6 +87,7 @@ Route::middleware(['auth'])->group(function (){
     //order 
     Route::group(['prefix'=>'order'], function (){
         Route::get('/' ,[OrderController::class , 'indexOrder']); 
+        Route::get('/edit/{id}' ,[OrderController::class , 'editOrder']); 
         Route::post('store' , [OrderController::class , 'storeOrder']); 
     }); 
 

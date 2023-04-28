@@ -57,16 +57,9 @@
                                 <td width="5%">{{ $order->type }}</td>
                                 <td width="5%">{{ $order->works_count }}</td>
                                 <td width="5%">{{ $order->required_revision_count }}</td>
-
-                                {{-- @if ($order->image != null)
-                                <td width="5%"><a href="{{url($order->image)}}"><img src="{{url('assets/images/svg/default_image.svg')}}" alt="" width="25"></a></td>
-                            @else
-                                <td></td>
-                            @endif --}}
-
                                 <td width="30%">{{ $order->details }}</td>
                                 @if (auth()->user()->type == 'admin')
-                                    <td><a href="{{ url('order/' . $order->id) }}"><img
+                                    <td><a href="{{ url('order/edit/' . $order->id) }}"><img
                                                 class="icon-buttons"src="{{ asset('assets/images/svg/edit.svg') }}"
                                                 alt=""></a></td>
                                     <td><input type="hidden" value="{{ url('revision/destroy/' . $order->id) }}"><img

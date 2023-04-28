@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'ملف المستخدم')
+@section('title', 'امر شغل')
 
 @section('links')
     <link rel="stylesheet" href="{{ asset('assets/css/order/order.css') }}">
