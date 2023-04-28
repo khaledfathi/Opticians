@@ -235,166 +235,178 @@
                                         <label for="">sphere</label>
                                         <input type="number" min="-30" max="30"
                                             oninvalid="this.setCustomValidity('القيمة من -30 الى 30')"
-                                            oninput="setCustomValidity('')" step="0.01" value="{{$work->l_sphere}}">
+                                            oninput="setCustomValidity('')" step="0.01"
+                                            value="{{ $work->l_sphere }}">
                                     </div>
 
                                     <div>
                                         <label for="">cylinder</label>
                                         <input type="number" min="-10" max="10"
                                             oninvalid="this.setCustomValidity('القيمة من -10 الى 10')"
-                                            oninput="setCustomValidity('')" step="0.01" value="{{$work->l_cylinder}}">
+                                            oninput="setCustomValidity('')" step="0.01"
+                                            value="{{ $work->l_cylinder }}">
                                     </div>
 
                                     <div>
                                         <label for="">axis</label>
                                         <input type="number" min="1" max="180"
                                             oninvalid="this.setCustomValidity('القيمة من 1 الى 180')"
-                                            oninput="setCustomValidity('')" step="0.01" value="{{$work->l_axis}}">
+                                            oninput="setCustomValidity('')" step="0.01" value="{{ $work->l_axis }}">
                                     </div>
-                                {{-- show add if it has value  --}}
-                                @if ($work->r_add || $work->l_add)
-                                    <div name="add-option-div" >
-                                @else 
-                                    <div name="add-option-div" hidden>
-                                @endif
-                                        <label for="">add</label>
-                                        <input type="number" oninvalid="this.setCustomValidity('')" step="0.01" value="{{$work->l_add}}">
-                                    </div>
-                                </div>
-                                {{-- end glasses__right --}}
-
-                                {{-- glasses__left --}}
-                                <div class="glasses__lens glasses__lens--left">
-                                    <span>Right</span>
-                                    <div>
-                                        <label for="">sphere</label>
-                                        <input type="number" min="-30" max="30"
-                                            oninvalid="this.setCustomValidity('القيمة من -30 الى 30')"
-                                            oninput="setCustomValidity('')" step="0.01" value="{{$work->r_sphere}}">
-                                    </div>
-
-                                    <div>
-                                        <label for="">cylinder</label>
-                                        <input type="number" min="-10" max="10"
-                                            oninvalid="this.setCustomValidity('القيمة من -10 الى 10')"
-                                            oninput="setCustomValidity('')" step="0.01" value="{{$work->r_cylinder}}">
-                                    </div>
-
-                                    <div>
-                                        <label for="">axis</label>
-                                        <input type="number" min="1" max="180"
-                                            oninvalid="this.setCustomValidity('القيمة من 1 الى 180')"
-                                            oninput="setCustomValidity('')" step="0.01" value="{{$work->r_axis}}">
-                                    </div>
-
-                                {{-- show add if it has value  --}}
-                                @if ($work->r_add || $work->l_add)
-                                    <div name="add-option-div" >
-                                @else 
-                                    <div name="add-option-div" hidden>
-                                @endif
-                                        <label for="">add</label>
-                                        <input type="number" step="0.01" value="{{$work->r_add}}">
-                                    </div>
-
-                                </div>
-                                {{-- end glasses__left --}}
-
-                                {{-- glasses__add --}}
-                                <div class="add-option">
-                                    <div>
-                                        @if ($work->r_add || $work->l_add)
-                                            <input type="checkbox" checked>
+                                    {{-- show add if it has value  --}}
+                                    @if ($work->r_add || $work->l_add)
+                                        <div name="add-option-div">
                                         @else
-                                            <input type="checkbox">
-                                        @endif
-                                        <label>add</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox">
-                                        <label>bind</label>
-                                    </div>
-                                </div>
-                                {{-- endglasses__add --}}
-
-                                {{-- lens type --}}
-                                <div class="lens-options">
-                                    <div class="lens-options__block-a">
-                                        <div>
-                                            <label for="">نوع العدسة</label>
-                                            <select>
-                                                @foreach ($lenses as $lens)
-                                                    @if ($lens->name == $work->lens_name)
-                                                        <option selected value="{{ $lens->id }}">{{ $lens->name }}</option>
-                                                    @else
-                                                        <option value="{{ $lens->id }}">{{ $lens->name }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label for="">نوع الفريم</label>
-                                            <select>
-                                                @foreach ($frames as $frame)
-                                                    @if ($frame->name == $work->frame_name)
-                                                        <option selected value="{{ $frame->id }}">{{ $frame->name }}</option>
-                                                    @else
-                                                        <option value="{{ $frame->id }}">{{ $frame->name }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label for="">العدد</label>
-                                            <input type="number" min=0 value=1>
-                                        </div>
-                                    </div>
-                                    <div class="lens-options__block-b">
-                                        <div>
-                                            <label for="">تفاصيل</label>
-                                            <textarea></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- end lens type --}}
-
-                                {{-- prescription --}}
-                                <div class="glasses_presctiption">
-                                    <label for="">روشتة</label>
-                                    <img src="{{ url('assets/images/svg/default_image.svg') }}" alt=""
-                                        id="presctiption-upload-image">
-                                    <input type="file" accept="image/*" hidden>
-                                    <button type="button">الغاء الصورة</button>
-                                </div>
-                                {{-- end prescription --}}
-                                <div class="glasses__buttons">
-                                    <button type="button">حذف</button>
+                                            <div name="add-option-div" hidden>
+                                    @endif
+                                    <label for="">add</label>
+                                    <input type="number" oninvalid="this.setCustomValidity('')" step="0.01"
+                                        value="{{ $work->l_add }}">
                                 </div>
                             </div>
-                        @endforeach
+                            {{-- end glasses__right --}}
+
+                            {{-- glasses__left --}}
+                            <div class="glasses__lens glasses__lens--left">
+                                <span>Right</span>
+                                <div>
+                                    <label for="">sphere</label>
+                                    <input type="number" min="-30" max="30"
+                                        oninvalid="this.setCustomValidity('القيمة من -30 الى 30')"
+                                        oninput="setCustomValidity('')" step="0.01" value="{{ $work->r_sphere }}">
+                                </div>
+
+                                <div>
+                                    <label for="">cylinder</label>
+                                    <input type="number" min="-10" max="10"
+                                        oninvalid="this.setCustomValidity('القيمة من -10 الى 10')"
+                                        oninput="setCustomValidity('')" step="0.01" value="{{ $work->r_cylinder }}">
+                                </div>
+
+                                <div>
+                                    <label for="">axis</label>
+                                    <input type="number" min="1" max="180"
+                                        oninvalid="this.setCustomValidity('القيمة من 1 الى 180')"
+                                        oninput="setCustomValidity('')" step="0.01" value="{{ $work->r_axis }}">
+                                </div>
+
+                                {{-- show add if it has value  --}}
+                                @if ($work->r_add || $work->l_add)
+                                    <div name="add-option-div">
+                                    @else
+                                        <div name="add-option-div" hidden>
+                                @endif
+                                <label for="">add</label>
+                                <input type="number" step="0.01" value="{{ $work->r_add }}">
+                            </div>
+
+                </div>
+                {{-- end glasses__left --}}
+
+                {{-- glasses__add --}}
+                <div class="add-option">
+                    <div>
+                        @if ($work->r_add || $work->l_add)
+                            <input type="checkbox" checked>
+                        @else
+                            <input type="checkbox">
+                        @endif
+                        <label>add</label>
+                    </div>
+                    <div>
+                        <input type="checkbox">
+                        <label>bind</label>
+                    </div>
+                </div>
+                {{-- endglasses__add --}}
+
+                {{-- lens type --}}
+                <div class="lens-options">
+                    <div class="lens-options__block-a">
+                        <div>
+                            <label for="">نوع العدسة</label>
+                            <select>
+                                @foreach ($lenses as $lens)
+                                    @if ($lens->name == $work->lens_name)
+                                        <option selected value="{{ $lens->id }}">{{ $lens->name }}</option>
+                                    @else
+                                        <option value="{{ $lens->id }}">{{ $lens->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <label for="">نوع الفريم</label>
+                            <select>
+                                @foreach ($frames as $frame)
+                                    @if ($frame->name == $work->frame_name)
+                                        <option selected value="{{ $frame->id }}">{{ $frame->name }}</option>
+                                    @else
+                                        <option value="{{ $frame->id }}">{{ $frame->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div>
+                            <label for="">العدد</label>
+                            <input type="number" min=0 value=1>
+                        </div>
+                    </div>
+                    <div class="lens-options__block-b">
+                        <div>
+                            <label for="">تفاصيل</label>
+                            <textarea></textarea>
+                        </div>
+                    </div>
+                </div>
+                {{-- end lens type --}}
+
+                {{-- prescription --}}
+                <div class="glasses_presctiption">
+                    <label for="">روشتة</label>
+                    <img src="{{ url('assets/images/svg/default_image.svg') }}" alt=""
+                        id="presctiption-upload-image">
+                    <input type="file" accept="image/*" hidden>
+                    <button type="button">الغاء الصورة</button>
+                </div>
+                {{-- end prescription --}}
+                <div class="glasses__buttons">
+                    <button type="button">حذف</button>
+
+                </div>
+                <div>
+                    @if ($work->revision)
+                        <p>تمت مراجعتة بواسطة {{ $work->revisioner }}</p>
+                        <button type="button">الغاء المراجعة</button>
+                    @else
+                        <p>لم يتم مراجعتة</p>
                     @endif
-
-                    {{-- end work div (revived from backend) --}}
                 </div>
-                {{-- end work-container-div --}}
-
-                {{-- add more Order-details --}}
-                <div class="glasses__more-order">
-                    <button id="add-work-button" type="button" hidden>اضافة طلب</button>
-                </div>
-                {{-- end add more Order-details --}}
             </div>
-            <input type="hidden" id="order-details" name="order_details">
-            {{-- end Order-details --}}
+            @endforeach
+            @endif
+
+            {{-- end work div (revived from backend) --}}
+    </div>
+    {{-- end work-container-div --}}
+
+    {{-- add more Order-details --}}
+    <div class="glasses__more-order">
+        <button id="add-work-button" type="button" hidden>اضافة طلب</button>
+    </div>
+    {{-- end add more Order-details --}}
+    </div>
+    <input type="hidden" id="order-details" name="order_details">
+    {{-- end Order-details --}}
 
 
-            {{-- order-buttons --}}
-            <div class="order-buttons">
-                <img class="loading-image" id="loading-image" src="{{ asset('assets/images/gif/loading.gif') }}"
-                    alt="">
-                <input type="submit" value="تحديث امر شغل" id="submit-button">
-            </div>
-            {{-- end order-buttons --}}
-        </form>
+    {{-- order-buttons --}}
+    <div class="order-buttons">
+        <img class="loading-image" id="loading-image" src="{{ asset('assets/images/gif/loading.gif') }}"
+            alt="">
+        <input type="submit" value="تحديث امر شغل" id="submit-button">
+    </div>
+    {{-- end order-buttons --}}
+    </form>
     </div>
 @endsection

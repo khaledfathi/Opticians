@@ -226,7 +226,6 @@ function displayLoadingImage(){
 function eventSetWorksEvents (){
    let works =  workContainerDiv.children;
    for (let i=1 ; i<works.length ; i++){//i=1 becuase the first one is an empty template
-    console.log(works[i])
 
     /* elements to add events or mainpulating */
     //checkboxes
@@ -306,6 +305,7 @@ function eventSetWorksEvents (){
     });
     removeWorkButton.addEventListener('click' , ()=>{
         removeWorkButton.parentElement.parentElement.remove()
+
     }); 
    }
 
