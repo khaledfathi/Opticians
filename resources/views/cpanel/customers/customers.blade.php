@@ -17,8 +17,8 @@
             <h4>ادارة العملاء</h4>
         </div>
         <div class="manage-buttons">
-            <a href="{{ url('cpanel/customers/create') }}">اضافة عميل جديد</a>
-            <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
+            <a href="{{ url('cp/customers/create') }}">اضافة عميل جديد</a>
+            <a href="{{ url('cp') }}">عودة للوحة التحكم</a>
         </div>
         @if ($errors->any())
             <div class="msg">

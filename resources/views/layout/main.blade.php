@@ -16,13 +16,13 @@
     <nav>
         <div class="nav-wrapper">
             <ul class="nav-ul nav-ul--right">
-                <li class=@yield('active-search')><a href="{{ url('search') }}">استعلام</a></li>
+                {{-- <li class=@yield('active-search')><a href="{{ url('search') }}">استعلام</a></li> --}}
                 <li class=@yield('active-order')><a href="{{ url('order') }}">امر شغل</a></li>
                 <li class=@yield('active-revision')><a href="{{ url('revision') }}">مراجعة</a></li>
             </ul>
             <ul class="nav-ul nav-ul--left">
                 @if (auth()->user()->type == 'admin')
-                    <li class=@yield('active-cpanel')><a href="{{ url('cpanel') }}">لوحة التحكم</a></li>
+                    <li class=@yield('active-cpanel')><a href="{{ url('cp') }}">لوحة التحكم</a></li>
                 @endif
                 <li class=@yield('active-profile')><a href="{{ url('profile') }}">{{ auth()->user()->name }}</a></li>
                 <li><a href="{{ url('logout') }}">خروج</a></li>
@@ -34,11 +34,11 @@
                 id='menu-button'>
             <div class="mobile-menu" id="mobile-menu" hidden>
                 <ul class="mobile-menu__list">
-                    <li class=@yield('active-search')><a href="{{ url('search') }}">استعلام</a></li>
+                    {{-- <li class=@yield('active-search')><a href="{{ url('search') }}">استعلام</a></li> --}}
                     <li class=@yield('active-order')><a href="{{ url('order') }}">امر شغل</a></li>
                     <li class=@yield('active-revision')><a href="{{ url('revision') }}">مراجعة</a></li>
                     @if (auth()->user()->type == 'admin')
-                        <li class=@yield('active-cpanel')><a href="{{ url('cpanel') }}">لوحة التحكم</a></li>
+                        <li class=@yield('active-cpanel')><a href="{{ url('cp') }}">لوحة التحكم</a></li>
                     @endif
                     <li class=@yield('active-profile')><a href="{{ url('profile') }}">{{ auth()->user()->name }}</a></li>
                     <li><a href="{{ url('logout') }}">خروج</a></li>

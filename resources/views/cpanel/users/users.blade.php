@@ -18,8 +18,8 @@
         </div>
 
         <div class="manage-buttons">
-            <a href="{{ url('cpanel/users/create') }}">اضافة مستخدم جديد</a>
-            <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
+            <a href="{{ url('cp/users/create') }}">اضافة مستخدم جديد</a>
+            <a href="{{ url('cp') }}">عودة للوحة التحكم</a>
         </div>
 
         @if ($errors->any())

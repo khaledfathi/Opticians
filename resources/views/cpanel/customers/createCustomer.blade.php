@@ -22,7 +22,7 @@
                 </span>
             </div>
         @endif
-        <form action="{{ url('cpanel/customers/store') }}" method="post">
+        <form action="{{ url('cp/customers/store') }}" method="post">
             @csrf
             <div class="customer-data">
 
@@ -47,7 +47,7 @@
             </div>
             <div class="block-buttons">
                 <input type="submit" value="حفظ" >
-                <a href="{{ url('cpanel/customers') }}">الغاء</a>
+                <a href="{{ url('cp/customers') }}">الغاء</a>
             </div>
         </form>
     </div>

@@ -17,8 +17,8 @@
             <h4>قائمة الفريمات</h4>
         </div>
         <div class="manage-buttons">
-            <a href="{{ url('cpanel/frames/create') }}">اضافة فريم</a>
-            <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
+            <a href="{{ url('cp/frames/create') }}">اضافة فريم</a>
+            <a href="{{ url('cp') }}">عودة للوحة التحكم</a>
         </div>
         @if ($errors->any())
             <div class="msg">

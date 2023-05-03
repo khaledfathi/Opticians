@@ -12,7 +12,7 @@
 @section('content')
     <div class="container">
         <div class="admin-block">
-            <a href="{{ url('cpanel/users') }}">
+            <a href="{{ url('cp/users') }}">
                 <div class="card" id="users-button">
                     <img class="image" src="{{ url('assets/images/svg/users.svg') }}" alt="users_logo">
                     <label class="card-label" for="">ادارة المستخدمين</label>
@@ -20,21 +20,21 @@
                 </div>
             </a>
 
-            <a href="{{ url('cpanel/customers') }}">
+            <a href="{{ url('cp/customers') }}">
                 <div class="card" id="customers-button">
                     <img class="image" src="{{ url('assets/images/svg/customer.svg') }}" alt="users_logo">
                     <label class="card-label" for="">سجل العملاء</label>
                 </div>
             </a>
 
-            <a href="{{ url('cpanel/frames') }}">
+            <a href="{{ url('cp/frames') }}">
                 <div class="card" id="frames-button">
                     <img class="image" src="{{ url('assets/images/svg/glasses.svg') }}" alt="users_logo">
                     <label class="card-label" for="">قائمة الفريمات</label>
                 </div>
             </a>
 
-            <a href="{{ url('cpanel/lenses') }}">
+            <a href="{{ url('cp/lenses') }}">
                 <div class="card" id="lenses-button">
                     <img class="image" src="{{ url('assets/images/svg/lens.svg') }}" alt="users_logo">
                     <label class="card-label" for="">قائمة العدسات</label>

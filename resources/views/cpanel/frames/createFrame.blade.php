@@ -22,7 +22,7 @@
                 </span>
             </div>
         @endif
-        <form action="{{ url('cpanel/frames/store') }}" method="get">
+        <form action="{{ url('cp/frames/store') }}" method="get">
             @csrf
             <div class="frame-data">
                 <div>
@@ -37,7 +37,7 @@
             </div>
             <div class="block-buttons">
                 <input type="submit" value="حفظ">
-                <a href="{{ url('cpanel/frames') }}">الغاء</a>
+                <a href="{{ url('cp/frames') }}">الغاء</a>
             </div>
         </form>
     </div>

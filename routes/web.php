@@ -35,10 +35,10 @@ Route::middleware(['auth'])->group(function (){
     Route::get('logout' , [LoginController::class , 'logout']);
 
     //search 
-    Route::get('search' , [SearchController::class , 'indexSearch']);
+    // Route::get('search' , [SearchController::class , 'indexSearch']);
 
     //control panel 
-    Route::group(['prefix'=>'cpanel'],function (){        
+    Route::group(['prefix'=>'cp'],function (){        
         Route::get('/' ,[ CPanelController::class , 'indexCPanel']);
         //user table managment
         Route::group(['prefix'=>'users'],function (){
@@ -88,7 +88,8 @@ Route::middleware(['auth'])->group(function (){
     Route::group(['prefix'=>'order'], function (){
         Route::get('/' ,[OrderController::class , 'indexOrder']); 
         Route::get('/edit/{id}' ,[OrderController::class , 'editOrder']); 
-        Route::post('store' , [OrderController::class , 'storeOrder']); 
+        Route::post('store' , [OrderController::class , 'storeOrder']);
+        Route::post('update' , [OrderController::class ,'updateOrder']); 
     }); 
 
     //revision

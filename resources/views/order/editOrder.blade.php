@@ -30,7 +30,7 @@
                 </div>
             @endif
         </div>
-        <form action="order/update" method="post" enctype="multipart/form-data">
+        <form action="{{url('order/update')}}" method="post" enctype="multipart/form-data">
             @csrf
             {{-- Order --}}
             <div class="order">

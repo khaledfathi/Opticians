@@ -22,7 +22,7 @@
                 </span>
             </div>
         @endif
-        <form action="{{ url('cpanel/lenses/store') }}" method="get">
+        <form action="{{ url('cp/lenses/store') }}" method="get">
             @csrf
             <div class="lens-data">
                 <div>
@@ -37,7 +37,7 @@
             </div>
             <div class="block-buttons">
                 <input type="submit" value="حفظ">
-                <a href="{{ url('cpanel/lenses') }}">الغاء</a>
+                <a href="{{ url('cp/lenses') }}">الغاء</a>
             </div>
         </form>
     </div>

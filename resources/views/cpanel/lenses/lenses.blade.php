@@ -18,8 +18,8 @@
             <h4>قائمة العدسات</h4>
         </div>
         <div class="manage-buttons">
-            <a href="{{ url('cpanel/lenses/create') }}">اضافة عدسة</a>
-            <a href="{{ url('cpanel') }}">عودة للوحة التحكم</a>
+            <a href="{{ url('cp/lenses/create') }}">اضافة عدسة</a>
+            <a href="{{ url('cp') }}">عودة للوحة التحكم</a>
         </div>
         @if ($errors->any())
             <div class="msg">

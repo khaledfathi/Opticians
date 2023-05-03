@@ -151,4 +151,7 @@ class OrderController extends Controller
             'orderTypes'=> OrderTypes::cases()
         ]);  
     }
+    public function updateOrder(Request $request){
+        dd($request->all());   
+    }
 }
