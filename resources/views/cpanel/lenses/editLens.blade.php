@@ -22,7 +22,7 @@
                 </span>
             </div>
         @endif
-        <form action="{{ url('cpanel/lenses/update') }}" method="post">
+        <form action="{{ url('cp/lenses/update') }}" method="post">
             @csrf
             <input type="hidden" name="id" value="{{$record->id}}">
             <div class="lens-data">
@@ -37,7 +37,7 @@
             </div>
             <div class="block-buttons">
                 <input type="submit" value="تحديث">
-                <a href="{{ url('cpanel/lenses') }}">الغاء</a>
+                <a href="{{ url('cp/lenses') }}">الغاء</a>
             </div>
         </form>
     </div>

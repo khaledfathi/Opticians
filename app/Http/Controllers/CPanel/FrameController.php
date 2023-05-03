@@ -27,7 +27,7 @@ class FrameController extends Controller
     }
     public function storeFrame(CreateFrameRequest $request){
         $record = $this->frameProvider->store($request->except('_token')); 
-        return redirect('cpanel/frames')->with(['ok'=> "تم حفظ فريم - $record->name"]); 
+        return redirect('cp/frames')->with(['ok'=> "تم حفظ فريم - $record->name"]); 
     }
     public function destroyFrame(Request $request){
         try {
@@ -43,6 +43,6 @@ class FrameController extends Controller
     }
     public function updateFrame(UpdateFrameRequest $request){
         $this->frameProvider->update($request->except('_token') , $request->id); 
-        return redirect('cpanel/frames')->with(['ok'=>"تم تحديث الفريم - $request->name"]); 
+        return redirect('cp/frames')->with(['ok'=>"تم تحديث الفريم - $request->name"]); 
     }
 }

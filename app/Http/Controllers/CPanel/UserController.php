@@ -34,7 +34,7 @@ class UserController extends Controller
         $data["password"] = Hash::make($request["password"]); 
 
         $record = $this->userProvider->store($data);
-        return redirect('cpanel/users')->with(['ok'=>'تم اضافة المستخدم '.$record->name]); 
+        return redirect('cp/users')->with(['ok'=>'تم اضافة المستخدم '.$record->name]); 
     }
     public function destroyUser(Request $request){
         if ($request->id == auth()->user()->id){
@@ -66,6 +66,6 @@ class UserController extends Controller
             $data['password'] = Hash::make($request->password);
         }
         $this->userProvider->update($data , $request->id); 
-        return redirect('cpanel/users')->with(['ok'=>"تم تحديث المستخدم - $request->name"]); 
+        return redirect('cp/users')->with(['ok'=>"تم تحديث المستخدم - $request->name"]); 
     }
 }

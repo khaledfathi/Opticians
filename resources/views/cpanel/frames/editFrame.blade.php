@@ -22,7 +22,7 @@
                 </span>
             </div>
         @endif
-        <form action="{{ url('cpanel/frames/update') }}" method="post">
+        <form action="{{ url('cp/frames/update') }}" method="post">
             @csrf
             <input type="hidden" name="id" value="{{$record->id}}">
             <div class="frame-data">
@@ -37,7 +37,7 @@
             </div>
             <div class="block-buttons">
                 <input type="submit" value="تحديث" >
-                <a href="{{ url('cpanel/frames') }}">الغاء</a>
+                <a href="{{ url('cp/frames') }}">الغاء</a>
             </div>
         </form>
     </div>

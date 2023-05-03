@@ -28,7 +28,7 @@ class CustomerController extends Controller
     }
     public function storeCustomer(CreateCustomerRequest $request){
         $this->customerProvider->store($request->except('_token')); 
-        return redirect('cpanel/customers')->with(['ok'=>'تم اضافة العميل']);
+        return redirect('cp/customers')->with(['ok'=>'تم اضافة العميل']);
     }
     public function destroyCustomer(Request $request){
         try {
@@ -46,6 +46,6 @@ class CustomerController extends Controller
     }
     public function updateCustomer(UpdateCustomerRequest $request){        
         $this->customerProvider->update($request->except('_token') , $request->id); 
-        return redirect('cpanel/customers')->with(['ok'=>"تم تحديث العميل - $request->name"]);
+        return redirect('cp/customers')->with(['ok'=>"تم تحديث العميل - $request->name"]);
     } 
 }

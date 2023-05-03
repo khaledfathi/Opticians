@@ -24,7 +24,7 @@
             </div>
         @endif
 
-        <form action="{{ url('cpanel/users/update') }}" method="post">
+        <form action="{{ url('cp/users/update') }}" method="post">
             @csrf
             <div class="user-data">
                 <input type="hidden" name="id" value="{{$record->id}}">
@@ -75,7 +75,7 @@
 
             <div class="block-buttons">
                 <input type="submit" value="تحديث">
-                <a href="{{ url('cpanel/users') }}">الغاء</a>
+                <a href="{{ url('cp/users') }}">الغاء</a>
             </div>
         </form>
     </div>

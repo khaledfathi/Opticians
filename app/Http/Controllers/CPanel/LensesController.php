@@ -27,7 +27,7 @@ class LensesController extends Controller
     }
     public function storeLens(CreateLensRequest $request){ 
         $record = $this->lensProvider->store($request->except('__token')); 
-        return redirect('cpanel/lenses')->with(['ok'=> "تم حفظ عدسة - $record->name"]); 
+        return redirect('cp/lenses')->with(['ok'=> "تم حفظ عدسة - $record->name"]); 
     }
     public function destroyLens(Request $request){
         try {
@@ -44,7 +44,7 @@ class LensesController extends Controller
     }
     public function updateLens(UpdateLensRequest $request){
         $this->lensProvider->update($request->except('_token') , $request->id); 
-        return redirect('cpanel/lenses')->with(['ok'=>"تم تحديث العدسة - $request->name"]); 
+        return redirect('cp/lenses')->with(['ok'=>"تم تحديث العدسة - $request->name"]); 
     }
 
 }

@@ -44,17 +44,17 @@
                     <tbody id="table-body">
                         @foreach ($records as $record)
                             <tr>
-                                <input type="hidden" value="{{url('cpanel/frames/'.$record->id)}}">
+                                <input type="hidden" value="{{url('cp/frames/'.$record->id)}}">
                                 <td>{{ $record->name }}</td>
                                 <td>{{ $record->description }}</td>
                                 <td>
-                                    <a href="{{ url('cpanel/frames/' . $record->id) }}">
+                                    <a href="{{ url('cp/frames/' . $record->id) }}">
                                         <img class="control-icon" src="{{ url('assets/images/svg/edit.svg') }}"
                                             alt="delete_icon">
                                     </a>
                                 </td>
                                 <td>
-                                    <input type="hidden" value="{{ url('cpanel/frames/destroy/' . $record->id) }}">
+                                    <input type="hidden" value="{{ url('cp/frames/destroy/' . $record->id) }}">
                                     <img class="control-icon" src="{{ url('assets/images/svg/delete.svg') }}"
                                         alt="delete_icon" name="delete-button">
                                 </td>
