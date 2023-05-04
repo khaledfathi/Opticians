@@ -374,13 +374,19 @@
                     <button type="button">حذف</button>
 
                 </div>
-                <div>
+                <div class="work-revision-div">
                     @if ($work->revision)
+                        <input type="hidden" value="{{$work->revision}}">
                         <p>تمت مراجعتة بواسطة {{ $work->revisioner }}</p>
                         <button type="button">الغاء المراجعة</button>
                     @else
+                        <input type="hidden" value="{{$work->revision}}">
                         <p>لم يتم مراجعتة</p>
                     @endif
+                </div>
+                <div hidden>
+                    <input type="hidden" value="{{$work->id}}"> {{-- work id --}}
+                    <input type="hidden" value="0"> {{-- delete status --}}
                 </div>
             </div>
             @endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Order;
 use App\Enum\Order\OrderTypes;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\CreateOrderRequest;
+use App\Http\Requests\Order\CreateOrderRequest as UpdateOrderRequest;
 use App\Repository\Contracts\Customer\CustomerRepositoryContract;
 use App\Repository\Contracts\Frame\FrameRepositoryContract;
 use App\Repository\Contracts\Lens\LensRepositoryContract;
@@ -131,6 +132,8 @@ class OrderController extends Controller
                     $this->orderDetailsProvider->store($workData); 
                 }
             }
+        }else {
+            return redirect('order')->withErrors($validateOrderDetails); 
         }
         return redirect('order')->with(['ok'=>'تم تسجيل امر شغل']); 
     }
@@ -151,7 +154,7 @@ class OrderController extends Controller
             'orderTypes'=> OrderTypes::cases()
         ]);  
     }
-    public function updateOrder(Request $request){
-        dd($request->all());   
+    public function updateOrder(UpdateOrderRequest $request){
+        dd($request->all());
     }
 }

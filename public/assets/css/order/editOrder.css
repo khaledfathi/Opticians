@@ -1,3 +1,4 @@
+/* #### general #### */
 .section-header,
 label{
     color:green
@@ -5,3 +6,24 @@ label{
 .order-buttons input{
     background-color: green;
 }
+/* #### end general #### */
+
+/* #### work revision div #### */
+.work-revision-div {
+    display: flex;
+    flex-direction: column;
+}
+.work-revision-div p{
+    text-align: center;
+    font-size: 15pt;
+    font-weight: bold;
+}
+.work-revision-div button{
+    margin: 0px auto 20px;
+	width: 100px;
+	height: 30px;
+	background-color: gray;
+	color: white;
+	border: none;
+}
+/* #### work revision div #### */

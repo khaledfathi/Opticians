@@ -181,6 +181,12 @@ function eventCollectOrderDetailsData(){
             workData['details'] = work.children[3].children[1].children[0].children[1].value
             //set name to image file to use in back end 
             workData['image'] = work.children[4].children[2].name="image_"+i
+            //revision status
+            workData['revision'] = work.children[6].children[0].value
+            //work id 
+            workData['id'] = works[i].children[7].children[0].value; 
+            //delete status 
+            workData['deleteStatus'] = works[i].children[7].children[1].value; 
             orderDetailsData.push(workData); 
         }
         workData=[]; 
@@ -227,87 +233,115 @@ function eventSetWorksEvents (){
    let works =  workContainerDiv.children;
    for (let i=1 ; i<works.length ; i++){//i=1 becuase the first one is an empty template
 
-    /* elements to add events or mainpulating */
-    //checkboxes
-    let addCheckBox = works[i].children[2].children[0].children[0];
-    let addCheckBoxLabel = works[i].children[2].children[0].children[1];
-    let bindCheckBox = works[i].children[2].children[1].children[0];         
-    let bindCheckBoxLabel = works[i].children[2].children[1].children[1];         
-    
-    //add fields
-    let addLeftDiv = works[i].children[0].children[4]
-    let addRightDiv = works[i].children[1].children[4];
-    let addLeftFiled = addLeftDiv.children[1];
-    let addRightFiled = addRightDiv.children[1];
+        /* elements to add events or mainpulating */
+        //checkboxes
+        let addCheckBox = works[i].children[2].children[0].children[0];
+        let addCheckBoxLabel = works[i].children[2].children[0].children[1];
+        let bindCheckBox = works[i].children[2].children[1].children[0];         
+        let bindCheckBoxLabel = works[i].children[2].children[1].children[1];         
+        
+        //add fields
+        let addLeftDiv = works[i].children[0].children[4]
+        let addRightDiv = works[i].children[1].children[4];
+        let addLeftFiled = addLeftDiv.children[1];
+        let addRightFiled = addRightDiv.children[1];
 
-    //presctiption
-    let presctiptionImage = works[i].children[4].children[1]; 
-    let presctiptionImageBrowseFile = works[i].children[4].children[2]; 
-    let presctiptionRemoveImageButton = works[i].children[4].children[3]; 
+        //presctiption
+        let presctiptionImage = works[i].children[4].children[1]; 
+        let presctiptionImageBrowseFile = works[i].children[4].children[2]; 
+        let presctiptionRemoveImageButton = works[i].children[4].children[3]; 
 
-    //delete this div button
-    let removeWorkButton = works[i].children[5].children[0]; 
-    /**************************************/ 
+        //delete this div button
+        let removeWorkButton = works[i].children[5].children[0];
 
-    //create unique id to bind labels with checkboxes
-    let uniqueAddCheckBoxId = new Date().valueOf()+'_'+Math.floor(Math.random()*1000);
-    let uniqueBindCheckBoxId = new Date().valueOf()+'_'+Math.floor(Math.random()*1000);
+        //work id 
+        let workId = works[i].children[7].children[0]; 
 
-    //bind labels with checkboxs
-    addCheckBoxLabel.setAttribute('for', uniqueAddCheckBoxId);
-    addCheckBox.id=uniqueAddCheckBoxId; 
-    bindCheckBoxLabel.setAttribute('for',uniqueBindCheckBoxId); 
-    bindCheckBox.id = uniqueBindCheckBoxId; 
+        //work delete status 
+        let deleteStatus = works[i].children[7].children[1]; 
 
-    bindCheckBox.disabled = (addCheckBox.checked) ? false : true;   
-    
-    /*EVENTS*/    
-    addCheckBox.addEventListener('change' , ()=>{
-        if(addCheckBox.checked){
-            addLeftDiv.hidden=false; 
-            addRightDiv.hidden=false; 
-            bindCheckBox.disabled=false;
-            addLeftFiled.value=""; 
-            addRightFiled.value=""; 
-        }else{
-            addLeftDiv.hidden=true; 
-            addRightDiv.hidden=true; 
-            bindCheckBox.disabled=true;
+        //revision
+        let revisionStatus = works[i].children[6].children[0];
+        let revisionDescription = works[i].children[6].children[1];
+        let cancelRevisionButton = works[i].children[6].children[2];
+        /**************************************/ 
+
+        //create unique id to bind labels with checkboxes
+        let uniqueAddCheckBoxId = new Date().valueOf()+'_'+Math.floor(Math.random()*1000);
+        let uniqueBindCheckBoxId = new Date().valueOf()+'_'+Math.floor(Math.random()*1000);
+
+        //bind labels with checkboxs
+        addCheckBoxLabel.setAttribute('for', uniqueAddCheckBoxId);
+        addCheckBox.id=uniqueAddCheckBoxId; 
+        bindCheckBoxLabel.setAttribute('for',uniqueBindCheckBoxId); 
+        bindCheckBox.id = uniqueBindCheckBoxId; 
+
+        bindCheckBox.disabled = (addCheckBox.checked) ? false : true;   
+        
+        /*EVENTS*/    
+        addCheckBox.addEventListener('change' , ()=>{
+            if(addCheckBox.checked){
+                addLeftDiv.hidden=false; 
+                addRightDiv.hidden=false; 
+                bindCheckBox.disabled=false;
+                addLeftFiled.value=""; 
+                addRightFiled.value=""; 
+            }else{
+                addLeftDiv.hidden=true; 
+                addRightDiv.hidden=true; 
+                bindCheckBox.disabled=true;
+            }
+        });
+        //nested function
+        function eventBindAddFileds(){
+            let addRightField = addRightDiv.children[1];
+            let addLeftField = addLeftDiv.children[1];
+            
+            addLeftField.addEventListener('input',()=>{            
+            (bindCheckBox.checked) ? addRightField.value = addLeftField.value : null ; 
+            });
+            addRightField.addEventListener('input',()=>{            
+                (bindCheckBox.checked) ? addLeftField.value = addRightField.value : null ; 
+            });
+            
         }
-    });
-    //nested function
-    function eventBindAddFileds(){
-        let addRightField = addRightDiv.children[1];
-        let addLeftField = addLeftDiv.children[1];
-        
-        addLeftField.addEventListener('input',()=>{            
-           (bindCheckBox.checked) ? addRightField.value = addLeftField.value : null ; 
+        bindCheckBox.addEventListener('change' , eventBindAddFileds);
+        presctiptionImage.addEventListener('click' , ()=>{
+            presctiptionImageBrowseFile.click();
         });
-        addRightField.addEventListener('input',()=>{            
-            (bindCheckBox.checked) ? addLeftField.value = addRightField.value : null ; 
+        presctiptionImageBrowseFile.addEventListener('change' , (event)=>{
+            let file = event.target.files[0]; 
+            let imgSrc = URL.createObjectURL(file); 
+            presctiptionImage.src=imgSrc; 
+            presctiptionImage.style.width='200px'; 
+        }); 
+        presctiptionRemoveImageButton.addEventListener('click' , ()=>{
+            presctiptionImage.src=defaultImageIcon; 
+            presctiptionImage.style.width='50px' ;
+            presctiptionImageBrowseFile.value='';
         });
-        
-    }
-    bindCheckBox.addEventListener('change' , eventBindAddFileds);
-    presctiptionImage.addEventListener('click' , ()=>{
-        presctiptionImageBrowseFile.click();
-    });
-    presctiptionImageBrowseFile.addEventListener('change' , (event)=>{
-        let file = event.target.files[0]; 
-        let imgSrc = URL.createObjectURL(file); 
-        presctiptionImage.src=imgSrc; 
-        presctiptionImage.style.width='200px'; 
-    }); 
-    presctiptionRemoveImageButton.addEventListener('click' , ()=>{
-        presctiptionImage.src=defaultImageIcon; 
-        presctiptionImage.style.width='50px' ;
-        presctiptionImageBrowseFile.value='';
-    });
-    removeWorkButton.addEventListener('click' , ()=>{
-        removeWorkButton.parentElement.parentElement.remove()
+        removeWorkButton.addEventListener('click' , ()=>{
+            console.log(deleteStatus.value);
+            if (deleteStatus.value == 1) {
+                deleteStatus.value=0; 
+                removeWorkButton.innerHTML="حذف";
+                removeWorkButton.parentElement.parentElement.style.background='white';
+            }else {
+                deleteStatus.value=1;
+                removeWorkButton.innerHTML="الغاء الحذف";
+                removeWorkButton.parentElement.parentElement.style.background='rgba(255,0,0,0.5)';
+            } 
+        }); 
 
-    }); 
-   }
+        if (cancelRevisionButton != undefined){ //prevent console error if buttton dosent exist
+            cancelRevisionButton.addEventListener('click' , ()=>{
+                revisionStatus.value= 0; 
+                revisionDescription.innerHTML = 'لم يتم مراجعتة';
+                cancelRevisionButton.hidden=true;
+                
+            }); 
+        }
+    }
 
 }
 /* #### End Event Actions #### */
