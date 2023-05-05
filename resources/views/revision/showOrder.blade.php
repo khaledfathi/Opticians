@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <label>الوقت</label>
-                        <input type="text" readonly value="{{ $order->time }}">
+                        <input type="text" readonly value="{{date('h:i a ', strtotime($order->time)) }}">
                     </div>
                     <div>
                         <label>تاريخ التسليم</label>

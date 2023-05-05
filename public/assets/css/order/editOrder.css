@@ -8,16 +8,23 @@ label{
 }
 /* #### end general #### */
 
-/* #### work revision div #### */
+/* #### order and work revision div #### */
 .work-revision-div {
     display: flex;
     flex-direction: column;
 }
+.order-revision-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+} 
+.order-revision-div p , 
 .work-revision-div p{
     text-align: center;
     font-size: 15pt;
     font-weight: bold;
 }
+.order-revision-div button , 
 .work-revision-div button{
     margin: 0px auto 20px;
 	width: 100px;
@@ -26,4 +33,4 @@ label{
 	color: white;
 	border: none;
 }
-/* #### work revision div #### */
+/* #### end order and work revision div #### */

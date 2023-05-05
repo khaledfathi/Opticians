@@ -37,7 +37,7 @@ class OrderController extends Controller
     public function indexOrder(){
         $customers = $this->customerProvider->index(); 
         $frames = $this->frameProvider->index(); 
-        $lenses = $this->lensProvider->index(); 
+        $lenses = $this->lensProvider->index();
         return view('order.order', [
             'customers'=>$customers,
             'frames'=>$frames,
@@ -144,7 +144,6 @@ class OrderController extends Controller
         $customers = $this->customerProvider->index(); 
         $frames = $this->frameProvider->index(); 
         $lenses = $this->lensProvider->index(); 
-        // dd($works);
         return view('order.editOrder', [
             'order'=>$order,
             'works'=>$works,
@@ -155,6 +154,23 @@ class OrderController extends Controller
         ]);  
     }
     public function updateOrder(UpdateOrderRequest $request){
-        dd($request->all());
+        // dd($request->all());
+        if ($request->work_type == 'صيانة'){
+            $data=[
+                'date' => $request->date, 
+                'time' => $request->time,
+                'delivery_date' => $request->delivery_date, 
+                // 'image',
+                // 'required_revision_count', 
+                'details'=> $request->details,
+                'revision'=> $request->order_revision_status,
+
+            ]; 
+            $this->orderProvider->update($data, $request->id);
+            return back(); 
+        }else if ($request->work_type == 'نظارة جديدة'){
+            return "dddd";
+        }
+        
     }
 }

@@ -30,10 +30,11 @@
                 </div>
             @endif
         </div>
-        <form action="{{url('order/update')}}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('order/update') }}" method="post" enctype="multipart/form-data">
             @csrf
             {{-- Order --}}
             <div class="order">
+                <input type="hidden" name="id" value="{{$order->id}}">
                 <div class="order__block-a">
                     <div>
                         <label for="">تاريخ</label>
@@ -41,7 +42,8 @@
                     </div>
                     <div>
                         <label for="">الوقت</label>
-                        <input type="time" id="order-time" name="time" value="{{ $order->time }}">
+                        <input type="time" id="order-time" name="time"
+                            value="{{ date('h:i', strtotime($order->time)) }}">
                     </div>
                     <div>
                         <label for="">تارخ التسليم</label>
@@ -65,7 +67,7 @@
                         <label for="">نوع الشغل</label>
                         <select id="work-type" name="work_type">
                             @foreach ($orderTypes as $type)
-                                @if ($type == $order->type)
+                                @if ($type->value == $order->type)
                                     <option selected value="{{ $type->value }}">{{ $type->value }}</option>
                                 @else
                                     <option value="{{ $type->value }}">{{ $type->value }}</option>
@@ -91,6 +93,17 @@
                     <label for="">تفاصيل اخرى</label>
                     <textarea cols="10" rows="3" name="details">{{ $order->details }}</textarea>
                 </div>
+                @if ($order->type == 'صيانة')
+                    <div class="order-revision-div">
+                        <input type="hidden" name="order_revision_status" id="order-revision-status" value="{{$order->revision}}" >
+                        @if ($order->revision)
+                            <p id="order-revision-status-msg">تمت المراجعة بواسطة : {{$order->revisioner}}</p>
+                            <button type="button" id="cancel-order-revision-button">الغاء المراجعة</button>
+                        @else
+                            <p>لم يتم مراجعتة</p>
+                        @endif
+                    </div>
+                @endif
             </div>
             {{-- end Order --}}
 
@@ -376,16 +389,16 @@
                 </div>
                 <div class="work-revision-div">
                     @if ($work->revision)
-                        <input type="hidden" value="{{$work->revision}}">
+                        <input type="hidden" value="{{ $work->revision }}">
                         <p>تمت مراجعتة بواسطة {{ $work->revisioner }}</p>
                         <button type="button">الغاء المراجعة</button>
                     @else
-                        <input type="hidden" value="{{$work->revision}}">
+                        <input type="hidden" value="{{ $work->revision }}">
                         <p>لم يتم مراجعتة</p>
                     @endif
                 </div>
                 <div hidden>
-                    <input type="hidden" value="{{$work->id}}"> {{-- work id --}}
+                    <input type="hidden" value="{{ $work->id }}"> {{-- work id --}}
                     <input type="hidden" value="0"> {{-- delete status --}}
                 </div>
             </div>

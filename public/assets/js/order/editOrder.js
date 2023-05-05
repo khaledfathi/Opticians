@@ -16,6 +16,9 @@ const workContainerDiv = document.querySelector('#work-container-div');
 const workDiv = document.querySelector('#work-div'); 
 const loadingImage = document.querySelector('#loading-image'); 
 const orderSingleImageDiv = document.querySelector('#order-single-image-div');
+const cancelOrderRevisionButton = document.querySelector('#cancel-order-revision-button');
+const orderRevisionStatus = document.querySelector('#order-revision-status');
+const orderRevisionStatusMsg = document.querySelector('#order-revision-status-msg');
 //used for backend request
 const orderDetails = document.querySelector('#order-details');
 const submitButton = document.querySelector('#submit-button');
@@ -344,6 +347,12 @@ function eventSetWorksEvents (){
     }
 
 }
+
+function eventOrderRevisionStatus(){
+    orderRevisionStatus.value=0;
+    orderRevisionStatusMsg.innerHTML='لم يتم مراجعتة ';
+    cancelOrderRevisionButton.hidden=true;
+}
 /* #### End Event Actions #### */
 
 /* #### Events #### */  
@@ -355,7 +364,8 @@ addWorkButton.addEventListener('click' , eventAddNewWork);
 submitButton.addEventListener('click' , eventCollectOrderDetailsData); 
 submitButton.addEventListener('click' , eventOrderDetailsValidation); 
 submitButton.addEventListener('click' , displayLoadingImage);
-window.addEventListener('load' , eventSetWorksEvents) ;
+(cancelOrderRevisionButton != null ) ? cancelOrderRevisionButton.addEventListener('click' , eventOrderRevisionStatus) : null ;
+window.addEventListener('load' , eventSetWorksEvents);
 /* #### End Events #### */
 
 
