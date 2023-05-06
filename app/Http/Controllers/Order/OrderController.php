@@ -12,6 +12,7 @@ use App\Repository\Contracts\Lens\LensRepositoryContract;
 use App\Repository\Contracts\Order\OrderDetailsRepositoryContract;
 use App\Repository\Contracts\Order\OrderRepositoryContract;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class OrderController extends Controller
 {
@@ -154,22 +155,41 @@ class OrderController extends Controller
         ]);  
     }
     public function updateOrder(UpdateOrderRequest $request){
-        // dd($request->all());
+            // dd($request->all());
+        $record = $this->orderProvider->show($request->id); 
         if ($request->work_type == 'صيانة'){
-            $data=[
+            $orderData=[
                 'date' => $request->date, 
                 'time' => $request->time,
+                'customer_id'=>$request->customer_id,
                 'delivery_date' => $request->delivery_date, 
-                // 'image',
-                // 'required_revision_count', 
+                'required_revision_count' => ($request->order_revision_status) ? 1 : 1 , //return revision count to 1 if revision is canceled
                 'details'=> $request->details,
                 'revision'=> $request->order_revision_status,
-
             ]; 
-            $this->orderProvider->update($data, $request->id);
-            return back(); 
+            //order image 
+            if ($request->has('image')){
+                // store new image
+                $file = $request->file('image'); 
+                $directory = '/assets/upload/ordersImage'; 
+                $fileName=time().'.'.$file->getClientOriginalExtension(); 
+                $filePath = $directory.'/'.$fileName;
+                $file->move(public_path().$directory , $fileName);
+                $orderData['image']=$filePath;
+                //delete old image if exist
+                ($record->image) ? File::delete(public_path($record->image)) : null ; 
+            }else if ($request->delete_order_image_status){
+                if ($record->image) {
+                    File::delete(public_path($record->image)); 
+                    $orderData['image']=null; 
+                }
+            }
+            //update order in database
+            $this->orderProvider->update($orderData, $request->id);
+            return back();
+
         }else if ($request->work_type == 'نظارة جديدة'){
-            return "dddd";
+           dd($request->all());  
         }
         
     }

@@ -43,7 +43,7 @@
                     <div>
                         <label for="">الوقت</label>
                         <input type="time" id="order-time" name="time"
-                            value="{{ date('h:i', strtotime($order->time)) }}">
+                            value="{{ date('H:i', strtotime($order->time)) }}">
                     </div>
                     <div>
                         <label for="">تارخ التسليم</label>
@@ -65,29 +65,23 @@
                     </div>
                     <div>
                         <label for="">نوع الشغل</label>
-                        <select id="work-type" name="work_type">
-                            @foreach ($orderTypes as $type)
-                                @if ($type->value == $order->type)
-                                    <option selected value="{{ $type->value }}">{{ $type->value }}</option>
-                                @else
-                                    <option value="{{ $type->value }}">{{ $type->value }}</option>
-                                @endif
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="order__image" id="order-single-image-div">
-                        <input type="hidden" id="default-image-icon"
-                            value="{{ asset('assets/images/svg/default_image.svg') }}">
-                        @if ($order->image)
-                            <img id="order-upload-image" src="{{ asset($order->image) }}" alt=""
-                                style="width:200px !important;">
-                        @else
-                            <img id="order-upload-image" src="{{ asset('assets/images/svg/default_image.svg') }}"
-                                alt="">
-                        @endif
-                        <input type="file" accept="image/*" id="order-upload-image-file" name="image">
-                        <button id="remove-order-image-button" type="button">الغاء الصورة</button>
-                    </div>
+                        <input type="text" name="work_type" value="{{$order->type}}" readonly>
+                    </div>                
+                    <input type="hidden" id="default-image-icon" value="{{ asset('assets/images/svg/default_image.svg') }}">
+                    @if($order->type == 'صيانة')
+                        <div class="order__image" id="order-single-image-div">
+                            @if ($order->image)
+                                <img id="order-upload-image" src="{{ asset($order->image) }}" alt=""
+                                    style="width:200px !important;">
+                            @else
+                                <img id="order-upload-image" src="{{ asset('assets/images/svg/default_image.svg') }}"
+                                    alt="">
+                            @endif
+                            <input type="file" accept="image/*" id="order-upload-image-file" name="image">
+                            <input type="hidden" name="delete_order_image_status" id="delete-order-image-status" value="0" >
+                            <button id="remove-order-image-button" type="button">الغاء الصورة</button>
+                        </div>
+                    @endif
                 </div>
                 <div>
                     <label for="">تفاصيل اخرى</label>
@@ -306,15 +300,14 @@
                                 {{-- show add if it has value  --}}
                                 @if ($work->r_add || $work->l_add)
                                     <div name="add-option-div">
-                                    @else
-                                        <div name="add-option-div" hidden>
+                                @else
+                                    <div name="add-option-div" hidden>
                                 @endif
-                                <label for="">add</label>
-                                <input type="number" step="0.01" value="{{ $work->r_add }}">
+                                        <label for="">add</label>
+                                        <input type="number" step="0.01" value="{{ $work->r_add }}">
+                                    </div>
                             </div>
-
-                </div>
-                {{-- end glasses__left --}}
+                        {{-- end glasses__left --}}
 
                 {{-- glasses__add --}}
                 <div class="add-option">
@@ -377,8 +370,11 @@
                 {{-- prescription --}}
                 <div class="glasses_presctiption">
                     <label for="">روشتة</label>
-                    <img src="{{ url('assets/images/svg/default_image.svg') }}" alt=""
-                        id="presctiption-upload-image">
+                    @if ($work->work_image)
+                        <img class="presctiption-image" src="{{ url($work->work_image) }}" alt="" id="presctiption-upload-image" >
+                    @else
+                        <img src="{{ url('assets/images/svg/default_image.svg') }}" alt="" id="presctiption-upload-image">
+                    @endif
                     <input type="file" accept="image/*" hidden>
                     <button type="button">الغاء الصورة</button>
                 </div>

@@ -51,7 +51,7 @@
                                 <input type="hidden" value="{{ url('revision/show/' . $order->id) }}">
                                 <td width="5%">{{ $order->id }}</td>
                                 <td>{{ $order->user_name }}</td>
-                                <td >{{ date('h:m a', strtotime($order->time)) }}</td>
+                                <td >{{ date('h:i a', strtotime($order->time)) }}</td>
                                 <td>{{ $order->delivery_date }}</td>
                                 <td width="15%">{{ $order->customer_name }}</td>
                                 <td width="5%">{{ $order->type }}</td>

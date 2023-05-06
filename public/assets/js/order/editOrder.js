@@ -19,6 +19,7 @@ const orderSingleImageDiv = document.querySelector('#order-single-image-div');
 const cancelOrderRevisionButton = document.querySelector('#cancel-order-revision-button');
 const orderRevisionStatus = document.querySelector('#order-revision-status');
 const orderRevisionStatusMsg = document.querySelector('#order-revision-status-msg');
+const deleteOrderImageStatus = document.querySelector('#delete-order-image-status');
 //used for backend request
 const orderDetails = document.querySelector('#order-details');
 const submitButton = document.querySelector('#submit-button');
@@ -49,6 +50,7 @@ function eventRemoveOrderImage(){
     orderUploadImage.src=defaultImageIcon; 
     orderUploadImage.style.width='50px' ;
     orderUploadImageFile.value='';
+    deleteOrderImageStatus.value=1; 
 }
 
 function eventWorkTypeChanged(){
@@ -320,7 +322,7 @@ function eventSetWorksEvents (){
         }); 
         presctiptionRemoveImageButton.addEventListener('click' , ()=>{
             presctiptionImage.src=defaultImageIcon; 
-            presctiptionImage.style.width='50px' ;
+            presctiptionImage.setAttribute('style', 'width:50px !important');
             presctiptionImageBrowseFile.value='';
         });
         removeWorkButton.addEventListener('click' , ()=>{
@@ -356,10 +358,10 @@ function eventOrderRevisionStatus(){
 /* #### End Event Actions #### */
 
 /* #### Events #### */  
-orderUploadImage.addEventListener('click' , eventOrderUploadImage); 
-orderUploadImageFile.addEventListener('change' , eventOrderUploadImageFile); 
-removeOrderImageButton.addEventListener('click' , eventRemoveOrderImage); 
-workType.addEventListener('change', eventWorkTypeChanged); 
+(orderUploadImageFile) ? orderUploadImage.addEventListener('click' , eventOrderUploadImage): null ; 
+(orderUploadImageFile) ? orderUploadImageFile.addEventListener('change' , eventOrderUploadImageFile): null ; 
+(removeOrderImageButton) ? removeOrderImageButton.addEventListener('click' , eventRemoveOrderImage) : null ; 
+(workType) ? workType.addEventListener('change', eventWorkTypeChanged) : null ; 
 addWorkButton.addEventListener('click' , eventAddNewWork);
 submitButton.addEventListener('click' , eventCollectOrderDetailsData); 
 submitButton.addEventListener('click' , eventOrderDetailsValidation); 
