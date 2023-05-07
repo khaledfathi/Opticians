@@ -396,6 +396,7 @@
                 <div hidden>
                     <input type="hidden" value="{{ $work->id }}"> {{-- work id --}}
                     <input type="hidden" value="0"> {{-- delete status --}}
+                    <input type="hidden" value="0"> {{-- delete image status --}}
                 </div>
             </div>
             @endforeach

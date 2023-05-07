@@ -155,7 +155,6 @@ class OrderController extends Controller
         ]);  
     }
     public function updateOrder(UpdateOrderRequest $request){
-            // dd($request->all());
         $record = $this->orderProvider->show($request->id); 
         if ($request->work_type == 'صيانة'){
             $orderData=[
@@ -190,7 +189,6 @@ class OrderController extends Controller
             return back();
 
         }else if ($request->work_type == 'نظارة جديدة'){
-            // dd($request->all());  
             //validate order details
             $validateOrderDetails = $this->validateOrderDetails(json_decode($request->order_details)); 
             
@@ -255,7 +253,11 @@ class OrderController extends Controller
                             $workData['image']= $dirPath.$fileName;
                             //delete old image 
                             File::delete(public_path($oldImagePath)); 
-                        };
+                        }else if ($work->deleteImageStatus){
+                             $workData['image']= null;
+                            //delete old image 
+                            File::delete(public_path($oldImagePath)); 
+                        }
 
 
                         //calculate revision count for order table 

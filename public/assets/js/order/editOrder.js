@@ -191,7 +191,9 @@ function eventCollectOrderDetailsData(){
             //work id 
             workData['id'] = works[i].children[7].children[0].value; 
             //delete status 
-            workData['deleteStatus'] = works[i].children[7].children[1].value; 
+            workData['deleteStatus'] = works[i].children[7].children[1].value;
+            //delete image status
+            workData['deleteImageStatus'] = works[i].children[7].children[2].value; 
             orderDetailsData.push(workData); 
         }
         workData=[]; 
@@ -264,6 +266,9 @@ function eventSetWorksEvents (){
 
         //work delete status 
         let deleteStatus = works[i].children[7].children[1]; 
+        
+        //work delete image 
+        let deleteImageStatus = works[i].children[7].children[2]; 
 
         //revision
         let revisionStatus = works[i].children[6].children[0];
@@ -324,6 +329,7 @@ function eventSetWorksEvents (){
             presctiptionImage.src=defaultImageIcon; 
             presctiptionImage.setAttribute('style', 'width:50px !important');
             presctiptionImageBrowseFile.value='';
+            deleteImageStatus.value=1; 
         });
         removeWorkButton.addEventListener('click' , ()=>{
             console.log(deleteStatus.value);
