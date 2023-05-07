@@ -45,4 +45,9 @@ class OrderDetailsRepository implements OrderDetailsRepositoryContract{
         $found = OrderDetailsModel::find($id); 
         return ($found) ? $found->update($data) : false; 
     }
+    public function destroy (int $id):bool
+    {
+        $found = OrderDetailsModel::find($id); 
+        return ($found) ? $found->delete() : false ; 
+    }
 }

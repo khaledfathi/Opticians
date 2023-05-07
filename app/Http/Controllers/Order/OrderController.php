@@ -166,6 +166,7 @@ class OrderController extends Controller
                 'required_revision_count' => ($request->order_revision_status) ? 1 : 1 , //return revision count to 1 if revision is canceled
                 'details'=> $request->details,
                 'revision'=> $request->order_revision_status,
+                'user_id'=>auth()->user()->id
             ]; 
             //order image 
             if ($request->has('image')){
@@ -189,7 +190,91 @@ class OrderController extends Controller
             return back();
 
         }else if ($request->work_type == 'نظارة جديدة'){
-           dd($request->all());  
+            // dd($request->all());  
+            //validate order details
+            $validateOrderDetails = $this->validateOrderDetails(json_decode($request->order_details)); 
+            
+            if (!$validateOrderDetails){//if no errors
+                //preparing date
+                $works_count = count(json_decode($request->order_details));
+                //order data
+                $orderData = [
+                    'date'=>$request->date,
+                    'time'=>$request->time,
+                    'delivery_date'=>$request->delivery_date,
+                    'details'=>$request->details,
+                    //FK
+                    'customer_id'=>$request->customer_id,
+                    'user_id'=>auth()->user()->id
+                ]; 
+                       
+                //order details
+                $orderDetails = json_decode($request->order_details) ;
+                $revisionCount = 0 ; 
+                $worksCount=0; 
+                if ($orderDetails){          
+                    foreach($orderDetails as $work){
+                        //get current image for this work (from order_details table)
+                        $oldImagePath = $this->orderDetailsProvider->show($work->id)['image']; 
+                        if ($work->deleteStatus){
+                            //delete this work
+                            $this->orderDetailsProvider->destroy($work->id); 
+                            File::delete(public_path($oldImagePath)); 
+                            continue; 
+                        }
+                        //preparing date
+                        $workData=[
+                            'count'=>$work->count,
+                            'revision'=>$work->revision,
+                            'details'=>$work->details,
+                            // FK
+                            'order_id'=>$request->id,
+                            'frame_id'=>$work->frameTypeId,
+                            'lens_id'=>$work->lensTypeId
+                        ];
+                        ($work->r_sphere) ? $workData['r_sphere']= $work->r_sphere : null;
+                        ($work->r_cylinder) ? $workData['r_cylinder']= $work->r_cylinder : null;
+                        ($work->r_axis) ? $workData['r_axis']= $work->r_axis : null;
+                        ($work->r_add) ? $workData['r_add']= $work->r_add : null;
+                        ($work->l_sphere) ? $workData['l_sphere']= $work->l_sphere : null;
+                        ($work->l_cylinder) ? $workData['l_cylinder']= $work->l_cylinder : null;
+                        ($work->l_axis) ? $workData['l_axis']= $work->l_axis : null;
+                        ($work->l_add) ? $workData['l_add']= $work->l_add : null;
+                        
+                        //update work image 
+                        //delete old image
+                        
+                        //current image
+                        $imageName = $work->image;
+                        if ( isset(((array)$request->all())[$work->image]) ){
+                            //store new image
+                            $file = $request->file($imageName);                         
+                            $dirPath = '/assets/upload/ordersImage/';
+                            $fileName= rand(1,999).'_'.time().'.'.$file->getClientOriginalExtension();
+                            $file->move(public_path().$dirPath ,$fileName);                        
+                            $workData['image']= $dirPath.$fileName;
+                            //delete old image 
+                            File::delete(public_path($oldImagePath)); 
+                        };
+
+
+                        //calculate revision count for order table 
+                        ($work->revision) ? $revisionCount+=1 : null ; 
+                        $worksCount+=1; 
+
+                        //update order detail
+                        $this->orderDetailsProvider->update($workData , $work->id); 
+                    }
+                    $orderData['works_count']=$worksCount; 
+                    $orderData['required_revision_count']=$worksCount - $revisionCount; 
+                    //update order
+                    $order = $this->orderProvider->update($orderData , $request->id);
+               }
+            }else {
+                return redirect('order')->withErrors($validateOrderDetails); 
+            }
+            return back(); 
+
         }
         
     }

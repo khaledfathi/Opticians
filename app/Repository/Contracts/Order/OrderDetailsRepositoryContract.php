@@ -8,4 +8,5 @@ interface OrderDetailsRepositoryContract {
     public function show(int $id):object; 
     public function showByOrderId(int $orderId):object; 
     public function update(array $data , int $id):bool ;  
+    public function destroy (int $id):bool; 
 }
