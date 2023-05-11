@@ -30,7 +30,7 @@ class UpdateUserRequest extends FormRequest
             'type'=>['required' , new Enum(UserType::class)], 
             'status'=>['required' , new Enum(UserStatus::class)]
         ];        
-        if($this->password !=null ) $rules['password'] = ['sometimes','min:8','confirmed','regex:/^[a-zA-Z0-9!@#$%^&*()_+-=|]+$/']; 
+        if($this->password !=null ) $rules['password'] = ['sometimes','min:4','confirmed','regex:/^[a-zA-Z0-9!@#$%^&*()_+-=|]+$/']; 
         return $rules; 
     }
     public function messages(){

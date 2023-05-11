@@ -27,7 +27,7 @@ class CreateUserRequest extends FormRequest
         $this->session()->flash('lastInputs', $this->all()); 
         return [
             'name'=>'required|unique:users|alpha_dash:ascii',
-            'password'=>['required','min:8','confirmed','regex:/^[ a-zA-Z0-9!@#$%^&*()_+-=|]+$/'], 
+            'password'=>['required','min:4','confirmed','regex:/^[ a-zA-Z0-9!@#$%^&*()_+-=|]+$/'], 
             'phone'=>'required|numeric|unique:users', 
             'type'=>['required' , new Enum(UserType::class)], 
             'status'=>['required' , new Enum(UserStatus::class)]

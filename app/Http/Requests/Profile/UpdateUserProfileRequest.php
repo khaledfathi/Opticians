@@ -26,7 +26,7 @@ class UpdateUserProfileRequest extends FormRequest
         ]; 
         if ($this->oldPassword != null ){
             $rules['oldPassword']='current_password';
-            $rules['password'] = ['required','min:8','confirmed','regex:/^[a-zA-Z0-9!@#$%^&*()_+-=|]+$/']; 
+            $rules['password'] = ['required','min:4','confirmed','regex:/^[a-zA-Z0-9!@#$%^&*()_+-=|]+$/']; 
         }        
         return $rules; 
     }
