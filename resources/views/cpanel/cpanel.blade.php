@@ -46,9 +46,9 @@
             <h4 class="about-app__about">About App</h4>
             <p>
                 App : Optician Workshop System [OWS]<br>
-                App Version : Pre-alpha<br>
-                PHP Version : 8.1+ <br>
-                Laravel Version : 10.5.1+<br>
+                App Version : 1.0 <br>
+                PHP Version :  {{phpversion()}}<br>
+                Laravel Version : {{app()->version()}}<br>
                 License : GPL v3<br>
                 Support : dev@khaledfathi.com
             </p>
